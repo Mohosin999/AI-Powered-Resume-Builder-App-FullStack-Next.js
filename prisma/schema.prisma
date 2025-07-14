@@ -18,7 +18,7 @@ model User {
   id String @id @default(cuid())
   clerkId String @unique
   email String
-  resume Resume[]
+  resumes Resume[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -28,13 +28,74 @@ model Resume {
   userId String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   title String
-  personal    Json
-  summary     String?
-  experience  Json?
-  education   Json?
-  skills      Json?
-  projects    Json?
-  githubData  Json?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  personalDetails PersonalDetails?
+  summary Summary?
+  experiences Experience[]
+  projects Project[]
+  educations Education[]
+  skills Skill[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PersonalDetails {
+  id String @id @default(cuid())
+  resumeId String @unique
+  resume Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  firstName String
+  lastName  String
+  email     String
+  phone     String?
+  jobTitle  String
+  socialLink   String?
+}
+
+model Summary {
+  id String @id @default(cuid())
+  resumeId String @unique
+  resume Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  content   String
+}
+
+model Experience {
+  id String @id @default(cuid())
+  resumeId String
+  resume Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  jobTitle String
+  company String
+  location String?
+  startDate String
+  endDate String?
+  current Boolean  @default(false)
+  description String
+}
+
+model Project {
+  id String @id @default(cuid())
+  resumeId String
+  resume Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  name        String
+  description String
+  url         String?
+  startDate   String?
+  endDate     String?
+}
+
+model Education {
+  id String @id @default(cuid())
+  resumeId String
+  resume Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  institution String
+  degree String
+  field String?
+  startDate String
+  endDate String?
+  current Boolean  @default(false)
+}
+
+model Skill {
+  id String @id @default(cuid())
+  resumeId String
+  resume Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  name String
 }
