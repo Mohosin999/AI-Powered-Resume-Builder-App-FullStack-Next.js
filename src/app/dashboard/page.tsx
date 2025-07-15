@@ -1,5 +1,4 @@
 import React from "react";
-import DashboardPage from "./DashboardPage";
 import { getResumes } from "@/actions/resume-actions";
 import ResumeUpdate from "@/components/ResumeUpdate";
 
@@ -8,8 +7,6 @@ const Dashboard = async () => {
 
   return (
     <div>
-      <DashboardPage />
-
       <ResumeUpdate allResumes={allResumes} />
     </div>
   );

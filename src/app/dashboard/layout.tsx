@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { getUserByClerkId } from "@/actions/user-actions";
 import { auth } from "@clerk/nextjs/server";
+import { createResume } from "@/actions/resume-actions";
+import CreateResumeDialog from "@/components/CreateResumeDialog";
 
 export default async function DashboardLayout({
   children,
@@ -16,10 +18,9 @@ export default async function DashboardLayout({
   }
 
   const user = await getUserByClerkId(clerkId);
-  console.log("user form dahboard ", user?.image);
 
   return (
-    <div className="min-h-screen flex bg-black text-white">
+    <div className="min-h-screen flex">
       {/* Sidebar */}
       <aside className="w-[300px] border-r border-gray-700 p-6 flex flex-col items-center gap-6">
         {/* Profile Image */}
@@ -57,12 +58,10 @@ export default async function DashboardLayout({
         </nav>
 
         {/* Create Resume Button */}
-        <Link
-          href="/dashboard/create"
-          className="mt-4 border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition"
-        >
+        {/* <div className="mt-4 border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
           Create New Resume
-        </Link>
+        </div> */}
+        <CreateResumeDialog action={createResume} />
       </aside>
 
       {/* Main content */}
