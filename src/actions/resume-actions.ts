@@ -24,6 +24,25 @@ async function getAuthenticatedUser() {
 }
 
 // Create Resume
+// export async function createResume(formData: FormData) {
+//   const title = formData.get("title") as string;
+
+//   if (!title) {
+//     throw new Error("Title is required");
+//   }
+
+//   const user = await getAuthenticatedUser();
+//   if (!user) throw new Error("User not found");
+
+//   await prisma.resume.create({
+//     data: {
+//       title,
+//       userId: user.id,
+//     },
+//   });
+
+//   revalidatePath("/dashboard");
+// }
 export async function createResume(formData: FormData) {
   const title = formData.get("title") as string;
 
@@ -34,7 +53,7 @@ export async function createResume(formData: FormData) {
   const user = await getAuthenticatedUser();
   if (!user) throw new Error("User not found");
 
-  await prisma.resume.create({
+  const resume = await prisma.resume.create({
     data: {
       title,
       userId: user.id,
@@ -42,6 +61,7 @@ export async function createResume(formData: FormData) {
   });
 
   revalidatePath("/dashboard");
+  return resume.id;
 }
 
 export async function updateResume(formData: FormData) {

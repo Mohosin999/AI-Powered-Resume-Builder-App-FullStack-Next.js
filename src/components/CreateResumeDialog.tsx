@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,16 +17,20 @@ import { FaPlus } from "react-icons/fa6";
 import { SubmitButton } from "./SubmitButton";
 
 export default function CreateResumeDialog({
-  action,
+  createResume,
 }: {
-  action: (formData: FormData) => Promise<void>;
+  createResume: (formData: FormData) => Promise<string>;
 }) {
   const [open, setOpen] = useState(false);
 
+  // Handles the form submission for creating a new resume.
   async function handleAction(formData: FormData) {
-    await action(formData);
-    // Close the dialog
+    const resumeId = await createResume(formData);
     setOpen(false);
+
+    if (resumeId) {
+      window.location.href = `/dashboard/${resumeId}/personal-details`;
+    }
   }
 
   return (

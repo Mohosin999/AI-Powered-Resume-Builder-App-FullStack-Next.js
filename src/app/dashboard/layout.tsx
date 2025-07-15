@@ -31,6 +31,7 @@ export default async function DashboardLayout({
               alt="Profile"
               width={96}
               height={96}
+              priority
               className="rounded-full object-cover"
             />
           ) : (
@@ -57,11 +58,7 @@ export default async function DashboardLayout({
           </Link>
         </nav>
 
-        {/* Create Resume Button */}
-        {/* <div className="mt-4 border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
-          Create New Resume
-        </div> */}
-        <CreateResumeDialog action={createResume} />
+        <CreateResumeDialog createResume={createResume} />
       </aside>
 
       {/* Main content */}
