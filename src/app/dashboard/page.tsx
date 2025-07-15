@@ -5,7 +5,6 @@ import ResumeUpdate from "@/components/ResumeUpdate";
 
 const Dashboard = async () => {
   const allResumes = await getResumes();
-  console.log("all resume", allResumes);
 
   return (
     <div>

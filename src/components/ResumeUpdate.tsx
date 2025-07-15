@@ -17,22 +17,6 @@ interface ResumeUpdateProps {
 
 const ResumeUpdate = ({ allResumes }: ResumeUpdateProps) => {
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [title, setTitle] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>,
-    resumeId: string
-  ) => {
-    e.preventDefault();
-    if (!title.trim()) return;
-
-    await updateResume(resumeId, title);
-    setEditingId(null); // close edit form after submission
-  };
 
   const handleDelete = async (resumeId: string) => {
     await deleteResume(resumeId);
@@ -51,10 +35,7 @@ const ResumeUpdate = ({ allResumes }: ResumeUpdateProps) => {
 
           <span
             className="absolute top-2 right-4 text-xs underline cursor-pointer"
-            onClick={() => {
-              setEditingId(resume.id);
-              setTitle(resume.title); // prefill input with existing title
-            }}
+            onClick={() => setEditingId(resume.id)}
           >
             Edit title
           </span>
@@ -67,14 +48,14 @@ const ResumeUpdate = ({ allResumes }: ResumeUpdateProps) => {
 
           {editingId === resume.id && (
             <form
-              onSubmit={(e) => handleSubmit(e, resume.id)}
+              action={updateResume}
               className="mt-2 flex justify-center items-center gap-2"
             >
+              <input type="hidden" name="id" value={resume.id} />
               <input
                 type="text"
                 name="title"
-                value={title}
-                onChange={handleChange}
+                defaultValue={resume.title}
                 placeholder="Enter your title"
                 className="border px-2 py-1"
                 required

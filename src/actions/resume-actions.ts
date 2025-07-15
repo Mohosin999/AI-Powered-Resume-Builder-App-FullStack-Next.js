@@ -31,13 +31,7 @@ export async function createResume(formData: FormData) {
     throw new Error("Title is required");
   }
 
-  const { userId } = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
-  const user = await prisma.user.findUnique({
-    where: { clerkId: userId },
-  });
-
+  const user = await getAuthenticatedUser();
   if (!user) throw new Error("User not found");
 
   await prisma.resume.create({
@@ -50,14 +44,19 @@ export async function createResume(formData: FormData) {
   revalidatePath("/dashboard");
 }
 
-export async function updateResume(id: string, title: string) {
+export async function updateResume(formData: FormData) {
+  const id = formData.get("id") as string;
+  const title = formData.get("title") as string;
+
+  if (!id || !title.trim()) {
+    throw new Error("ID and Title are required!");
+  }
+
   const user = await getAuthenticatedUser();
+  if (!user) throw new Error("User not found");
 
   await prisma.resume.update({
-    where: {
-      id,
-      userId: user.id,
-    },
+    where: { id, userId: user.id },
     data: { title },
   });
 
