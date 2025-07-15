@@ -64,6 +64,19 @@ export async function updateResume(id: string, title: string) {
   revalidatePath("/dashboard");
 }
 
+export async function deleteResume(id: string) {
+  const user = await getAuthenticatedUser();
+
+  await prisma.resume.delete({
+    where: {
+      id,
+      userId: user.id,
+    },
+  });
+
+  revalidatePath("/dashboard");
+}
+
 export async function getResumes() {
   const user = await getAuthenticatedUser();
 

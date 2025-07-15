@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { updateResume } from "@/actions/resume-actions";
+import { deleteResume, updateResume } from "@/actions/resume-actions";
 import Link from "next/link";
 
 interface Resume {
@@ -34,6 +34,10 @@ const ResumeUpdate = ({ allResumes }: ResumeUpdateProps) => {
     setEditingId(null); // close edit form after submission
   };
 
+  const handleDelete = async (resumeId: string) => {
+    await deleteResume(resumeId);
+  };
+
   return (
     <div className="text-center p-20 bg-green-800 text-black">
       {allResumes?.map((resume) => (
@@ -54,6 +58,12 @@ const ResumeUpdate = ({ allResumes }: ResumeUpdateProps) => {
           >
             Edit title
           </span>
+          <button
+            onClick={() => handleDelete(resume.id)}
+            className="underline text-red-700"
+          >
+            Delete
+          </button>
 
           {editingId === resume.id && (
             <form
