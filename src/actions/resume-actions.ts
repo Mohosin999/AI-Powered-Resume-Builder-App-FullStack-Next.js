@@ -53,13 +53,15 @@ export async function createResume(formData: FormData) {
 export async function updateResume(id: string, title: string) {
   const user = await getAuthenticatedUser();
 
-  return await prisma.resume.update({
+  await prisma.resume.update({
     where: {
       id,
       userId: user.id,
     },
     data: { title },
   });
+
+  revalidatePath("/dashboard");
 }
 
 export async function getResumes() {
