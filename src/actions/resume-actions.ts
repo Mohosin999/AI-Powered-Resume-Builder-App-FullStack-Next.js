@@ -123,3 +123,56 @@ export async function getResumeById(id: string) {
     },
   });
 }
+
+/**
+ * Personal Details
+ */
+export async function upsertPersonalDetails(formData: FormData) {
+  const user = await getAuthenticatedUser();
+  if (!user) throw new Error("Unauthorized");
+
+  const resumeId = formData.get("resumeId") as string;
+  if (!resumeId) throw new Error("Resume ID is required");
+
+  const data = {
+    firstName: formData.get("firstName") as string,
+    lastName: formData.get("lastName") as string,
+    email: formData.get("email") as string,
+    phone: formData.get("phone") as string | undefined,
+    jobTitle: formData.get("jobTitle") as string,
+    socialLink: formData.get("socialLink") as string | undefined,
+  };
+
+  // Validate required fields
+  if (!data.firstName || !data.lastName || !data.email || !data.jobTitle) {
+    throw new Error("Required fields are missing");
+  }
+
+  try {
+    await prisma.$transaction(async (tx) => {
+      // Verify the resume belongs to the user
+      const resume = await tx.resume.findUnique({
+        where: { id: resumeId, userId: user.id },
+      });
+
+      if (!resume) throw new Error("Resume not found or access denied");
+
+      // Upsert the personal details
+      await tx.personalDetails.upsert({
+        where: { resumeId },
+        create: {
+          ...data,
+          resumeId,
+        },
+        update: data,
+      });
+    });
+
+    revalidatePath(`/resumes/${resumeId}/personal-details`);
+    // Optionally redirect after successful submission
+    // redirect(`/resumes/${resumeId}/personal-details`);
+  } catch (error) {
+    console.error("Failed to save personal details:", error);
+    throw error;
+  }
+}

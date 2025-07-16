@@ -23,13 +23,13 @@ const ResumeUpdate = ({ allResumes }: ResumeUpdateProps) => {
   };
 
   return (
-    <div className="text-center p-5">
+    <div className="text-center">
       {allResumes?.map((resume) => (
         <div
           key={resume.id}
-          className="border py-5 my-4 bg-gray-900 text-white cursor-pointer relative"
+          className="border py-5 my-2 bg-gray-900 text-white cursor-pointer relative"
         >
-          <Link href={`/dashboard/${resume.id}`}>
+          <Link href={`/dashboard/${resume.id}/personal-details`}>
             <h1>{resume.title}</h1>
           </Link>
 
