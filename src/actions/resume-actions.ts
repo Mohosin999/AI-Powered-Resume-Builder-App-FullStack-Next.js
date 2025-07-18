@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 // Helper function to get authenticated user
 async function getAuthenticatedUser() {
@@ -125,7 +126,9 @@ export async function getResumeById(id: string) {
 }
 
 /**
- * Personal Details
+ * ========================================================================
+ *                             Personal Details
+ * ========================================================================
  */
 export async function upsertPersonalDetails(formData: FormData) {
   const user = await getAuthenticatedUser();
@@ -170,9 +173,39 @@ export async function upsertPersonalDetails(formData: FormData) {
 
     revalidatePath(`/resumes/${resumeId}/personal-details`);
     // Optionally redirect after successful submission
-    // redirect(`/resumes/${resumeId}/personal-details`);
+    redirect(`/resumes/${resumeId}/experiences`);
   } catch (error) {
     console.error("Failed to save personal details:", error);
     throw error;
   }
 }
+
+/**
+ * ========================================================================
+ *                               Summary
+ * ========================================================================
+ */
+
+/**
+ * ========================================================================
+ *                              Experiences
+ * ========================================================================
+ */
+
+/**
+ * ========================================================================
+ *                             Personal Details
+ * ========================================================================
+ */
+
+/**
+ * ========================================================================
+ *                             Personal Details
+ * ========================================================================
+ */
+
+/**
+ * ========================================================================
+ *                             Personal Details
+ * ========================================================================
+ */
