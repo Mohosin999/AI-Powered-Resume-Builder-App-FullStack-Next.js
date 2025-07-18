@@ -1,21 +1,20 @@
-import { upsertPersonalDetails } from "@/actions/resume-actions";
 import React from "react";
+import { upsertPersonalDetails } from "@/actions/resume-actions";
+import { SubmitButton } from "@/components/SubmitButton";
 
 interface PersonalDetailsPageProps {
   params: {
     id: string;
-    slug: string;
   };
 }
 
 const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
-  const { id } = params;
-
   return (
     <div className="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
       <h1 className="text-2xl font-bold mb-6">Personal Details</h1>
+
       <form action={upsertPersonalDetails} className="space-y-6">
-        <input type="hidden" name="resumeId" value={id} />
+        <input type="hidden" name="resumeId" value={params.id} />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div>
@@ -114,12 +113,13 @@ const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
         </div>
 
         <div className="flex justify-end">
-          <button
+          {/* <button
             type="submit"
             className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             Save Personal Details
-          </button>
+          </button> */}
+          <SubmitButton />
         </div>
       </form>
     </div>
