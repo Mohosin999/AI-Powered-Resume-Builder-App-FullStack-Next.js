@@ -92,11 +92,11 @@ model Project {
   id String @id @default(cuid())
   resumeId String
   resume Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
-  name        String
+  name String
   description String
-  url         String?
-  startDate   String?
-  endDate     String?
+  url String?
+  startDate String?
+  endDate String?
 }
 
 model Education {
