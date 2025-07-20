@@ -15,7 +15,7 @@ interface ResumeUpdateProps {
   allResumes: Resume[];
 }
 
-const ResumeUpdate = ({ allResumes }: ResumeUpdateProps) => {
+const ResumeUpdate: React.FC<ResumeUpdateProps> = ({ allResumes }) => {
   const [editingId, setEditingId] = useState<string | null>(null);
 
   const handleDelete = async (resumeId: string) => {

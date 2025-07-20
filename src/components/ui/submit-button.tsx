@@ -18,9 +18,10 @@ export function SubmitButton({
 
   return (
     <Button
-      type="submit"
       disabled={pending}
-      className={`cursor-pointer ${className}`}
+      type="submit"
+      variant="outline"
+      className={`text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer ${className}`}
     >
       {pending ? (
         <>

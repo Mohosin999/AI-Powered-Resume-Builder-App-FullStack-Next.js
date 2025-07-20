@@ -5,6 +5,9 @@ import { getUserByClerkId } from "@/actions/user-actions";
 import { auth } from "@clerk/nextjs/server";
 import { createResume } from "@/actions/resume-actions";
 import CreateResumeDialog from "@/components/create-resume-dialog";
+import { Button } from "@/components/ui/button";
+import { FaHome } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
 
 export default async function DashboardLayout({
   children,
@@ -17,12 +20,13 @@ export default async function DashboardLayout({
     throw new Error("Unauthorized access — Clerk userId is missing");
   }
 
+  // Get user from database by clerkId
   const user = await getUserByClerkId(clerkId);
 
   return (
-    <div className="min-h-screen flex">
+    <div className="bg-[#131A25] min-h-screen flex">
       {/* Sidebar */}
-      <aside className="w-[300px] border-r border-gray-700 p-6 flex flex-col items-center gap-6">
+      <aside className="w-[300px] border-r border-gray-700 py-12 flex flex-col items-center gap-6">
         {/* Profile Image */}
         <div className="w-24 h-24 rounded-full border-2 border-white flex items-center justify-center overflow-hidden bg-gray-800">
           {user?.image ? (
@@ -39,25 +43,29 @@ export default async function DashboardLayout({
           )}
         </div>
 
-        {/* Name and Email */}
+        {/* User details */}
         <div className="text-center">
-          <h2 className="font-bold text-lg">{user?.name || "Unknown User"}</h2>
-          <p className="text-sm text-gray-400">{user?.email}</p>
+          <h2 className="text-gray-100 font-bold text-lg">
+            {user?.name || "Unknown User"}
+          </h2>
+          <p className="text-sm text-[#72839E]">{user?.email}</p>
         </div>
 
-        {/* Navigation Links */}
-        <nav className="w-full flex flex-col items-start gap-2 text-sm">
-          <Link href="/" className="flex items-center gap-2 hover:underline">
-            🏠 Home
+        {/* Navigation buttons */}
+        <nav className="w-full flex flex-col items-center justify-center gap-4 text-sm my-6">
+          <Link href="/">
+            <Button variant="ghost" className="homepage-button-style">
+              <FaHome /> Home
+            </Button>
           </Link>
-          <Link
-            href="/dashboard"
-            className="flex items-center gap-2 text-green-400 underline"
-          >
-            🧾 Dashboard
+          <Link href="/dashboard">
+            <Button variant="ghost" className="homepage-button-style">
+              <MdDashboard /> Dashboard
+            </Button>
           </Link>
         </nav>
 
+        {/* Create new resume button */}
         <CreateResumeDialog createResume={createResume} />
       </aside>
 

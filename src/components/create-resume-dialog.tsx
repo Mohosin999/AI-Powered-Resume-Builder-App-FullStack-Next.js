@@ -36,29 +36,34 @@ export default function CreateResumeDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" className="cursor-pointer">
-          <FaPlus className="mr-2" />
+        <Button
+          variant="outline"
+          className="hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+        >
+          <FaPlus />
           Create New Resume
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] bg-[#131A25] border-emerald-400 text-gray-100">
         <form action={handleAction}>
           <DialogHeader>
             <DialogTitle>Create New Resume</DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="text-[#72839E]">
               Enter your resume title to create a new resume.
             </DialogDescription>
           </DialogHeader>
 
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
-              <Label htmlFor="title">Title</Label>
+              <Label htmlFor="title" className="text-gray-300">
+                Resume Title
+              </Label>
               <Input
                 id="title"
                 name="title"
                 required
-                defaultValue="Next.js Developer Resume"
+                placeholder="ex. Frontend Developer Resume"
               />
             </div>
           </div>
@@ -67,8 +72,8 @@ export default function CreateResumeDialog({
             <DialogClose asChild>
               <Button
                 type="button"
-                variant="outline"
-                className="cursor-pointer"
+                variant="ghost"
+                className="homepage-button-style"
               >
                 Cancel
               </Button>
