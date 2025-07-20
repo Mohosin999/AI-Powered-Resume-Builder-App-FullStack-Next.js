@@ -20,7 +20,7 @@ const Navbar = async () => {
 
   return (
     <header className="bg-[#14202D] shadow-md">
-      <div className="container mx-auto px-4 py-6 flex justify-between items-center">
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Left: Logo + Text */}
         <Link href="/" className="flex items-center space-x-2">
           <Image
@@ -28,7 +28,7 @@ const Navbar = async () => {
             alt="AI Resume Logo"
             width={40}
             height={40}
-            className="w-8 h-8"
+            className="w-6 h-6"
           />
           <span className="text-emerald-400 text-xl font-semibold tracking-wide">
             AI Resume Builder
@@ -39,7 +39,7 @@ const Navbar = async () => {
         <div className="flex items-center space-x-4">
           <SignedIn>
             <Link href="/dashboard">
-              <Button variant="secondary" className="cursor-pointer">
+              <Button variant="ghost" className="homepage-button-style">
                 Dashboard
               </Button>
             </Link>
@@ -48,19 +48,16 @@ const Navbar = async () => {
 
           <SignedOut>
             <SignInButton mode="modal">
-              <Button
-                variant="ghost"
-                className="text-emerald-400 border border-emerald-400 hover:border-white cursor-pointer"
-              >
-                Login
+              <Button variant="ghost" className="homepage-button-style">
+                Sign in
               </Button>
             </SignInButton>
             <SignUpButton mode="modal">
               <Button
-                variant="ghost"
-                className="text-emerald-400 border border-emerald-400 hover:border-white cursor-pointer"
+                variant="outline"
+                className="hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
               >
-                Register
+                Get Started
               </Button>
             </SignUpButton>
           </SignedOut>

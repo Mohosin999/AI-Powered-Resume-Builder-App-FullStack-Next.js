@@ -120,3 +120,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Reusable css style */
+.homepage-button-style {
+  @apply text-emerald-400 border border-emerald-400 hover:border-white hover:text-gray-900 cursor-pointer;
+}
+
+.paragraph-text-style {
+  @apply text-[#72839E] text-sm md:text-base;
+}
