@@ -15,7 +15,7 @@ interface ResumeUpdateProps {
   allResumes: Resume[];
 }
 
-const ResumeUpdate: React.FC<ResumeUpdateProps> = ({ allResumes }) => {
+const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
   const [editingId, setEditingId] = useState<string | null>(null);
 
   const handleDelete = async (resumeId: string) => {
@@ -74,4 +74,4 @@ const ResumeUpdate: React.FC<ResumeUpdateProps> = ({ allResumes }) => {
   );
 };
 
-export default ResumeUpdate;
+export default DisplayAllResumes;
