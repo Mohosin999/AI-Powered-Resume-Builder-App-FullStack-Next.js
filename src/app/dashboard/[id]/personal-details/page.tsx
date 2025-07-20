@@ -1,6 +1,6 @@
 import React from "react";
 import { upsertPersonalDetails } from "@/actions/resume-actions";
-import { SubmitButton } from "@/components/ui/SubmitButton";
+import { SubmitButton } from "@/components/ui/submit-button";
 
 interface PersonalDetailsPageProps {
   params: {

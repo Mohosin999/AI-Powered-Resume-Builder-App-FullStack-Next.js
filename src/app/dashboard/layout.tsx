@@ -4,7 +4,7 @@ import Image from "next/image";
 import { getUserByClerkId } from "@/actions/user-actions";
 import { auth } from "@clerk/nextjs/server";
 import { createResume } from "@/actions/resume-actions";
-import CreateResumeDialog from "@/components/CreateResumeDialog";
+import CreateResumeDialog from "@/components/create-resume-dialog";
 
 export default async function DashboardLayout({
   children,

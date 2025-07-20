@@ -28,9 +28,9 @@ const Navbar = async () => {
             alt="AI Resume Logo"
             width={40}
             height={40}
-            className="w-10 h-10"
+            className="w-8 h-8"
           />
-          <span className="text-emerald-400 text-xl font-bold tracking-wide">
+          <span className="text-emerald-400 text-xl font-semibold tracking-wide">
             AI Resume Builder
           </span>
         </Link>
@@ -39,7 +39,7 @@ const Navbar = async () => {
         <div className="flex items-center space-x-4">
           <SignedIn>
             <Link href="/dashboard">
-              <Button variant="secondary" size="sm">
+              <Button variant="secondary" className="cursor-pointer">
                 Dashboard
               </Button>
             </Link>
@@ -50,14 +50,18 @@ const Navbar = async () => {
             <SignInButton mode="modal">
               <Button
                 variant="ghost"
-                size="sm"
-                className="text-white border border-white"
+                className="text-emerald-400 border border-emerald-400 hover:border-white cursor-pointer"
               >
                 Login
               </Button>
             </SignInButton>
             <SignUpButton mode="modal">
-              <Button size="sm">Register</Button>
+              <Button
+                variant="ghost"
+                className="text-emerald-400 border border-emerald-400 hover:border-white cursor-pointer"
+              >
+                Register
+              </Button>
             </SignUpButton>
           </SignedOut>
         </div>
