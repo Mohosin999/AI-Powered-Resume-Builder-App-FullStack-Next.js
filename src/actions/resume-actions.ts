@@ -191,6 +191,17 @@ export async function upsertPersonalDetails(formData: FormData) {
  *                              Experiences
  * ========================================================================
  */
+// Get all experience
+export async function getExperiences(resumeId: string) {
+  const user = await getAuthenticatedUser();
+  if (!user) throw new Error("Unauthorized");
+
+  return await prisma.experience.findMany({
+    where: { resumeId, resume: { userId: user.id } },
+    orderBy: { startDate: "desc" },
+  });
+}
+
 // Create or Update
 export async function upsertExperience(formData: FormData) {
   const user = await getAuthenticatedUser();
@@ -255,17 +266,6 @@ export async function upsertExperience(formData: FormData) {
     console.error("Failed to upsert experience:", error);
     throw error;
   }
-}
-
-// Get all experience
-export async function getExperiences(resumeId: string) {
-  const user = await getAuthenticatedUser();
-  if (!user) throw new Error("Unauthorized");
-
-  return await prisma.experience.findMany({
-    where: { resumeId, resume: { userId: user.id } },
-    orderBy: { startDate: "desc" },
-  });
 }
 
 // Delete

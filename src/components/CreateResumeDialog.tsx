@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FaPlus } from "react-icons/fa6";
-import { SubmitButton } from "./SubmitButton";
+import { SubmitButton } from "./ui/SubmitButton";
 
 export default function CreateResumeDialog({
   createResume,
