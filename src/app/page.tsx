@@ -9,7 +9,6 @@ const Home = async () => {
   return (
     <div>
       <HomePage isAuthenticated={isAuthenticated} />
-      <div>oh home page</div>
     </div>
   );
 };
