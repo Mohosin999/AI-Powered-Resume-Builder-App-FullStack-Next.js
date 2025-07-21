@@ -1,7 +1,27 @@
 "use client";
 import React, { useState } from "react";
-import { deleteResume, updateResume } from "@/actions/resume-actions";
 import Link from "next/link";
+import { deleteResume } from "@/actions/resume-actions";
+import { BsThreeDotsVertical } from "react-icons/bs";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 interface Resume {
   id: string;
@@ -16,61 +36,94 @@ interface ResumeUpdateProps {
 }
 
 const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
-  const [editingId, setEditingId] = useState<string | null>(null);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
-  const handleDelete = async (resumeId: string) => {
-    await deleteResume(resumeId);
+  const handleDelete = async () => {
+    if (deleteId) {
+      await deleteResume(deleteId);
+      setDeleteId(null);
+    }
   };
 
   return (
-    <div className="text-center">
-      {allResumes?.map((resume) => (
-        <div
-          key={resume.id}
-          className="border py-5 my-2 bg-gray-900 text-white cursor-pointer relative"
-        >
-          <Link href={`/dashboard/${resume.id}/personal-details`}>
-            <h1>{resume.title}</h1>
-          </Link>
-
-          <span
-            className="absolute top-2 right-4 text-xs underline cursor-pointer"
-            onClick={() => setEditingId(resume.id)}
+    <>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {allResumes?.map((resume) => (
+          <div
+            key={resume.id}
+            className="border py-5 px-4 bg-[#1C2434] text-white relative rounded flex flex-col justify-between min-h-[220px]"
           >
-            Edit title
-          </span>
-          <button
-            onClick={() => handleDelete(resume.id)}
-            className="underline text-red-700"
-          >
-            Delete
-          </button>
+            {/* Resume Title */}
+            <div>
+              <Link href={`/dashboard/${resume.id}/personal-details`}>
+                <h1 className="text-lg font-semibold">{resume.title}</h1>
+              </Link>
+            </div>
 
-          {editingId === resume.id && (
-            <form
-              action={updateResume}
-              className="mt-2 flex justify-center items-center gap-2"
+            {/* Three-dot menu */}
+            <div className="absolute bottom-2 right-2 text-right">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="cursor-pointer text-white">
+                  <BsThreeDotsVertical />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <Link href={`/dashboard/${resume.id}/personal-details`}>
+                    <DropdownMenuItem className="cursor-pointer">
+                      Edit
+                    </DropdownMenuItem>
+                  </Link>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="cursor-pointer">
+                    View
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="cursor-pointer">
+                    Download
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    className="cursor-pointer text-red-600"
+                    onClick={() => setDeleteId(resume.id)}
+                  >
+                    Delete
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* AlertDialog (Controlled by deleteId) */}
+      <AlertDialog
+        open={!!deleteId}
+        onOpenChange={(open) => !open && setDeleteId(null)}
+      >
+        <AlertDialogContent className="bg-[#131A25] border-gray-700 text-gray-100 shadow-lg">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription className="text-[#72839E]">
+              This action cannot be undone. This will permanently delete your
+              resume.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel
+              onClick={() => setDeleteId(null)}
+              className="bg-[#131A25] text-emerald-400 border-emerald-400 hover:border-white hover:text-gray-900 cursor-pointer"
             >
-              <input type="hidden" name="id" value={resume.id} />
-              <input
-                type="text"
-                name="title"
-                defaultValue={resume.title}
-                placeholder="Enter your title"
-                className="border px-2 py-1"
-                required
-              />
-              <button
-                type="submit"
-                className="bg-blue-500 text-white px-4 py-1 rounded"
-              >
-                Submit
-              </button>
-            </form>
-          )}
-        </div>
-      ))}
-    </div>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleDelete}
+              className="bg-white text-gray-900 hover:bg-emerald-400 cursor-pointer"
+            >
+              Continue
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   );
 };
 
