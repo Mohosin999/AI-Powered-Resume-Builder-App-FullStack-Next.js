@@ -171,9 +171,9 @@ export async function upsertPersonalDetails(formData: FormData) {
       });
     });
 
-    revalidatePath(`/resumes/${resumeId}/personal-details`);
+    revalidatePath(`/dashboard/${resumeId}/personal-details`);
     // Optionally redirect after successful submission
-    redirect(`/resumes/${resumeId}/experiences`);
+    redirect(`/dashboard/${resumeId}/experiences`);
   } catch (error) {
     console.error("Failed to save personal details:", error);
     throw error;
