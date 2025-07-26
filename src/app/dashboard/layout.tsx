@@ -26,7 +26,7 @@ export default async function DashboardLayout({
   return (
     <div className="bg-[#131A25] min-h-screen flex">
       {/* Sidebar */}
-      <aside className="w-[300px] border-r border-gray-700 py-10 flex flex-col items-center gap-6">
+      <aside className="w-[300px] border-r border-gray-700 py-14 flex flex-col items-center gap-6">
         {/* Profile Image */}
         <div className="w-24 h-24 rounded-full border-2 border-white flex items-center justify-center overflow-hidden bg-gray-800">
           {user?.image ? (
@@ -70,7 +70,7 @@ export default async function DashboardLayout({
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 p-10">{children}</main>
+      <main className="flex-1 p-14">{children}</main>
     </div>
   );
 }

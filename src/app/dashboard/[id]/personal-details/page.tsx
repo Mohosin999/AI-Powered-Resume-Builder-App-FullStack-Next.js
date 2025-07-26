@@ -10,8 +10,10 @@ interface PersonalDetailsPageProps {
 
 const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
   return (
-    <div className="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-      <h1 className="text-2xl font-bold mb-6">Personal Details</h1>
+    <div className="max-w-2xl mx-auto">
+      <h1 className="text-gray-100 text-2xl font-bold mb-6">
+        Personal Details
+      </h1>
 
       <form action={upsertPersonalDetails} className="space-y-6">
         <input type="hidden" name="resumeId" value={params.id} />
@@ -20,7 +22,7 @@ const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
           <div>
             <label
               htmlFor="firstName"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-[#72839E]"
             >
               First Name *
             </label>
@@ -29,14 +31,14 @@ const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
               name="firstName"
               id="firstName"
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border text-gray-300"
             />
           </div>
 
           <div>
             <label
               htmlFor="lastName"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-[#72839E]"
             >
               Last Name *
             </label>
@@ -53,7 +55,7 @@ const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
         <div>
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-[#72839E]"
           >
             Email *
           </label>
@@ -69,7 +71,7 @@ const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
         <div>
           <label
             htmlFor="phone"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-[#72839E]"
           >
             Phone Number
           </label>
@@ -84,7 +86,7 @@ const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
         <div>
           <label
             htmlFor="jobTitle"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-[#72839E]"
           >
             Job Title *
           </label>
@@ -100,7 +102,7 @@ const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
         <div>
           <label
             htmlFor="socialLink"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-[#72839E]"
           >
             Social Media Link (LinkedIn, GitHub, etc.)
           </label>

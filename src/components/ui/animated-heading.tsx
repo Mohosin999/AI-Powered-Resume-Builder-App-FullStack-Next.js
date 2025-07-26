@@ -28,7 +28,7 @@ const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({
   };
 
   return (
-    <h1 className={` text-3xl md:text-5xl font-bold ${className}`}>
+    <h1 className={`text-3xl md:text-5xl font-bold ${className}`}>
       {words.map((word, index) => (
         <motion.span
           key={index}

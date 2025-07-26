@@ -47,11 +47,11 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {allResumes?.map((resume) => (
           <div
             key={resume.id}
-            className="border py-5 px-4 bg-[#1C2434] text-white relative rounded flex flex-col justify-between min-h-[220px]"
+            className="border border-gray-600 py-5 px-4 bg-[#1C2434] text-white relative rounded flex flex-col justify-between min-h-[220px]"
           >
             {/* Resume Title */}
             <div>

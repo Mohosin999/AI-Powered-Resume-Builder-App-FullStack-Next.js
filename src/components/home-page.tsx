@@ -1,8 +1,8 @@
 import React from "react";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+// import Navbar from "@/components/navbar";
+// import Footer from "@/components/footer";
 import GetStartedButton from "@/components/ui/get-started-button";
 import AnimatedHeading from "@/components/ui/animated-heading";
 
@@ -20,13 +20,13 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
 
   return (
     <div className="bg-[#131A25]">
-      <Navbar />
+      {/* <Navbar /> */}
 
       <div className="min-h-screen">
         <div className="w-[90%] md:w-[80%] lg:w-[70%] mx-auto text-center">
           <AnimatedHeading
             text="Build Your Professional Resume"
-            className="mt-14 text-emerald-400"
+            className="pt-14 text-emerald-400"
           />
 
           <p className="mt-4 mb-6 paragraph-text-style">
@@ -138,7 +138,7 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
         </div>
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
