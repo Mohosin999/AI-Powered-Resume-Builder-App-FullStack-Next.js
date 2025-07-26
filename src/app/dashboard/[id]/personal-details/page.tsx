@@ -1,6 +1,10 @@
 import React from "react";
-import { upsertPersonalDetails } from "@/actions/resume-actions";
+import {
+  getPersonalDetails,
+  upsertPersonalDetails,
+} from "@/actions/resume-actions";
 import { SubmitButton } from "@/components/ui/submit-button";
+// import { showToast } from "@/lib/show-toast";
 
 interface PersonalDetailsPageProps {
   params: {
@@ -8,7 +12,9 @@ interface PersonalDetailsPageProps {
   };
 }
 
-const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
+const PersonalDetailsPage = async ({ params }: PersonalDetailsPageProps) => {
+  const personDetailsInfo = await getPersonalDetails(params.id);
+
   return (
     <div className="max-w-2xl mx-auto">
       <h1 className="text-gray-100 text-2xl font-bold mb-6">
@@ -30,6 +36,7 @@ const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
               type="text"
               name="firstName"
               id="firstName"
+              defaultValue={personDetailsInfo?.firstName}
               required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border text-gray-300"
             />
@@ -46,6 +53,7 @@ const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
               type="text"
               name="lastName"
               id="lastName"
+              defaultValue={personDetailsInfo?.lastName}
               required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border text-gray-300"
             />
@@ -63,6 +71,7 @@ const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
             type="email"
             name="email"
             id="email"
+            defaultValue={personDetailsInfo?.email}
             required
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border text-gray-300"
           />
@@ -79,6 +88,7 @@ const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
             type="tel"
             name="phone"
             id="phone"
+            defaultValue={personDetailsInfo?.phone ?? ""}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border text-gray-300"
           />
         </div>
@@ -94,6 +104,7 @@ const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
             type="text"
             name="jobTitle"
             id="jobTitle"
+            defaultValue={personDetailsInfo?.jobTitle}
             required
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border text-gray-300"
           />
@@ -110,6 +121,7 @@ const PersonalDetailsPage = ({ params }: PersonalDetailsPageProps) => {
             type="url"
             name="socialLink"
             id="socialLink"
+            defaultValue={personDetailsInfo?.socialLink ?? ""}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border text-gray-300"
           />
         </div>

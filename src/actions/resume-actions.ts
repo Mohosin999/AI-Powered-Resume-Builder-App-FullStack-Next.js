@@ -3,7 +3,7 @@
 import { prisma } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
 // Helper function to get authenticated user
 async function getAuthenticatedUser() {
@@ -130,6 +130,7 @@ export async function getResumeById(id: string) {
  *                             Personal Details
  * ========================================================================
  */
+// Create or Update Personal Details
 export async function upsertPersonalDetails(formData: FormData) {
   const user = await getAuthenticatedUser();
   if (!user) throw new Error("Unauthorized");
@@ -173,11 +174,23 @@ export async function upsertPersonalDetails(formData: FormData) {
 
     revalidatePath(`/dashboard/${resumeId}/personal-details`);
     // Optionally redirect after successful submission
-    redirect(`/dashboard/${resumeId}/experiences`);
+    // redirect(`/dashboard/${resumeId}/experiences`);
   } catch (error) {
     console.error("Failed to save personal details:", error);
     throw error;
   }
+}
+
+// Get Personal Details
+export async function getPersonalDetails(resumeId: string) {
+  const user = await getAuthenticatedUser();
+  if (!user) throw new Error("Unauthorized");
+
+  if (!resumeId) throw new Error("Resume ID is required");
+
+  return await prisma.personalDetails.findUnique({
+    where: { resumeId },
+  });
 }
 
 /**
