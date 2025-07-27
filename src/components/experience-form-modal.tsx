@@ -3,18 +3,22 @@
 
 import { useState } from "react";
 import { ExperienceForm } from "./experience-form";
+import { Button } from "./ui/button";
+import { FaPlus } from "react-icons/fa6";
 
 export function ExperienceFormModal({ resumeId }: { resumeId: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <button
+      <Button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+        variant="ghost"
+        className="homepage-button-style"
       >
+        <FaPlus />
         Add New Experience
-      </button>
+      </Button>
 
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">

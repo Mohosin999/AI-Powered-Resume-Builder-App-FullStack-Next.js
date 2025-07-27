@@ -129,3 +129,7 @@
 .paragraph-text-style {
   @apply text-[#72839E] text-sm md:text-base;
 }
+
+.card-style {
+  @apply bg-[#1C2434] p-14 rounded-lg shadow-sm lg:shadow-md;
+}
