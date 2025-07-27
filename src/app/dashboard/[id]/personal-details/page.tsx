@@ -127,7 +127,7 @@ const PersonalDetailsPage = async ({ params }: PersonalDetailsPageProps) => {
         </div>
 
         <div className="flex justify-end">
-          <SubmitButton />
+          <SubmitButton successText="Submitted" />
         </div>
       </form>
     </div>
