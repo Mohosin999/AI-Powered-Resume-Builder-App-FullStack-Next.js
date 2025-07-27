@@ -298,7 +298,7 @@ export async function deleteExperience(formData: FormData) {
 
     await prisma.experience.delete({ where: { id } });
     revalidatePath(`/dashboard/${experience.resumeId}/experiences`);
-    return { success: true };
+    return;
   } catch (error) {
     console.error("Failed to delete experience:", error);
     throw error;

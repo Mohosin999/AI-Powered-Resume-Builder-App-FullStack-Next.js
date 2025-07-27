@@ -2,6 +2,7 @@
 "use client";
 
 import { upsertExperience } from "@/actions/resume-actions";
+import { Button } from "./ui/button";
 
 export function ExperienceForm({
   resumeId,
@@ -105,12 +106,12 @@ export function ExperienceForm({
         />
       </div>
 
-      <button
-        type="submit"
-        className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+      <Button
+        variant="outline"
+        className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
       >
         Add Experience
-      </button>
+      </Button>
     </form>
   );
 }
