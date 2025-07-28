@@ -39,7 +39,7 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
           <ExperienceFormModal resumeId={params.id} />
         </div>
       ) : (
-        <div className="bg-[#1C2434]  p-6 rounded-lg shadow-md mb-8">
+        <div className="bg-[#1C2434]  p-6 rounded-lg shadow-md mb-0">
           <h2 className="text-gray-300 text-xl font-semibold mb-4">
             Add New Experience
           </h2>
