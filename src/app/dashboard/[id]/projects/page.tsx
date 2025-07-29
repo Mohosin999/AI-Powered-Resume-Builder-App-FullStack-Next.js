@@ -45,7 +45,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {projects.length > 0 && (
         <div className="space-y-6">
           {projects.map((project) => (
-            <div key={project.id} className="p-6 rounded-lg shadow-md">
+            <div
+              key={project.id}
+              className="p-6 rounded-lg shadow-md border border-gray-700"
+            >
               <form action={upsertProject} className="space-y-4">
                 <input type="hidden" name="id" value={project.id} />
                 <input type="hidden" name="resumeId" value={params.id} />

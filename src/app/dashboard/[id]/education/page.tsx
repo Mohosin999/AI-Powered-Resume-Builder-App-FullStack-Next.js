@@ -22,7 +22,7 @@ export default async function EducationPage({ params }: EducationPageProps) {
       <PageHeader
         title="Education"
         resumeId={params.id}
-        nextPage="projects" // Update to your next page
+        nextPage="skills"
         showSkip={true}
       />
 
@@ -42,7 +42,10 @@ export default async function EducationPage({ params }: EducationPageProps) {
       {educations.length > 0 && (
         <div className="space-y-6">
           {educations.map((edu) => (
-            <div key={edu.id} className="p-6 rounded-lg shadow-md">
+            <div
+              key={edu.id}
+              className="p-6 rounded-lg shadow-md border border-gray-700"
+            >
               <form action={upsertEducation} className="space-y-4">
                 <input type="hidden" name="id" value={edu.id} />
                 <input type="hidden" name="resumeId" value={params.id} />

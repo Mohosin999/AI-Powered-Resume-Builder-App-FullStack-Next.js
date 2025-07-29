@@ -536,3 +536,67 @@ export async function deleteEducation(formData: FormData) {
  *                                 Skills
  * ========================================================================
  */
+export async function getSkills(resumeId: string) {
+  const user = await getAuthenticatedUser();
+  if (!user) throw new Error("Unauthorized");
+
+  return await prisma.skill.findMany({
+    where: { resumeId, resume: { userId: user.id } },
+    orderBy: { name: "desc" },
+  });
+}
+
+export async function createSkill(formData: FormData) {
+  const user = await getAuthenticatedUser();
+  if (!user) throw new Error("Unauthorized");
+
+  const resumeId = formData.get("resumeId") as string;
+  const name = formData.get("name") as string;
+
+  if (!resumeId) throw new Error("Resume ID is required");
+  if (!name) throw new Error("Skill name is required");
+
+  try {
+    await prisma.$transaction(async (tx) => {
+      const resume = await tx.resume.findUnique({
+        where: { id: resumeId, userId: user.id },
+      });
+      if (!resume) throw new Error("Resume not found or access denied");
+
+      await tx.skill.create({
+        data: {
+          name,
+          resumeId,
+        },
+      });
+    });
+
+    revalidatePath(`/dashboard/${resumeId}/skills`);
+  } catch (error) {
+    console.error("Failed to create skill:", error);
+    throw error;
+  }
+}
+
+export async function deleteSkill(formData: FormData) {
+  const user = await getAuthenticatedUser();
+  if (!user) throw new Error("Unauthorized");
+
+  const id = formData.get("id") as string;
+  if (!id) throw new Error("Skill ID is required");
+
+  try {
+    const skill = await prisma.skill.findFirst({
+      where: { id, resume: { userId: user.id } },
+    });
+
+    if (!skill) throw new Error("Skill not found or access denied");
+
+    await prisma.skill.delete({ where: { id } });
+    revalidatePath(`/dashboard/${skill.resumeId}/skills`);
+    return;
+  } catch (error) {
+    console.error("Failed to delete skill:", error);
+    throw error;
+  }
+}

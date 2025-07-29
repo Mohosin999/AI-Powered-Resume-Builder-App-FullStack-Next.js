@@ -47,7 +47,10 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
       {experiences.length > 0 && (
         <div className="space-y-6">
           {experiences.map((exp) => (
-            <div key={exp.id} className="p-6 rounded-lg shadow-md">
+            <div
+              key={exp.id}
+              className="p-6 rounded-lg shadow-md  border border-gray-700"
+            >
               <form action={upsertExperience} className="space-y-4">
                 <input type="hidden" name="id" value={exp.id} />
                 <input type="hidden" name="resumeId" value={params.id} />
