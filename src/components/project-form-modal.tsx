@@ -1,12 +1,13 @@
+// components/project-form-modal.tsx
 "use client";
 
 import { useState } from "react";
-import { ExperienceForm } from "./experience-form";
+import { ProjectForm } from "./project-form";
 import { Button } from "./ui/button";
 import { FaPlus } from "react-icons/fa6";
 import { AnimatePresence, motion } from "framer-motion";
 
-export function ExperienceFormModal({ resumeId }: { resumeId: string }) {
+export function ProjectFormModal({ resumeId }: { resumeId: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -17,7 +18,7 @@ export function ExperienceFormModal({ resumeId }: { resumeId: string }) {
         className="homepage-button-style"
       >
         <FaPlus />
-        Add New Experience
+        Add New Project
       </Button>
 
       <AnimatePresence>
@@ -27,13 +28,12 @@ export function ExperienceFormModal({ resumeId }: { resumeId: string }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="mt-4 p-6 rounded-lg shadow-md w-full max-w-3xl mx-auto max-h-[100vh] "
+            className="mt-4 p-6 rounded-lg shadow-md w-full max-w-3xl mx-auto max-h-[100vh]"
           >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl text-gray-300 font-semibold">
-                Add New Experience
+                Add New Project
               </h2>
-              {/* Cross icon */}
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-gray-500 hover:text-gray-700 text-2xl cursor-pointer"
@@ -41,7 +41,7 @@ export function ExperienceFormModal({ resumeId }: { resumeId: string }) {
                 &times;
               </button>
             </div>
-            <ExperienceForm
+            <ProjectForm
               resumeId={resumeId}
               onSuccess={() => setIsOpen(false)}
             />
