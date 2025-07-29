@@ -7,8 +7,7 @@ import {
 import { ExperienceFormModal } from "@/components/experience-form-modal";
 import { ExperienceForm } from "@/components/experience-form";
 import { SubmitButton } from "@/components/ui/submit-button";
-import NextButton from "@/components/ui/next-button";
-import SkipButton from "@/components/ui/skip-button";
+import { PageHeader } from "@/components/PageHeader";
 
 interface ExperiencePageProps {
   params: {
@@ -21,17 +20,12 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
 
   return (
     <div className="max-w-4xl mx-auto card-style">
-      {/* Title & Next Button */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-gray-100 text-2xl font-bold mb-6">
-          Work Experience
-        </h1>
-
-        <div className="flex gap-3">
-          <SkipButton id={params.id} pageName="projects" />
-          <NextButton id={params.id} pageName="projects" />
-        </div>
-      </div>
+      <PageHeader
+        title="Work Experiences"
+        resumeId={params.id}
+        nextPage="projects"
+        showSkip={true}
+      />
 
       {/* Add Experience Section - Shows button when experiences exist, form when none */}
       {experiences.length > 0 ? (

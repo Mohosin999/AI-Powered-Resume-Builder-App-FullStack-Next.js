@@ -178,6 +178,56 @@ export async function getPersonalDetails(resumeId: string) {
  *                               Summary
  * ========================================================================
  */
+export async function upsertSummary(formData: FormData) {
+  const user = await getAuthenticatedUser();
+  if (!user) throw new Error("Unauthorized");
+
+  const resumeId = formData.get("resumeId") as string;
+  if (!resumeId) throw new Error("Resume ID is required");
+
+  const content = formData.get("content") as string;
+  if (!content) throw new Error("Summary content is required");
+
+  try {
+    await prisma.$transaction(async (tx) => {
+      // Verify the resume belongs to the user
+      const resume = await tx.resume.findUnique({
+        where: { id: resumeId, userId: user.id },
+      });
+
+      if (!resume) throw new Error("Resume not found or access denied");
+
+      // Upsert the summary
+      await tx.summary.upsert({
+        where: { resumeId },
+        create: {
+          content,
+          resumeId,
+        },
+        update: { content },
+      });
+    });
+
+    revalidatePath(`/dashboard/${resumeId}/summary`);
+    // Optionally redirect after successful submission
+    // redirect(`/dashboard/${resumeId}`);
+  } catch (error) {
+    console.error("Failed to save summary:", error);
+    throw error;
+  }
+}
+
+// Get Summary
+export async function getSummary(resumeId: string) {
+  const user = await getAuthenticatedUser();
+  if (!user) throw new Error("Unauthorized");
+
+  if (!resumeId) throw new Error("Resume ID is required");
+
+  return await prisma.summary.findUnique({
+    where: { resumeId },
+  });
+}
 
 /**
  * ========================================================================

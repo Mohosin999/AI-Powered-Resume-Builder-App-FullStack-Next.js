@@ -4,7 +4,7 @@ import {
   upsertPersonalDetails,
 } from "@/actions/resume-actions";
 import { SubmitButton } from "@/components/ui/submit-button";
-import NextButton from "@/components/ui/next-button";
+import { PageHeader } from "@/components/PageHeader";
 
 interface PersonalDetailsPageProps {
   params: {
@@ -17,14 +17,11 @@ const PersonalDetailsPage = async ({ params }: PersonalDetailsPageProps) => {
 
   return (
     <div className="max-w-4xl mx-auto card-style">
-      {/* Title & Next Button */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-gray-100 text-2xl font-bold mb-6">
-          Personal Details
-        </h1>
-
-        <NextButton id={params.id} pageName="experiences" />
-      </div>
+      <PageHeader
+        title="Personal Details"
+        resumeId={params.id}
+        nextPage="summary"
+      />
 
       {/* Form */}
       <form action={upsertPersonalDetails} className="space-y-6">
