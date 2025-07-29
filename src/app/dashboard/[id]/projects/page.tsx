@@ -23,7 +23,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <PageHeader
         title="Projects"
         resumeId={params.id}
-        nextPage="educations"
+        nextPage="education"
         showSkip={true}
       />
 

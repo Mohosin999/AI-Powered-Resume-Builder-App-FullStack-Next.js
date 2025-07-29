@@ -441,6 +441,95 @@ export async function deleteProject(formData: FormData) {
  *                               Education
  * ========================================================================
  */
+export async function getEducations(resumeId: string) {
+  const user = await getAuthenticatedUser();
+  if (!user) throw new Error("Unauthorized");
+
+  return await prisma.education.findMany({
+    where: { resumeId, resume: { userId: user.id } },
+    orderBy: { startDate: "desc" },
+  });
+}
+
+export async function upsertEducation(formData: FormData) {
+  const user = await getAuthenticatedUser();
+  if (!user) throw new Error("Unauthorized");
+
+  const resumeId = formData.get("resumeId") as string;
+  if (!resumeId) throw new Error("Resume ID is required");
+
+  const data = {
+    id: formData.get("id") as string | undefined,
+    institution: formData.get("institution") as string,
+    degree: formData.get("degree") as string,
+    field: (formData.get("field") as string) || undefined,
+    startDate: formData.get("startDate") as string,
+    endDate: (formData.get("endDate") as string) || undefined,
+    current: formData.get("current") === "on",
+  };
+
+  if (!data.institution || !data.degree || !data.startDate) {
+    throw new Error("Required fields are missing");
+  }
+
+  try {
+    await prisma.$transaction(async (tx) => {
+      const resume = await tx.resume.findUnique({
+        where: { id: resumeId, userId: user.id },
+      });
+      if (!resume) throw new Error("Resume not found or access denied");
+
+      const educationData = {
+        institution: data.institution,
+        degree: data.degree,
+        field: data.field,
+        startDate: data.startDate,
+        endDate: data.current ? null : data.endDate,
+        current: data.current,
+        resumeId,
+      };
+
+      if (data.id) {
+        await tx.education.update({
+          where: { id: data.id },
+          data: educationData,
+        });
+      } else {
+        await tx.education.create({
+          data: educationData,
+        });
+      }
+    });
+
+    revalidatePath(`/dashboard/${resumeId}/education`);
+  } catch (error) {
+    console.error("Failed to upsert education:", error);
+    throw error;
+  }
+}
+
+export async function deleteEducation(formData: FormData) {
+  const user = await getAuthenticatedUser();
+  if (!user) throw new Error("Unauthorized");
+
+  const id = formData.get("id") as string;
+  if (!id) throw new Error("Education ID is required");
+
+  try {
+    const education = await prisma.education.findFirst({
+      where: { id, resume: { userId: user.id } },
+    });
+
+    if (!education) throw new Error("Education not found or access denied");
+
+    await prisma.education.delete({ where: { id } });
+    revalidatePath(`/dashboard/${education.resumeId}/education`);
+    return;
+  } catch (error) {
+    console.error("Failed to delete education:", error);
+    throw error;
+  }
+}
 
 /**
  * ========================================================================
