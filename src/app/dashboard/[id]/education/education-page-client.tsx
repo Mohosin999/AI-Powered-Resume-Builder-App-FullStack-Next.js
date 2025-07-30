@@ -7,6 +7,7 @@ import { EducationForm } from "@/components/education-form";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { PageHeader } from "@/components/PageHeader";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
+import { Button } from "@/components/ui/button";
 
 interface Education {
   id: string;
@@ -49,7 +50,7 @@ export default function EducationPageClient({
           <EducationFormModal resumeId={resumeId} />
         </div>
       ) : (
-        <div className="bg-[#1C2434] p-6 rounded-lg shadow-md mb-0">
+        <div className="bg-[#1C2434] p-6 rounded-lg shadow-md mb-0 mt-2 border border-gray-700">
           <h2 className="text-gray-300 text-xl font-semibold mb-4">
             Add New Education
           </h2>
@@ -155,13 +156,13 @@ export default function EducationPageClient({
                     successText="Updated"
                   />
 
-                  <button
+                  <Button
                     type="button"
                     onClick={() => confirmDelete(edu.id)}
-                    className="bg-red-500 hover:bg-red-600 border border-red-500 hover:border-red-600 text-white px-4 py-2 rounded-md"
+                    className="bg-red-500 hover:bg-red-600 border border-red-500 hover:border-red-600 text-white px-4 py-2 rounded-md cursor-pointer"
                   >
                     Delete Education
-                  </button>
+                  </Button>
                 </div>
               </form>
             </div>

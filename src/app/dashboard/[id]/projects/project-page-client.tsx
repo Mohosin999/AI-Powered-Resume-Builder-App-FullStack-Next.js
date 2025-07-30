@@ -7,6 +7,7 @@ import { SubmitButton } from "@/components/ui/submit-button";
 import { PageHeader } from "@/components/PageHeader";
 import { deleteProject, upsertProject } from "@/actions/resume-actions";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
+import { Button } from "@/components/ui/button";
 
 interface Project {
   id: string;
@@ -48,7 +49,7 @@ export default function ProjectPageClient({
           <ProjectFormModal resumeId={resumeId} />
         </div>
       ) : (
-        <div className="bg-[#1C2434] p-6 rounded-lg shadow-md mb-0">
+        <div className="bg-[#1C2434] p-6 rounded-lg shadow-md mb-0 mt-2 border border-gray-700">
           <h2 className="text-gray-300 text-xl font-semibold mb-4">
             Add New Project
           </h2>
@@ -136,13 +137,13 @@ export default function ProjectPageClient({
                     pendingText="Updating..."
                     successText="Updated"
                   />
-                  <button
+                  <Button
                     type="button"
                     onClick={() => confirmDelete(project.id)}
-                    className="bg-red-500 hover:bg-red-600 border border-red-500 hover:border-red-600 text-white px-4 py-2 rounded-md mt-2"
+                    className="bg-red-500 hover:bg-red-600 border border-red-500 hover:border-red-600 text-white px-4 py-2 rounded-md mt-2 cursor-pointer"
                   >
                     Delete Project
-                  </button>
+                  </Button>
                 </div>
               </form>
             </div>
