@@ -51,7 +51,7 @@ const SummaryPage = async ({ params }: SummaryPageProps) => {
             id="content"
             rows={8}
             defaultValue={summaryInfo?.content || ""}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border text-gray-300 bg-transparent"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border text-gray-300 bg-transparent"
           />
         </div>
 
