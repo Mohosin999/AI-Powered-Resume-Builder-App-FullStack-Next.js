@@ -16,6 +16,6 @@ export function generatePrompt(
 • point two
 `;
     case "skills":
-      return `Resume Title: ${data}. Suggest 10 relevant skills for this title in a comma-separated format.`;
+      return `Resume Title: ${data}. Suggest 10 relevant skills for this title in a comma-separated format. Only skills name, no extra description.`;
   }
 }

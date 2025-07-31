@@ -3,8 +3,9 @@ import {
   getPersonalDetails,
   upsertPersonalDetails,
 } from "@/actions/resume-actions";
-import { SubmitButton } from "@/components/ui/submit-button";
+// import { SubmitButton } from "@/components/ui/submit-button";
 import { PageHeader } from "@/components/PageHeader";
+import { Button } from "@/components/ui/button";
 
 interface PersonalDetailsPageProps {
   params: {
@@ -130,7 +131,13 @@ const PersonalDetailsPage = async ({ params }: PersonalDetailsPageProps) => {
         </div>
 
         <div className="flex justify-end">
-          <SubmitButton successText="Submitted" />
+          {/* <SubmitButton successText="Submitted" /> */}
+          <Button
+            variant="outline"
+            className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+          >
+            Add Personal Details
+          </Button>
         </div>
       </form>
     </div>

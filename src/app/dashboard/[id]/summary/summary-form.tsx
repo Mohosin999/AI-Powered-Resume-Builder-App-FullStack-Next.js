@@ -1,9 +1,11 @@
 // "use client";
 
 // import { useState } from "react";
-// import { SubmitButton } from "@/components/ui/submit-button";
+// // import { SubmitButton } from "@/components/ui/submit-button";
 // import { upsertSummary } from "@/actions/resume-actions";
 // import GenerateFromAIButton from "@/components/ui/generate-ai-button";
+// import { generatePrompt } from "@/lib/helper";
+// import { Button } from "@/components/ui/button";
 
 // type SummaryFormProps = {
 //   resumeId: string;
@@ -20,11 +22,10 @@
 //   const [aiSuggestion, setAiSuggestion] = useState("");
 //   const [loading, setLoading] = useState(false);
 
-//   const prompt = `Job Title: ${jobTitle}. Depending on the job title, please provide a summary for my resume in 4 to 5 lines without any extra description.`;
-
 //   const handleGenerate = async () => {
 //     setLoading(true);
 
+//     const prompt = generatePrompt("summary", jobTitle);
 //     const res = await fetch("/api/gemini", {
 //       method: "POST",
 //       headers: {
@@ -70,7 +71,13 @@
 //       </div>
 
 //       <div className="flex justify-end">
-//         <SubmitButton successText="Summary Saved" />
+//         {/* <SubmitButton successText="Summary Saved" /> */}
+//         <Button
+//           variant="outline"
+//           className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+//         >
+//           Add Summary
+//         </Button>
 //       </div>
 
 //       {aiSuggestion && (
@@ -94,10 +101,10 @@
 "use client";
 
 import { useState } from "react";
-import { SubmitButton } from "@/components/ui/submit-button";
 import { upsertSummary } from "@/actions/resume-actions";
 import GenerateFromAIButton from "@/components/ui/generate-ai-button";
 import { generatePrompt } from "@/lib/helper";
+import { Button } from "@/components/ui/button";
 
 type SummaryFormProps = {
   resumeId: string;
@@ -116,7 +123,6 @@ export default function SummaryForm({
 
   const handleGenerate = async () => {
     setLoading(true);
-
     const prompt = generatePrompt("summary", jobTitle);
     const res = await fetch("/api/gemini", {
       method: "POST",
@@ -125,9 +131,7 @@ export default function SummaryForm({
       },
       body: JSON.stringify({ prompt }),
     });
-
     const data = await res.json();
-
     if (data.result) setAiSuggestion(data.result);
     setLoading(false);
   };
@@ -136,8 +140,25 @@ export default function SummaryForm({
     setContent(aiSuggestion);
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // ✅ Prevent empty submission
+    if (!content.trim()) {
+      const textarea = document.getElementById(
+        "content"
+      ) as HTMLTextAreaElement;
+      textarea?.focus();
+      return;
+    }
+
+    // ✅ Create a FormData object and call the action
+    const formData = new FormData(e.currentTarget);
+    await upsertSummary(formData);
+  };
+
   return (
-    <form action={upsertSummary} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <input type="hidden" name="resumeId" value={resumeId} />
 
       <div className="mt-4">
@@ -163,7 +184,13 @@ export default function SummaryForm({
       </div>
 
       <div className="flex justify-end">
-        <SubmitButton successText="Summary Saved" />
+        <Button
+          type="submit"
+          variant="outline"
+          className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+        >
+          Add Summary
+        </Button>
       </div>
 
       {aiSuggestion && (
