@@ -87,7 +87,7 @@ export default function ProjectPageClient({
                   </label>
                   <textarea
                     name="description"
-                    rows={4}
+                    rows={5}
                     defaultValue={project.description}
                     required
                     className="w-full p-2 border border-gray-300 rounded-md text-gray-300"

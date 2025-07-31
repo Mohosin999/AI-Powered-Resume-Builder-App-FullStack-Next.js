@@ -3,6 +3,9 @@
 
 import { upsertProject } from "@/actions/resume-actions";
 import { Button } from "./ui/button";
+import { generatePrompt } from "@/lib/helper";
+import { useState } from "react";
+import GenerateFromAIButton from "./ui/generate-ai-button";
 
 export function ProjectForm({
   resumeId,
@@ -11,6 +14,27 @@ export function ProjectForm({
   resumeId: string;
   onSuccess?: () => void;
 }) {
+  const [projectName, setProjectName] = useState<string>("");
+  const [content, setContent] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleGenerate = async (projectName: string) => {
+    setLoading(true);
+
+    const prompt = generatePrompt("project", projectName);
+    const res = await fetch("/api/gemini", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prompt }),
+    });
+
+    const data = await res.json();
+
+    if (data.result) setContent(data.result);
+    setLoading(false);
+  };
   const handleSubmit = async (formData: FormData) => {
     await upsertProject(formData);
     if (onSuccess) onSuccess();
@@ -27,18 +51,34 @@ export function ProjectForm({
         <input
           name="name"
           type="text"
+          onChange={(e) => setProjectName(e.target.value)}
           required
           className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-[#72839E] mb-1">
+        {/* <label className="block text-sm font-medium text-[#72839E] mb-1">
           Description *
-        </label>
+        </label> */}
+        <div className="flex justify-between items-end">
+          <label
+            htmlFor="content"
+            className="block text-sm font-medium text-[#72839E] mb-1"
+          >
+            Description *
+          </label>
+
+          <GenerateFromAIButton
+            onclick={() => handleGenerate(projectName)}
+            loading={loading}
+          />
+        </div>
         <textarea
           name="description"
-          rows={4}
+          rows={5}
+          value={content ?? ""}
+          onChange={(e) => setContent(e.target.value)}
           required
           className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
         />
