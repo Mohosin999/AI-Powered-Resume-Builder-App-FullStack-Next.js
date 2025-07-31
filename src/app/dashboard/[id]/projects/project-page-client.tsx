@@ -1,13 +1,12 @@
 "use client";
-
 import React, { useState } from "react";
 import { ProjectFormModal } from "@/components/project-form-modal";
 import { ProjectForm } from "@/components/project-form";
-import { SubmitButton } from "@/components/ui/submit-button";
 import { PageHeader } from "@/components/PageHeader";
 import { deleteProject, upsertProject } from "@/actions/resume-actions";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
 
 interface Project {
   id: string;
@@ -29,6 +28,11 @@ export default function ProjectPageClient({
 }: ProjectPageClientProps) {
   const [open, setOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+
+  const handleSubmit = async (formData: FormData) => {
+    await upsertProject(formData);
+    toast.success("Project Updated Successfully!");
+  };
 
   const confirmDelete = (id: string) => {
     setDeleteId(id);
@@ -64,7 +68,7 @@ export default function ProjectPageClient({
               key={project.id}
               className="p-6 rounded-lg shadow-md border border-gray-700"
             >
-              <form action={upsertProject} className="space-y-4">
+              <form action={handleSubmit} className="space-y-4">
                 <input type="hidden" name="id" value={project.id} />
                 <input type="hidden" name="resumeId" value={resumeId} />
 
@@ -132,11 +136,13 @@ export default function ProjectPageClient({
                 </div>
 
                 <div className="flex justify-between">
-                  <SubmitButton
-                    defaultText="Update Project"
-                    pendingText="Updating..."
-                    successText="Updated"
-                  />
+                  <Button
+                    type="submit"
+                    variant="outline"
+                    className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+                  >
+                    Update Project
+                  </Button>
                   <Button
                     type="button"
                     onClick={() => confirmDelete(project.id)}

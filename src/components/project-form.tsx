@@ -1,11 +1,10 @@
-// components/project-form.tsx
 "use client";
-
 import { upsertProject } from "@/actions/resume-actions";
 import { Button } from "./ui/button";
 import { generatePrompt } from "@/lib/helper";
 import { useState } from "react";
 import GenerateFromAIButton from "./ui/generate-ai-button";
+import { toast } from "react-toastify";
 
 export function ProjectForm({
   resumeId,
@@ -38,6 +37,8 @@ export function ProjectForm({
   const handleSubmit = async (formData: FormData) => {
     await upsertProject(formData);
     if (onSuccess) onSuccess();
+
+    toast.success("Project Added Successfully!");
   };
 
   return (

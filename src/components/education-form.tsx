@@ -1,8 +1,7 @@
-// components/education-form.tsx
 "use client";
-
 import { upsertEducation } from "@/actions/resume-actions";
 import { Button } from "./ui/button";
+import { toast } from "react-toastify";
 
 export function EducationForm({
   resumeId,
@@ -14,6 +13,8 @@ export function EducationForm({
   const handleSubmit = async (formData: FormData) => {
     await upsertEducation(formData);
     if (onSuccess) onSuccess();
+
+    toast.success("Education Added Successfully!");
   };
 
   return (

@@ -22,6 +22,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { toast } from "react-toastify";
 
 interface Resume {
   id: string;
@@ -42,6 +43,9 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
     if (deleteId) {
       await deleteResume(deleteId);
       setDeleteId(null);
+
+      // Show toast message
+      toast.success("Resume Deleted Successfully!");
     }
   };
 

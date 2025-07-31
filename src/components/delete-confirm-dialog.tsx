@@ -10,6 +10,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { toast } from "react-toastify";
 
 interface DeleteConfirmDialogProps {
   open: boolean;
@@ -33,10 +34,13 @@ const DeleteConfirmDialog = ({
 
     const formData = new FormData();
     formData.append("id", id);
-    formData.append("resumeId", resumeId); // useful if needed
+    formData.append("resumeId", resumeId);
 
     await deleteAction(formData);
     setOpen(false);
+
+    // Show toast message
+    toast.success("Deleted Successfully!");
   };
 
   return (

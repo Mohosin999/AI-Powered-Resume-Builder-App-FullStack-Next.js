@@ -1,13 +1,12 @@
 "use client";
-
 import React, { useState } from "react";
 import { deleteEducation, upsertEducation } from "@/actions/resume-actions";
 import { EducationFormModal } from "@/components/education-form-modal";
 import { EducationForm } from "@/components/education-form";
-import { SubmitButton } from "@/components/ui/submit-button";
 import { PageHeader } from "@/components/PageHeader";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
 
 interface Education {
   id: string;
@@ -30,6 +29,11 @@ export default function EducationPageClient({
 }: EducationPageClientProps) {
   const [open, setOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+
+  const handleSubmit = async (formData: FormData) => {
+    await upsertEducation(formData);
+    toast.success("Education Updated Successfully!");
+  };
 
   const confirmDelete = (id: string) => {
     setDeleteId(id);
@@ -65,7 +69,7 @@ export default function EducationPageClient({
               key={edu.id}
               className="p-6 rounded-lg shadow-md border border-gray-700"
             >
-              <form action={upsertEducation} className="space-y-4">
+              <form action={handleSubmit} className="space-y-4">
                 <input type="hidden" name="id" value={edu.id} />
                 <input type="hidden" name="resumeId" value={resumeId} />
 
@@ -150,11 +154,13 @@ export default function EducationPageClient({
                 </div>
 
                 <div className="flex justify-between">
-                  <SubmitButton
-                    defaultText="Update Education"
-                    pendingText="Updating..."
-                    successText="Updated"
-                  />
+                  <Button
+                    type="submit"
+                    variant="outline"
+                    className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+                  >
+                    Update Education
+                  </Button>
 
                   <Button
                     type="button"

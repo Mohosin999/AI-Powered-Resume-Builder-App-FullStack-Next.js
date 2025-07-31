@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { createSkill, getResumeById } from "@/actions/resume-actions";
 import { Button } from "./ui/button";
 import { generatePrompt } from "@/lib/helper";
+import { toast } from "react-toastify";
 
 export function SkillForm({ resumeId }: { resumeId: string }) {
   const [skillInput, setSkillInput] = useState("");
@@ -44,6 +45,8 @@ export function SkillForm({ resumeId }: { resumeId: string }) {
   const handleSubmit = async (formData: FormData) => {
     await createSkill(formData);
     setSkillInput("");
+
+    toast.success("Skill Added Successfully!");
   };
 
   return (

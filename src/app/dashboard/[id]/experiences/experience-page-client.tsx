@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import { deleteExperience, upsertExperience } from "@/actions/resume-actions";
 import { ExperienceFormModal } from "@/components/experience-form-modal";
 import { ExperienceForm } from "@/components/experience-form";
-import { SubmitButton } from "@/components/ui/submit-button";
 import { PageHeader } from "@/components/PageHeader";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
 
 interface Experience {
   id: string;
@@ -31,6 +31,11 @@ export default function ExperiencePageClient({
 }: ExperiencePageClientProps) {
   const [open, setOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+
+  const handleSubmit = async (formData: FormData) => {
+    await upsertExperience(formData);
+    toast.success("Experience Updated Successfully!");
+  };
 
   const confirmDelete = (id: string) => {
     setDeleteId(id);
@@ -66,7 +71,7 @@ export default function ExperiencePageClient({
               key={exp.id}
               className="p-6 rounded-lg shadow-md border border-gray-700"
             >
-              <form action={upsertExperience} className="space-y-4">
+              <form action={handleSubmit} className="space-y-4">
                 <input type="hidden" name="id" value={exp.id} />
                 <input type="hidden" name="resumeId" value={resumeId} />
 
@@ -167,11 +172,13 @@ export default function ExperiencePageClient({
                 </div>
 
                 <div className="flex justify-between">
-                  <SubmitButton
-                    defaultText="Update Experience"
-                    pendingText="Updating..."
-                    successText="Updated"
-                  />
+                  <Button
+                    type="submit"
+                    variant="outline"
+                    className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+                  >
+                    Update Experience
+                  </Button>
 
                   <Button
                     type="button"
