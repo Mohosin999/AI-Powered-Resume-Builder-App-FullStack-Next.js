@@ -156,9 +156,10 @@ export default function ExperiencePageClient({
                   <label className="block text-sm font-medium text-[#72839E] mb-1">
                     Description *
                   </label>
+
                   <textarea
                     name="description"
-                    rows={4}
+                    rows={5}
                     defaultValue={exp.description}
                     required
                     className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
