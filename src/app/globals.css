@@ -133,3 +133,7 @@
 .card-style {
   @apply bg-[#1C2434] p-14 rounded-lg shadow-sm lg:shadow-md;
 }
+
+.preview-resume-links-style {
+  @apply flex items-center gap-2 text-sm;
+}

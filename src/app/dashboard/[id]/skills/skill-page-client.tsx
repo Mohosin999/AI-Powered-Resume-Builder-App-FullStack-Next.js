@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { SkillForm } from "@/components/skill-form";
@@ -31,7 +30,11 @@ export default function SkillPageClient({
 
   return (
     <div className="max-w-4xl mx-auto card-style">
-      <PageHeader title="Skills" resumeId={resumeId} nextPage="languages" />
+      <PageHeader
+        title="Skills"
+        resumeId={resumeId}
+        nextPage="preview-resume"
+      />
       <SkillForm resumeId={resumeId} />
 
       {skills.length > 0 && (

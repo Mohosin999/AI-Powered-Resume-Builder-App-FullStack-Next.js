@@ -71,15 +71,19 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
                   <BsThreeDotsVertical />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
+                  {/* Edit Resume */}
                   <Link href={`/dashboard/${resume.id}/personal-details`}>
                     <DropdownMenuItem className="cursor-pointer">
                       Edit
                     </DropdownMenuItem>
                   </Link>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem className="cursor-pointer">
-                    View
-                  </DropdownMenuItem>
+                  {/* Preview Resume */}
+                  <Link href={`/dashboard/${resume.id}/preview-resume`}>
+                    <DropdownMenuItem className="cursor-pointer">
+                      Preview
+                    </DropdownMenuItem>
+                  </Link>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem className="cursor-pointer">
                     Download
