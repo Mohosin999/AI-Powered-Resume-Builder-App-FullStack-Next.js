@@ -186,7 +186,6 @@ export async function upsertSummary(formData: FormData) {
   if (!resumeId) throw new Error("Resume ID is required");
 
   const content = formData.get("content") as string;
-  if (!content) throw new Error("Summary content is required");
 
   try {
     await prisma.$transaction(async (tx) => {
