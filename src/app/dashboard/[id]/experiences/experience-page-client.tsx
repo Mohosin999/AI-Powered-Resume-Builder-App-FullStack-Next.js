@@ -45,7 +45,7 @@ export default function ExperiencePageClient({
   return (
     <div className="max-w-4xl mx-auto card-style">
       <PageHeader
-        title="Work Experiences"
+        title="Experiences"
         resumeId={resumeId}
         nextPage="projects"
         showSkip={true}
@@ -69,14 +69,14 @@ export default function ExperiencePageClient({
           {experiences.map((exp) => (
             <div
               key={exp.id}
-              className="p-6 rounded-lg shadow-md border border-gray-700"
+              className="p-4 lg:p-6 rounded-lg shadow-md border border-gray-700"
             >
               <form action={handleSubmit} className="space-y-4">
                 <input type="hidden" name="id" value={exp.id} />
                 <input type="hidden" name="resumeId" value={resumeId} />
 
                 <div className="flex justify-between items-start">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 w-full">
                     <div>
                       <label className="label-style">
                         Job Title - Technologies Used *
@@ -164,7 +164,7 @@ export default function ExperiencePageClient({
                   />
                 </div>
 
-                <div className="flex justify-between">
+                <div className="flex flex-col lg:flex-row justify-start lg:justify-between gap-2">
                   <Button
                     type="submit"
                     variant="outline"

@@ -86,7 +86,7 @@ export function SkillForm({ resumeId }: { resumeId: string }) {
 
       <Button
         variant="outline"
-        className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+        className="w-full lg:w-auto text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
       >
         Add Skill
       </Button>

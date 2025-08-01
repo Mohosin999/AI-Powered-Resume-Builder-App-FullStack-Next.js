@@ -157,7 +157,7 @@
 }
 
 .card-style {
-  @apply bg-[#1C2434] p-14 rounded-lg shadow-sm lg:shadow-md;
+  @apply bg-[#1C2434] p-6 lg:p-14 rounded-lg shadow-sm lg:shadow-md;
 }
 
 .resume-contact-info-style {

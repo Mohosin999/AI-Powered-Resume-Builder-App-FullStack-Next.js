@@ -53,7 +53,7 @@ export default function SummaryForm({
       <div className="mt-4">
         <div className="flex justify-between items-end">
           <label htmlFor="content" className="label-style">
-            Professional Summary
+            Summary
           </label>
 
           <GenerateFromAIButton onclick={handleGenerate} loading={loading} />
@@ -73,7 +73,7 @@ export default function SummaryForm({
         <Button
           type="submit"
           variant="outline"
-          className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+          className="w-full lg:w-auto text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
         >
           Add Summary
         </Button>

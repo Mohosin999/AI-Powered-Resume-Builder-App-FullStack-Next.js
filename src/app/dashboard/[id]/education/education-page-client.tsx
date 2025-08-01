@@ -67,13 +67,13 @@ export default function EducationPageClient({
           {educations.map((edu) => (
             <div
               key={edu.id}
-              className="p-6 rounded-lg shadow-md border border-gray-700"
+              className="p-4 lg:p-6 rounded-lg shadow-md border border-gray-700"
             >
               <form action={handleSubmit} className="space-y-4">
                 <input type="hidden" name="id" value={edu.id} />
                 <input type="hidden" name="resumeId" value={resumeId} />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                   <div>
                     <label className="label-style">Institution *</label>
                     <input
@@ -146,7 +146,7 @@ export default function EducationPageClient({
                   </div>
                 </div>
 
-                <div className="flex justify-between">
+                <div className="flex flex-col lg:flex-row justify-start lg:justify-between gap-2">
                   <Button
                     type="submit"
                     variant="outline"

@@ -28,7 +28,7 @@ export function ProjectFormModal({ resumeId }: { resumeId: string }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="mt-4 p-6 rounded-lg shadow-md w-full max-w-3xl mx-auto max-h-[100vh] border border-gray-700"
+            className="mt-4 p-4 lg:p-6 rounded-lg shadow-md w-full max-w-3xl mx-auto max-h-[100vh] border border-gray-700"
           >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl text-gray-300 font-semibold">

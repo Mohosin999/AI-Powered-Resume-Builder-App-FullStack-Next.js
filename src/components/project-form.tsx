@@ -88,32 +88,9 @@ export function ProjectForm({
         />
       </div>
 
-      {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-[#72839E] mb-1">
-            Start Date
-          </label>
-          <input
-            name="startDate"
-            type="date"
-            className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-[#72839E] mb-1">
-            End Date
-          </label>
-          <input
-            name="endDate"
-            type="date"
-            className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
-          />
-        </div>
-      </div> */}
-
       <Button
         variant="outline"
-        className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+        className="w-full lg:w-auto mt-1 text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
       >
         Add Project
       </Button>

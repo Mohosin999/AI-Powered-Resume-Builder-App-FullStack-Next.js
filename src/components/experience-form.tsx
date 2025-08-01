@@ -46,7 +46,7 @@ export function ExperienceForm({
     <form action={handleSubmit} className="space-y-4">
       <input type="hidden" name="resumeId" value={resumeId} />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         <div>
           <label className="label-style">Job Title - Technologies Used *</label>
           <input
@@ -136,15 +136,10 @@ export function ExperienceForm({
 
       <Button
         variant="outline"
-        className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+        className="w-full lg:w-auto text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
       >
         Add Experience
       </Button>
-      {/* <SubmitButton
-        successText="Experience Added"
-        defaultText="Add Experience"
-        pendingText="Adding..."
-      /> */}
     </form>
   );
 }
