@@ -54,17 +54,15 @@ export function SkillForm({ resumeId }: { resumeId: string }) {
       <input type="hidden" name="resumeId" value={resumeId} />
 
       <div>
-        <label className="block text-sm font-medium text-[#72839E] mb-1">
-          Skill Name *
-        </label>
+        <label className="label-style">Skill Name *</label>
         <input
           name="name"
           type="text"
           required
           value={skillInput}
           onChange={(e) => setSkillInput(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
-          placeholder="e.g. JavaScript, React.js, Next.js, Express.js, etc."
+          placeholder="JavaScript, React.js, Express.js, etc."
+          className="input-style"
         />
       </div>
 

@@ -42,15 +42,6 @@ export default function SummaryForm({
   };
 
   const handleSubmit = async (formData: FormData) => {
-    // Prevent empty submission
-    if (!content.trim()) {
-      const textarea = document.getElementById(
-        "content"
-      ) as HTMLTextAreaElement;
-      textarea?.focus();
-      return;
-    }
-
     await upsertSummary(formData);
     toast.success("Summary Added Successfully!");
   };

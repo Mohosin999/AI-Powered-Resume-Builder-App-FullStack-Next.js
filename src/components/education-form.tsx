@@ -23,61 +23,50 @@ export function EducationForm({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-[#72839E] mb-1">
-            Institution *
-          </label>
+          <label className="label-style">Institution *</label>
           <input
             name="institution"
             type="text"
+            placeholder="University of California, Los Angeles"
             required
-            className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
+            className="input-style"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#72839E] mb-1">
-            Degree *
-          </label>
+          <label className="label-style">Degree *</label>
           <input
             name="degree"
             type="text"
+            placeholder="Bachelor"
             required
-            className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
+            className="input-style"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-[#72839E] mb-1">
-          Field of Study
-        </label>
+        <label className="label-style">Field of Study</label>
         <input
           name="field"
           type="text"
-          className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
+          placeholder="Computer Science"
+          className="input-style"
         />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-[#72839E] mb-1">
-            Start Date *
-          </label>
+          <label className="label-style">Start Date *</label>
           <input
             name="startDate"
             type="date"
             required
-            className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
+            className="input-style"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#72839E] mb-1">
-            End Date
-          </label>
-          <input
-            name="endDate"
-            type="date"
-            className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
-          />
+          <label className="label-style">End Date</label>
+          <input name="endDate" type="date" className="input-style" />
           <div className="mt-2 flex items-center">
             <input
               id="current-new"

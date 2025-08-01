@@ -204,8 +204,6 @@ import {
   getSkills,
   getSummary,
 } from "@/actions/resume-actions";
-import { BiLogoGmail } from "react-icons/bi";
-import { FaPhoneAlt, FaLink } from "react-icons/fa";
 import { DownloadResumeBtn } from "@/components/ui/download-button";
 import ResumeHeading from "@/components/ui/resume-heading";
 
@@ -238,27 +236,25 @@ const PreviewResume = async ({ params }: PreviewResumeProps) => {
 
       <div
         id="print-area"
-        className="max-w-5xl mx-auto text-gray-900 bg-gray-300 my-0 p-10 rounded-lg"
+        className="max-w-5xl mx-auto text-gray-900 bg-gray-300 mb-14 p-10 rounded-lg"
       >
         {/* Personal Details Section */}
-        <div className="flex flex-col justify-center items-center">
-          <h2 className="text-2xl font-semibold">
-            {personalDetails?.firstName} {personalDetails?.lastName}
-          </h2>
-          <h3>{personalDetails?.jobTitle}</h3>
-          <div
-            className={`flex ${
-              personalDetails?.socialLink ? "justify-between" : "justify-center"
-            } items-center w-full`}
-          >
-            <p className="preview-resume-links-style">
+        <div className="flex justify-between items-center">
+          {/* Name and Job Title */}
+          <div>
+            <h2 className="text-2xl font-semibold">
+              {personalDetails?.firstName} {personalDetails?.lastName}
+            </h2>
+            <h3>{personalDetails?.jobTitle}</h3>
+          </div>
+          {/* Contact Information */}
+          <div className="flex flex-col items-center">
+            <p className="resume-contact-info-style">
               {personalDetails?.email}
             </p>
-            <p className="preview-resume-links-style">
-              {personalDetails?.phone}
-            </p>
+
             {personalDetails?.socialLink && (
-              <p className="preview-resume-links-style">
+              <p className="resume-contact-info-style">
                 {personalDetails?.socialLink}
               </p>
             )}
@@ -277,37 +273,45 @@ const PreviewResume = async ({ params }: PreviewResumeProps) => {
         {experiences?.length > 0 && (
           <div>
             <ResumeHeading title="E" highlight="xperience" />
-            {experiences.map((experience) => (
-              <div key={experience.id} className="mt-2 text-sm">
-                <div>
-                  <div className="flex justify-between items-center">
-                    <p className="text-base font-semibold">
-                      {experience.company}
-                    </p>
-                    <p className="text-xs">{experience.location}</p>
+            <div className="space-y-4">
+              {experiences.map((experience) => (
+                <div key={experience.id} className="mt-2 text-sm">
+                  <div>
+                    <div className="flex justify-between items-center">
+                      <p className="text-base font-semibold">
+                        {experience.company}
+                      </p>
+                      <p className="text-xs">{experience.location}</p>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <p className="text-sm text-gray-800 italic">
+                        {experience.jobTitle}
+                      </p>
+                      {/* Date */}
+                      <p className="text-xs">
+                        {experience.startDate
+                          ? experience.startDate.slice(0, 4)
+                          : "N/A"}{" "}
+                        to{" "}
+                        {experience.endDate
+                          ? experience.endDate.slice(0, 4)
+                          : "Present"}
+                      </p>
+                    </div>
+                    {/* <p>{experience.description}</p> */}
+                    {/* Convert string description to bullet points */}
+                    <ul className="list-disc pl-5 mt-2 text-sm">
+                      {experience.description
+                        .split(/\r?\n/)
+                        .filter((line) => line.trim() !== "") // optional: ignore empty lines
+                        .map((line, index) => (
+                          <li key={index}>{line.replace(/^•\s*/, "")}</li> // removes bullet symbol from the string if already there
+                        ))}
+                    </ul>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <p className="text-sm text-gray-800 italic">
-                      {experience.jobTitle}
-                    </p>
-                    <p className="text-xs">
-                      {experience.startDate} to{" "}
-                      {experience.endDate ?? "Present"}
-                    </p>
-                  </div>
-                  {/* <p>{experience.description}</p> */}
-                  {/* Convert string description to bullet points */}
-                  <ul className="list-disc pl-5 mt-2 text-sm">
-                    {experience.description
-                      .split(/\r?\n/)
-                      .filter((line) => line.trim() !== "") // optional: ignore empty lines
-                      .map((line, index) => (
-                        <li key={index}>{line.replace(/^•\s*/, "")}</li> // removes bullet symbol from the string if already there
-                      ))}
-                  </ul>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
 
@@ -320,18 +324,15 @@ const PreviewResume = async ({ params }: PreviewResumeProps) => {
                 <div>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
-                      <p className="text-base">{project.name}</p>
+                      <p className="text-base font-semibold">{project.name}</p>
                       <Link
                         href={project.url ?? "#"}
                         target="_blank"
-                        className="text-xs text-blue-500 ml-2"
+                        className="text-xs text-blue-700 ml-2 underline"
                       >
                         Live Link
                       </Link>
                     </div>
-                    <p className="text-sm">
-                      {project.startDate} to {project.endDate}
-                    </p>
                   </div>
                   {/* Convert string description to bullet points */}
                   <ul className="list-disc pl-5 mt-2 text-sm">
@@ -356,16 +357,22 @@ const PreviewResume = async ({ params }: PreviewResumeProps) => {
               <div key={education.id} className="mt-2 text-sm">
                 <div>
                   <div className="">
-                    <p className="text-base">{education.institution}</p>
+                    <p className="text-sm">{education.institution}</p>
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm">
                           {education.degree}, {education.field}
                         </p>
                       </div>
-                      <p className="text-sm">
-                        {education.startDate} to{" "}
-                        {education.endDate ?? "Present"}
+                      {/* Date */}
+                      <p className="text-xs">
+                        {education.startDate
+                          ? education.startDate.slice(0, 4)
+                          : "N/A"}{" "}
+                        to{" "}
+                        {education.endDate
+                          ? education.endDate.slice(0, 4)
+                          : "Present"}
                       </p>
                     </div>
                   </div>
@@ -379,7 +386,7 @@ const PreviewResume = async ({ params }: PreviewResumeProps) => {
         {skills?.length > 0 && (
           <div>
             <ResumeHeading title="S" highlight="kills" />
-            <p className="mt-2 textbase">
+            <p className="mt-2 text-sm">
               {skills.map((skill) => skill.name).join(" • ")}
             </p>
           </div>
