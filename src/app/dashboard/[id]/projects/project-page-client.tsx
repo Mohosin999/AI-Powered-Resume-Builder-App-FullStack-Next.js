@@ -73,44 +73,40 @@ export default function ProjectPageClient({
                 <input type="hidden" name="resumeId" value={resumeId} />
 
                 <div>
-                  <label className="block text-sm font-medium text-[#72839E] mb-1">
-                    Project Name *
-                  </label>
+                  <label className="label-style">Project Name *</label>
                   <input
                     name="name"
                     type="text"
                     defaultValue={project.name}
+                    placeholder="AI Resume Builder App"
                     required
-                    className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
+                    className="input-style"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-[#72839E] mb-1">
-                    Description *
-                  </label>
+                  <label className="label-style">Description *</label>
                   <textarea
                     name="description"
-                    rows={5}
+                    rows={7}
                     defaultValue={project.description}
                     required
-                    className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
+                    className="input-style"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-[#72839E] mb-1">
-                    URL
-                  </label>
+                  <label className="label-style">Live Link</label>
                   <input
                     name="url"
                     type="url"
                     defaultValue={project.url || ""}
-                    className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
+                    placeholder="https://ai-resume-builder.vercel.app/"
+                    className="input-style"
                   />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-[#72839E] mb-1">
                       Start Date
@@ -133,7 +129,7 @@ export default function ProjectPageClient({
                       className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
                     />
                   </div>
-                </div>
+                </div> */}
 
                 <div className="flex justify-between">
                   <Button
