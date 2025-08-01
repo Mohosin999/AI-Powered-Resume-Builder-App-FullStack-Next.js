@@ -27,7 +27,7 @@ export default function DashboardClientLayout({
   const actualPathName = pathname.split("/").pop();
 
   if (actualPathName === "preview-resume") {
-    return <>{children}</>;
+    return <div className="">{children}</div>;
   }
 
   return (

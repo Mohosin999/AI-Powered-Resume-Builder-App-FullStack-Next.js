@@ -76,13 +76,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#131A25]`}
         suppressHydrationWarning
       >
         <ClerkProvider>
-          <Navbar />
+          <div id="header-footer">
+            <Navbar />
+          </div>
           {children}
-          <Footer />
+          <div id="header-footer">
+            <Footer />
+          </div>
 
           <ToastContainer
             position="top-right"
