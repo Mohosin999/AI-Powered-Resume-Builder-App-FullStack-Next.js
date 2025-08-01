@@ -48,62 +48,51 @@ export function ExperienceForm({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-[#72839E] mb-1">
-            Job Title *
-          </label>
+          <label className="label-style">Job Title - Technologies Used *</label>
           <input
             name="jobTitle"
             type="text"
             onChange={(e) => setJobTitle(e.target.value)}
+            placeholder="Frontend Developer - Next.js, TypeScript, Prisma"
             required
-            className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
+            className="input-style"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#72839E] mb-1">
-            Company *
-          </label>
+          <label className="label-style">Company *</label>
           <input
             name="company"
             type="text"
+            placeholder="Google | Freelance"
             required
-            className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
+            className="input-style"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-[#72839E] mb-1">
-          Location
-        </label>
+        <label className="label-style">Location</label>
         <input
           name="location"
           type="text"
-          className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
+          placeholder="San Francisco, USA | Remote"
+          className="input-style"
         />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-[#72839E] mb-1">
-            Start Date *
-          </label>
+          <label className="label-style">Start Date *</label>
           <input
             name="startDate"
             type="date"
             required
-            className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
+            className="input-style"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#72839E] mb-1">
-            End Date
-          </label>
-          <input
-            name="endDate"
-            type="date"
-            className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
-          />
+          <label className="label-style">End Date</label>
+          <input name="endDate" type="date" className="input-style" />
           <div className="mt-2 flex items-center">
             <input
               id="current-new"
@@ -137,11 +126,11 @@ export function ExperienceForm({
         </div>
         <textarea
           name="description"
-          rows={5}
+          rows={7}
           value={content ?? ""}
           onChange={(e) => setContent(e.target.value)}
           required
-          className="w-full p-2 border border-gray-300 rounded-md text-gray-300"
+          className="input-style"
         />
       </div>
 

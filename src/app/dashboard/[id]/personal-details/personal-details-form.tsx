@@ -43,10 +43,7 @@ export default function PersonalDetailsForm({
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div>
-          <label
-            htmlFor="firstName"
-            className="block text-sm font-medium text-[#72839E]"
-          >
+          <label htmlFor="firstName" className="label-style">
             First Name *
           </label>
           <input
@@ -55,16 +52,14 @@ export default function PersonalDetailsForm({
             id="firstName"
             value={formValues.firstName}
             onChange={handleChange}
+            placeholder="John"
             required
-            className="mt-1 block w-full p-2 rounded-md border text-gray-300"
+            className="input-style"
           />
         </div>
 
         <div>
-          <label
-            htmlFor="lastName"
-            className="block text-sm font-medium text-[#72839E]"
-          >
+          <label htmlFor="lastName" className="label-style">
             Last Name *
           </label>
           <input
@@ -73,17 +68,15 @@ export default function PersonalDetailsForm({
             id="lastName"
             value={formValues.lastName}
             onChange={handleChange}
+            placeholder="Doe"
             required
-            className="mt-1 block w-full p-2 rounded-md border text-gray-300"
+            className="input-style"
           />
         </div>
       </div>
 
       <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-[#72839E]"
-        >
+        <label htmlFor="email" className="label-style">
           Email *
         </label>
         <input
@@ -92,33 +85,14 @@ export default function PersonalDetailsForm({
           id="email"
           value={formValues.email}
           onChange={handleChange}
+          placeholder="jhondoe@example.com"
           required
-          className="mt-1 block w-full p-2 rounded-md border text-gray-300"
+          className="input-style"
         />
       </div>
 
       <div>
-        <label
-          htmlFor="phone"
-          className="block text-sm font-medium text-[#72839E]"
-        >
-          Phone Number
-        </label>
-        <input
-          type="tel"
-          name="phone"
-          id="phone"
-          value={formValues.phone}
-          onChange={handleChange}
-          className="mt-1 block w-full p-2 rounded-md border text-gray-300"
-        />
-      </div>
-
-      <div>
-        <label
-          htmlFor="jobTitle"
-          className="block text-sm font-medium text-[#72839E]"
-        >
+        <label htmlFor="jobTitle" className="label-style">
           Job Title *
         </label>
         <input
@@ -127,17 +101,15 @@ export default function PersonalDetailsForm({
           id="jobTitle"
           value={formValues.jobTitle}
           onChange={handleChange}
+          placeholder="MERN Stack Developer"
           required
-          className="mt-1 block w-full p-2 rounded-md border text-gray-300"
+          className="input-style"
         />
       </div>
 
       <div>
-        <label
-          htmlFor="socialLink"
-          className="block text-sm font-medium text-[#72839E]"
-        >
-          Social Media Link (LinkedIn, GitHub, etc.)
+        <label htmlFor="socialLink" className="label-style">
+          Social Media Link (LinkedIn, GitHub, etc.) *
         </label>
         <input
           type="url"
@@ -145,7 +117,9 @@ export default function PersonalDetailsForm({
           id="socialLink"
           value={formValues.socialLink}
           onChange={handleChange}
-          className="mt-1 block w-full p-2 rounded-md border text-gray-300"
+          placeholder="https://www.linkedin.com/in/johndoe"
+          required
+          className="input-style"
         />
       </div>
 

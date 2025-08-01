@@ -61,10 +61,7 @@ export default function SummaryForm({
 
       <div className="mt-4">
         <div className="flex justify-between items-end">
-          <label
-            htmlFor="content"
-            className="block text-sm font-medium text-[#72839E] mb-0"
-          >
+          <label htmlFor="content" className="label-style">
             Professional Summary
           </label>
 
@@ -77,7 +74,7 @@ export default function SummaryForm({
           rows={7}
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border text-gray-300 bg-transparent"
+          className="text-sm mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border text-gray-300 bg-transparent"
         />
       </div>
 
