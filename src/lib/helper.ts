@@ -16,6 +16,6 @@ export function generatePrompt(
 • point two
 `;
     case "skills":
-      return `Resume Title: ${data}. Suggest 7 major relevant skills (like React.js, Node.js) for this title in a comma-separated format. Only skills name, no extra description.`;
+      return `Resume Title: ${data}. Suggest 10 major relevant skills (like React.js, Node.js) for this title in a comma-separated format. Only skills name, no extra description.`;
   }
 }
