@@ -26,7 +26,7 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
         <div>
           <AnimatedHeading
             text="Build Your Professional Resume"
-            className="text-center pt-14 text-emerald-400"
+            className="text-center pt-10 lg:pt-14 text-emerald-400"
           />
 
           <p className="text-center mt-4 mb-6 paragraph-text-style">
