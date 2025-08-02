@@ -29,10 +29,17 @@ export default function EducationPageClient({
 }: EducationPageClientProps) {
   const [open, setOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleSubmit = async (formData: FormData) => {
     await upsertEducation(formData);
     toast.success("Education Updated Successfully!");
+    setIsEditing(false);
+  };
+
+  // Add this function to detect when editing starts
+  const handleEditStart = () => {
+    setIsEditing(true);
   };
 
   const confirmDelete = (id: string) => {
@@ -47,6 +54,7 @@ export default function EducationPageClient({
         resumeId={resumeId}
         nextPage="skills"
         showSkip={true}
+        isEditing={isEditing}
       />
 
       {educations.length > 0 ? (
@@ -69,7 +77,11 @@ export default function EducationPageClient({
               key={edu.id}
               className="p-4 lg:p-6 rounded-lg shadow-md border border-gray-700"
             >
-              <form action={handleSubmit} className="space-y-4">
+              <form
+                action={handleSubmit}
+                onChange={handleEditStart}
+                className="space-y-4"
+              >
                 <input type="hidden" name="id" value={edu.id} />
                 <input type="hidden" name="resumeId" value={resumeId} />
 
