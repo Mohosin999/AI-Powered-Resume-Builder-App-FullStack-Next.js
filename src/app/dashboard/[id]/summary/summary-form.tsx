@@ -5,6 +5,7 @@ import GenerateFromAIButton from "@/components/ui/generate-ai-button";
 import { generatePrompt } from "@/lib/helper";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
+import { PageHeader } from "@/components/PageHeader";
 
 type SummaryFormProps = {
   resumeId: string;
@@ -20,6 +21,7 @@ export default function SummaryForm({
   const [content, setContent] = useState(defaultContent);
   const [aiSuggestion, setAiSuggestion] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleGenerate = async () => {
     setLoading(true);
@@ -39,60 +41,83 @@ export default function SummaryForm({
   const handleAcceptSuggestion = () => {
     setContent(aiSuggestion);
     setAiSuggestion("");
+    setIsEditing(true);
+  };
+
+  const handleEditStart = () => {
+    setIsEditing(true);
   };
 
   const handleSubmit = async (formData: FormData) => {
     await upsertSummary(formData);
     toast.success("Summary Added Successfully!");
+    setIsEditing(false);
   };
 
   return (
-    <form action={handleSubmit} className="space-y-6">
-      <input type="hidden" name="resumeId" value={resumeId} />
+    <div>
+      <PageHeader
+        title="Summary"
+        resumeId={resumeId}
+        nextPage="experiences"
+        showSkip={true}
+        isEditing={isEditing}
+      />
 
-      <div className="mt-4">
-        <div className="flex justify-between items-end">
-          <label htmlFor="content" className="label-style">
-            Summary
-          </label>
+      <form
+        action={handleSubmit}
+        onChange={handleEditStart}
+        // onSubmit={handleEmptySubmit}
+        className="space-y-6"
+      >
+        <input type="hidden" name="resumeId" value={resumeId} />
 
-          <GenerateFromAIButton onclick={handleGenerate} loading={loading} />
-        </div>
+        <div className="mt-4">
+          <div className="flex justify-between items-end">
+            <label htmlFor="content" className="label-style">
+              Summary
+            </label>
 
-        <textarea
-          name="content"
-          id="content"
-          rows={7}
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          className="text-sm mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border text-gray-300 bg-transparent"
-        />
-      </div>
-
-      <div className="flex justify-end">
-        <Button
-          type="submit"
-          variant="outline"
-          className="w-full lg:w-auto text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
-        >
-          Add Summary
-        </Button>
-      </div>
-
-      {aiSuggestion && (
-        <div>
-          <h3 className="text-blue-500 font-bold">Generated From AI</h3>
-          <div
-            className="mt-4 p-6 rounded-lg shadow-md mb-0 border border-gray-700 cursor-pointer"
-            onClick={handleAcceptSuggestion}
-          >
-            <p className=" text-white whitespace-pre-line">{aiSuggestion}</p>
-            <p className="text-xs text-right text-blue-500 hover:text-blue-600 mt-2">
-              Click to apply
-            </p>
+            <GenerateFromAIButton onclick={handleGenerate} loading={loading} />
           </div>
+
+          <textarea
+            name="content"
+            id="content"
+            rows={7}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className="text-sm lg:text-base mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border text-gray-300 bg-transparent"
+          />
         </div>
-      )}
-    </form>
+
+        <div className="flex justify-end">
+          <Button
+            type="submit"
+            variant="outline"
+            className="w-full lg:w-auto text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+          >
+            Add Summary
+          </Button>
+        </div>
+
+        {aiSuggestion && (
+          <div>
+            <h3 className="text-green-400 font-bold">Generated From AI</h3>
+            <div
+              className="mt-4 p-4 lg:p-6 rounded-lg shadow-md mb-0 border border-gray-700 cursor-pointer"
+              onClick={handleAcceptSuggestion}
+            >
+              <p className="text-sm lg:text-base text-white whitespace-pre-line">
+                {aiSuggestion}
+              </p>
+              <p className="text-xs text-right text-blue-500 hover:text-blue-600 mt-2">
+                Click to apply
+              </p>
+            </div>
+          </div>
+        )}
+      </form>
+    </div>
   );
 }

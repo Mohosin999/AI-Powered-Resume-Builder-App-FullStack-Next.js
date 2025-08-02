@@ -84,12 +84,14 @@ export function EducationForm({
         </div>
       </div>
 
-      <Button
-        variant="outline"
-        className="w-full lg:w-auto text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
-      >
-        Add Education
-      </Button>
+      <div className="flex justify-end">
+        <Button
+          variant="outline"
+          className="w-full lg:w-auto text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+        >
+          Add Education
+        </Button>
+      </div>
     </form>
   );
 }

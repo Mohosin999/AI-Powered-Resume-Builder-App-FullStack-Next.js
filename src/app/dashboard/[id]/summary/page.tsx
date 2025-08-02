@@ -1,4 +1,3 @@
-import { PageHeader } from "@/components/PageHeader";
 import SummaryForm from "./summary-form";
 import { getPersonalDetails, getSummary } from "@/actions/resume-actions";
 
@@ -15,12 +14,6 @@ const SummaryPage = async ({ params }: SummaryPageProps) => {
 
   return (
     <div className="max-w-4xl mx-auto card-style">
-      <PageHeader
-        title="Summary"
-        resumeId={params.id}
-        nextPage="experiences"
-        showSkip={true}
-      />
       <SummaryForm
         resumeId={params.id}
         defaultContent={summaryInfo?.content || ""}

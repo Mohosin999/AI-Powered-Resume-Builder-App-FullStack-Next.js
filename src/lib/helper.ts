@@ -4,7 +4,7 @@ export function generatePrompt(
 ) {
   switch (type) {
     case "summary":
-      return `Job Title: ${data}. Depending on the job title, please provide a summary for my resume in 4 to 5 lines without any extra description.`;
+      return `Job Title: ${data}. Depending on the job title, please provide a summary only for experts for my resume in 4 lines (no extra description, no extra starting introduction needed, just 4 lines actual summary).`;
     case "experience":
       return `Job Title: ${data}. Generate only 3 bullet points (no paragraphs, no bold text, no extra description). Highlight key responsibilities, challenges faced and how they were solved, and main contribution areas. Write each point within or less then two lines. Format like this:
 • point one

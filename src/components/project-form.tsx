@@ -88,12 +88,14 @@ export function ProjectForm({
         />
       </div>
 
-      <Button
-        variant="outline"
-        className="w-full lg:w-auto mt-1 text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
-      >
-        Add Project
-      </Button>
+      <div className="flex justify-end">
+        <Button
+          variant="outline"
+          className="w-full lg:w-auto mt-1 text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+        >
+          Add Project
+        </Button>
+      </div>
     </form>
   );
 }
