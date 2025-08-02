@@ -19,24 +19,24 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
   ];
 
   return (
-    <div className="bg-[#131A25]">
+    <div className="bg-[#131A25] px-3 md:px-10 lg:px-14">
       {/* <Navbar /> */}
 
       <div className="min-h-screen">
-        <div className="w-[90%] md:w-[80%] lg:w-[70%] mx-auto text-center">
+        <div>
           <AnimatedHeading
             text="Build Your Professional Resume"
-            className="pt-14 text-emerald-400"
+            className="text-center pt-14 text-emerald-400"
           />
 
-          <p className="mt-4 mb-6 paragraph-text-style">
-            Take your career to the next level by creating a polished,
-            professional resume with the help of cutting-edge AI technology.
-            Whether you are just starting out or looking to upgrade your
-            existing resume, our intelligent platform guides you every step of
-            the way. Receive personalized feedback, formatting suggestions, and
-            a professionalism score to ensure your resume is not only visually
-            appealing but also optimized to impress employers.
+          <p className="text-center mt-4 mb-6 paragraph-text-style">
+            Elevate your job applications with our AI-powered resume builder,
+            designed to create professional and personalized resumes
+            effortlessly. Whether you are a fresh graduate or an experienced
+            professional, our intelligent system analyzes your skills and
+            experience to craft impactful summaries and bullet points. Save
+            time, avoid formatting headaches, and ensure your resume stands out
+            to recruiters with AI-driven precision and style.
           </p>
 
           {/* Buttons */}
@@ -47,7 +47,7 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
               href="https://github.com/Mohosin999/AI-Resume-Builder-Application-Frontend"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full md:w-auto"
+              className="text-center w-full md:w-auto"
             >
               <Button variant="ghost" className="homepage-button-style">
                 View GitHub Repository <GithubIcon className="ml-2 w-5 h-5" />
@@ -57,7 +57,7 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
 
           {/* Social Links */}
           <div className="mt-6 md:mt-12">
-            <h3 className="mt-5 text-xl text-[#72839E] font-semibold">
+            <h3 className="text-center mt-5 text-xl text-[#72839E] font-semibold">
               Connect With Me
             </h3>
             <div className="flex items-center justify-center gap-6 mt-3">
@@ -76,17 +76,14 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
 
         {/* Key Features */}
         <div className="w-full py-10 md:pt-16 md:pb-6">
-          <div className="w-[90%] md:w-[80%] lg:w-[70%] mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-secondary mb-8">
+          <div>
+            <h2 className="text-center text-2xl md:text-3xl font-bold text-secondary mb-8">
               Why Our Resume Builder?
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
               {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="bg-[#1C2434] p-6 rounded-lg shadow-sm lg:shadow-md transition hover:scale-[1.02]"
-                >
+                <div key={index} className="card-style">
                   <h3 className="text-lg md:text-xl font-semibold text-gray-200 mb-3">
                     {feature}
                   </h3>
@@ -103,8 +100,9 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
 
         {/* Testimonials */}
         <div className="w-full md:pt-16 pb-10 md:pb-20">
-          <div className="w-[90%] md:w-[80%] lg:w-[70%] mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-secondary mb-8">
+          {/* <div className="w-[90%] md:w-[80%] lg:w-[70%] mx-auto text-center"> */}
+          <div>
+            <h2 className="text-center text-2xl md:text-3xl font-bold text-secondary mb-8">
               What Our Users Are Saying
             </h2>
 
@@ -123,7 +121,8 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
               ].map((testimonial, i) => (
                 <div
                   key={i}
-                  className="bg-[#1C2434] p-6 rounded-lg shadow-sm lg:shadow-md transition hover:scale-[1.02]"
+                  // className="bg-[#1C2434] p-6 rounded-lg shadow-sm lg:shadow-md transition hover:scale-[1.02]"
+                  className="card-style"
                 >
                   <p className="italic paragraph-text-style">
                     {testimonial.comment}
