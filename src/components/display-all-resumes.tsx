@@ -85,9 +85,12 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
                     </DropdownMenuItem>
                   </Link>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem className="cursor-pointer">
-                    Download
-                  </DropdownMenuItem>
+                  {/* Download Resume */}
+                  <Link href={`/dashboard/${resume.id}/preview-resume`}>
+                    <DropdownMenuItem className="cursor-pointer">
+                      Download
+                    </DropdownMenuItem>
+                  </Link>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     className="cursor-pointer text-red-600"
