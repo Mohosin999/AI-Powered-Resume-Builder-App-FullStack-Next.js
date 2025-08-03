@@ -1,14 +1,14 @@
 import { getSkills } from "@/actions/resume-actions";
 import SkillPageClient from "./skill-page-client";
 
-interface SkillPageProps {
-  params: {
-    id: string;
-  };
-}
+export default async function SkillPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const { id } = await params;
 
-export default async function SkillPage({ params }: SkillPageProps) {
-  const skills = await getSkills(params.id);
+  const skills = await getSkills(id);
 
-  return <SkillPageClient skills={skills} resumeId={params.id} />;
+  return <SkillPageClient skills={skills} resumeId={id} />;
 }

@@ -1,19 +1,16 @@
 import { getPersonalDetails } from "@/actions/resume-actions";
 import PersonalDetailsForm from "./personal-details-form";
 
-interface PersonalDetailsPageProps {
-  params: {
-    id: string;
-  };
-}
-
 export default async function PersonalDetailsPage({
   params,
-}: PersonalDetailsPageProps) {
-  const personDetailsInfo = await getPersonalDetails(params.id);
+}: {
+  params: { id: string };
+}) {
+  const { id } = await params;
+  const personDetailsInfo = await getPersonalDetails(id);
 
   const defaultValues = {
-    resumeId: params.id,
+    resumeId: id,
     firstName: personDetailsInfo?.firstName || "",
     lastName: personDetailsInfo?.lastName || "",
     email: personDetailsInfo?.email || "",
@@ -24,7 +21,7 @@ export default async function PersonalDetailsPage({
 
   return (
     <div className="max-w-4xl mx-auto card-style">
-      <PersonalDetailsForm resumeId={params.id} defaultValues={defaultValues} />
+      <PersonalDetailsForm resumeId={id} defaultValues={defaultValues} />
     </div>
   );
 }

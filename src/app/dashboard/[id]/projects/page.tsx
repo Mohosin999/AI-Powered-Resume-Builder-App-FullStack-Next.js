@@ -1,12 +1,14 @@
 import { getProjects } from "@/actions/resume-actions";
 import ProjectPageClient from "./project-page-client";
 
-interface ProjectPageProps {
+export default async function ProjectPage({
+  params,
+}: {
   params: { id: string };
-}
+}) {
+  const { id } = await params;
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
-  const projects = await getProjects(params.id);
+  const projects = await getProjects(id);
 
-  return <ProjectPageClient resumeId={params.id} projects={projects} />;
+  return <ProjectPageClient resumeId={id} projects={projects} />;
 }

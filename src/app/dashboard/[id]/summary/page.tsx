@@ -1,21 +1,17 @@
 import SummaryForm from "./summary-form";
 import { getPersonalDetails, getSummary } from "@/actions/resume-actions";
 
-interface SummaryPageProps {
-  params: {
-    id: string;
-  };
-}
+const SummaryPage = async ({ params }: { params: { id: string } }) => {
+  const { id } = await params;
 
-const SummaryPage = async ({ params }: SummaryPageProps) => {
-  const summaryInfo = await getSummary(params.id);
-  const personalDetails = await getPersonalDetails(params.id);
+  const summaryInfo = await getSummary(id);
+  const personalDetails = await getPersonalDetails(id);
   const jobTitle = personalDetails?.jobTitle || "Professional";
 
   return (
     <div className="max-w-4xl mx-auto card-style">
       <SummaryForm
-        resumeId={params.id}
+        resumeId={id}
         defaultContent={summaryInfo?.content || ""}
         jobTitle={jobTitle}
       />

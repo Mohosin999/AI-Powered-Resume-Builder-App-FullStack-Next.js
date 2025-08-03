@@ -218,19 +218,15 @@ import {
 import { DownloadResumeBtn } from "@/components/ui/download-button";
 import ResumeHeading from "@/components/ui/resume-heading";
 
-interface PreviewResumeProps {
-  params: {
-    id: string;
-  };
-}
+const PreviewResume = async ({ params }: { params: { id: string } }) => {
+  const { id } = await params;
 
-const PreviewResume = async ({ params }: PreviewResumeProps) => {
-  const personalDetails = await getPersonalDetails(params.id);
-  const summary = await getSummary(params.id);
-  const experiences = await getExperiences(params.id);
-  const projects = await getProjects(params.id);
-  const educations = await getEducations(params.id);
-  const skills = await getSkills(params.id);
+  const personalDetails = await getPersonalDetails(id);
+  const summary = await getSummary(id);
+  const experiences = await getExperiences(id);
+  const projects = await getProjects(id);
+  const educations = await getEducations(id);
+  const skills = await getSkills(id);
 
   return (
     // <div className="max-w-6xl mx-auto bg-[#1C2434] p-8 rounded-lg shadow-sm lg:shadow-md text-white">
