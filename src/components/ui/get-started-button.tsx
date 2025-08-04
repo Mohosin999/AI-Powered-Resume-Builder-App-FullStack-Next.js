@@ -25,7 +25,7 @@ const GetStartedButton = ({ isAuthenticated }: Props) => {
       <Button
         variant="outline"
         onClick={handleClick}
-        className="hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+        className="hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
       >
         Get Started for Free <ArrowRight className="ml-2 w-5 h-5" />
       </Button>

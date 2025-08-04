@@ -55,7 +55,7 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
         {allResumes?.map((resume) => (
           <div
             key={resume.id}
-            className="border border-gray-600 py-5 px-4 bg-[#1C2434] text-white relative rounded flex flex-col justify-between min-h-[220px]"
+            className="card-style text-white lg:!p-8 relative flex flex-col justify-between min-h-[220px]"
           >
             {/* Resume Title */}
             <div>
