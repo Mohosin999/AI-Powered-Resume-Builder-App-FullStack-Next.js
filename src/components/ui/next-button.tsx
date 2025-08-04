@@ -24,7 +24,7 @@ const NextButton = ({ id, pageName, disabled = false }: NextButtonProps) => {
         className={`text-gray-900 ${
           disabled
             ? "opacity-50 cursor-not-allowed bg-gray-100 border-gray-300"
-            : "cursor-pointer hover:bg-emerald-400 hover:border-emerald-400"
+            : "cursor-pointer hover:bg-emerald-400 hover:border-emerald-400 active:scale-105"
         }`}
       >
         Next <GrChapterNext />

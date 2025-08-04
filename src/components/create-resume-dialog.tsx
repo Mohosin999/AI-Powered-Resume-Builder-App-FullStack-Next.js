@@ -41,7 +41,7 @@ export default function CreateResumeDialog({
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+          className="hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
         >
           <FaPlus />
           Create New Resume
@@ -85,7 +85,7 @@ export default function CreateResumeDialog({
             <Button
               type="submit"
               variant="outline"
-              className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+              className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
             >
               Create
             </Button>

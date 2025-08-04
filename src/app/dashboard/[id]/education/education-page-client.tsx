@@ -9,16 +9,6 @@ import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { Education } from "@/lib/type";
 
-// interface Education {
-//   id: string;
-//   institution: string;
-//   degree: string;
-//   field?: string | null;
-//   startDate: string;
-//   endDate?: string | null;
-//   current: boolean;
-// }
-
 interface EducationPageClientProps {
   educations: Education[];
   resumeId: string;
@@ -163,7 +153,7 @@ export default function EducationPageClient({
                   <Button
                     type="submit"
                     variant="outline"
-                    className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+                    className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
                   >
                     Update Education
                   </Button>
@@ -171,7 +161,7 @@ export default function EducationPageClient({
                   <Button
                     type="button"
                     onClick={() => confirmDelete(edu.id)}
-                    className="bg-red-500 hover:bg-red-600 border border-red-500 hover:border-red-600 text-white px-4 py-2 rounded-md cursor-pointer"
+                    className="bg-red-500 hover:bg-red-600 border border-red-500 hover:border-red-600 text-white px-4 py-2 rounded-md active:scale-105 cursor-pointer"
                   >
                     Delete Education
                   </Button>

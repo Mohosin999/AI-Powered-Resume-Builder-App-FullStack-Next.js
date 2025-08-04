@@ -9,17 +9,6 @@ import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { Experience } from "@/lib/type";
 
-// interface Experience {
-//   id: string;
-//   jobTitle: string;
-//   company: string;
-//   location?: string | null;
-//   startDate: string;
-//   endDate?: string | null;
-//   current: boolean;
-//   description: string;
-// }
-
 interface ExperiencePageClientProps {
   experiences: Experience[];
   resumeId: string;
@@ -180,7 +169,7 @@ export default function ExperiencePageClient({
                   <Button
                     type="submit"
                     variant="outline"
-                    className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+                    className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
                   >
                     Update Experience
                   </Button>
@@ -188,7 +177,7 @@ export default function ExperiencePageClient({
                   <Button
                     type="button"
                     onClick={() => confirmDelete(exp.id)}
-                    className="bg-red-500 hover:bg-red-600 border border-red-500 hover:border-red-600 text-white px-4 py-2 rounded-md cursor-pointer"
+                    className="bg-red-500 hover:bg-red-600 border border-red-500 hover:border-red-600 text-white px-4 py-2 rounded-md active:scale-105 cursor-pointer"
                   >
                     Delete Experience
                   </Button>

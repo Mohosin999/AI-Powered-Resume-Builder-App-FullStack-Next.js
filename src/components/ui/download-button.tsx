@@ -10,7 +10,7 @@ export function DownloadResumeBtn() {
     <Button
       type="submit"
       variant="outline"
-      className={`text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer`}
+      className={`text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer`}
       onClick={handleDownload}
     >
       Download Resume

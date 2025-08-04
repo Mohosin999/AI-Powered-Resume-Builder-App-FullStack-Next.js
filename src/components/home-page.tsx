@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 // import Navbar from "@/components/navbar";
 // import Footer from "@/components/footer";
 import GetStartedButton from "@/components/ui/get-started-button";
-import AnimatedHeading from "@/components/ui/animated-heading";
 
 interface HomePageProps {
   isAuthenticated: boolean;
@@ -24,10 +23,9 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
 
       <div className="min-h-screen">
         <div>
-          <AnimatedHeading
-            text="Build Your Professional Resume"
-            className="text-center pt-10 lg:pt-14 text-emerald-400"
-          />
+          <h1 className="text-3xl md:text-5xl font-bold text-center pt-10 lg:pt-14 text-emerald-400">
+            Build Your Professional Resume
+          </h1>
 
           <p className="text-center mt-4 mb-6 paragraph-text-style">
             Elevate your job applications with our AI-powered resume builder,
@@ -44,7 +42,7 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
             <GetStartedButton isAuthenticated={isAuthenticated} />
 
             <a
-              href="https://github.com/Mohosin999/AI-Resume-Builder-Application-Frontend"
+              href="https://github.com/Mohosin999/FullStack-AI-Resume-Builder-App-Next.js"
               target="_blank"
               rel="noopener noreferrer"
               className="text-center w-full md:w-auto"
@@ -62,13 +60,13 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
             </h3>
             <div className="flex items-center justify-center gap-6 mt-3">
               <a href="https://www.linkedin.com/in/mohosinh99/" target="_blank">
-                <LinkedinIcon className="text-emerald-400 hover:text-blue-600" />
+                <LinkedinIcon className="text-emerald-400 hover:text-blue-600 active:scale-105" />
               </a>
               <a href="https://x.com/mohosinh99" target="_blank">
-                <TwitterIcon className="text-emerald-400 hover:text-blue-400" />
+                <TwitterIcon className="text-emerald-400 hover:text-blue-400 active:scale-105" />
               </a>
               <a href="https://github.com/Mohosin999" target="_blank">
-                <GithubIcon className="text-emerald-400 hover:text-gray-700" />
+                <GithubIcon className="text-emerald-400 hover:text-gray-700 active:scale-105" />
               </a>
             </div>
           </div>

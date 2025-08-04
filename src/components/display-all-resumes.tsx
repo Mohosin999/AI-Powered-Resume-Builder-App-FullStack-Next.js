@@ -60,14 +60,16 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
             {/* Resume Title */}
             <div>
               <Link href={`/dashboard/${resume.id}/personal-details`}>
-                <h1 className="text-lg font-semibold">{resume.title}</h1>
+                <h1 className="text-lg font-semibold active:scale-105">
+                  {resume.title}
+                </h1>
               </Link>
             </div>
 
             {/* Three-dot menu */}
             <div className="absolute bottom-2 right-2 text-right">
               <DropdownMenu>
-                <DropdownMenuTrigger className="cursor-pointer text-white">
+                <DropdownMenuTrigger className="cursor-pointer text-white active:scale-105">
                   <BsThreeDotsVertical />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>

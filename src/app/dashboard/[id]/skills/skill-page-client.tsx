@@ -7,11 +7,6 @@ import { deleteSkill } from "@/actions/resume-actions";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Skill } from "@/lib/type";
 
-// interface Skill {
-//   id: string;
-//   name: string;
-// }
-
 interface SkillPageClientProps {
   skills: Skill[];
   resumeId: string;
@@ -48,7 +43,7 @@ export default function SkillPageClient({
               <h3 className="text-white">{skill.name}</h3>
 
               <button onClick={() => handleConfirmDelete(skill.id)}>
-                <MdDelete className="text-red-500 hover:text-red-600 cursor-pointer" />
+                <MdDelete className="text-red-500 hover:text-red-600 active:scale-105 cursor-pointer" />
               </button>
             </div>
           ))}

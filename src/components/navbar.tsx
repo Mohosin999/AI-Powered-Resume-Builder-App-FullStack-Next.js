@@ -1,76 +1,4 @@
-// import { auth } from "@clerk/nextjs/server";
-// import {
-//   SignedIn,
-//   SignedOut,
-//   SignInButton,
-//   SignUpButton,
-//   UserButton,
-// } from "@clerk/nextjs";
-// import Link from "next/link";
-// import Image from "next/image";
-// import { Button } from "@/components/ui/button";
-// import { syncUser } from "@/actions/user-actions";
-
-// const Navbar = async () => {
-//   const { userId } = await auth();
-
-//   if (userId) {
-//     await syncUser();
-//   }
-
-//   return (
-//     <header className="bg-[#14202D] shadow-md">
-//       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-//         {/* Left: Logo + Text */}
-//         <Link href="/" className="flex items-center space-x-2">
-//           <Image
-//             src="/logo.png"
-//             alt="AI Resume Logo"
-//             width={40}
-//             height={40}
-//             className="w-6 h-6"
-//           />
-//           <span className="text-emerald-400 text-xl font-semibold tracking-wide">
-//             AI Resume Builder
-//           </span>
-//         </Link>
-
-//         {/* Right: Auth Buttons or Dashboard + User */}
-//         <div className="flex items-center space-x-4">
-//           <SignedIn>
-//             <Link href="/dashboard">
-//               <Button variant="ghost" className="homepage-button-style">
-//                 Dashboard
-//               </Button>
-//             </Link>
-//             <UserButton afterSignOutUrl="/" />
-//           </SignedIn>
-
-//           <SignedOut>
-//             <SignInButton mode="modal">
-//               <Button variant="ghost" className="homepage-button-style">
-//                 Sign in
-//               </Button>
-//             </SignInButton>
-//             <SignUpButton mode="modal">
-//               <Button
-//                 variant="outline"
-//                 className="hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
-//               >
-//                 Get Started
-//               </Button>
-//             </SignUpButton>
-//           </SignedOut>
-//         </div>
-//       </div>
-//     </header>
-//   );
-// };
-
-// export default Navbar;
-
 "use client";
-
 import { useState } from "react";
 import {
   SignedIn,
@@ -95,7 +23,7 @@ const Navbar = () => {
     <header className="bg-[#14202D] shadow-md">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-2 active:scale-105">
           <Image
             src="/logo.png"
             alt="AI Resume Logo"
@@ -116,7 +44,9 @@ const Navbar = () => {
                 Dashboard
               </Button>
             </Link>
-            <UserButton afterSignOutUrl="/" />
+            <div className="active:scale-105 flex items-center">
+              <UserButton afterSignOutUrl="/" />
+            </div>
           </SignedIn>
 
           <SignedOut>
@@ -157,7 +87,7 @@ const Navbar = () => {
                 Dashboard
               </Button>
             </Link>
-            <div className="mt-4">
+            <div className="mt-4 active:scale-105">
               <UserButton afterSignOutUrl="/" />
             </div>
           </SignedIn>
@@ -175,7 +105,7 @@ const Navbar = () => {
             <SignUpButton mode="modal">
               <Button
                 variant="outline"
-                className="w-full hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+                className="text-gray-900 w-full hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
                 onClick={toggleMobileMenu}
               >
                 Get Started

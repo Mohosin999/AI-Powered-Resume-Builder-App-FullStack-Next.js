@@ -9,15 +9,6 @@ import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { Project } from "@/lib/type";
 
-// interface Project {
-//   id: string;
-//   name: string;
-//   description: string;
-//   url?: string | null;
-//   startDate?: string | null;
-//   endDate?: string | null;
-// }
-
 interface ProjectPageClientProps {
   projects: Project[];
   resumeId: string;
@@ -123,14 +114,14 @@ export default function ProjectPageClient({
                   <Button
                     type="submit"
                     variant="outline"
-                    className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+                    className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
                   >
                     Update Project
                   </Button>
                   <Button
                     type="button"
                     onClick={() => confirmDelete(project.id)}
-                    className="bg-red-500 hover:bg-red-600 border border-red-500 hover:border-red-600 text-white px-4 py-2 rounded-md cursor-pointer"
+                    className="bg-red-500 hover:bg-red-600 border border-red-500 hover:border-red-600 text-white px-4 py-2 rounded-md active:scale-105 cursor-pointer"
                   >
                     Delete Project
                   </Button>

@@ -147,7 +147,7 @@ export default function PersonalDetailsForm({
           <Button
             type="submit"
             variant="outline"
-            className="w-full lg:w-auto text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+            className="w-full lg:w-auto text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
           >
             Add Details
           </Button>

@@ -149,7 +149,7 @@
 
 /* Reusable css style */
 .homepage-button-style {
-  @apply text-emerald-400 border border-emerald-400 hover:border-white hover:text-gray-900 cursor-pointer;
+  @apply text-emerald-400 border border-emerald-400 hover:border-white hover:text-gray-900 active:scale-105 cursor-pointer;
 }
 
 .paragraph-text-style {

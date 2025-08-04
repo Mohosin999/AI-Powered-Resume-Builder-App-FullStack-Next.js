@@ -95,7 +95,7 @@ export default function SummaryForm({
           <Button
             type="submit"
             variant="outline"
-            className="w-full lg:w-auto text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+            className="w-full lg:w-auto text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
           >
             Add Summary
           </Button>
@@ -111,7 +111,7 @@ export default function SummaryForm({
               <p className="text-sm lg:text-base text-white whitespace-pre-line">
                 {aiSuggestion}
               </p>
-              <p className="text-xs text-right text-blue-500 hover:text-blue-600 mt-2">
+              <p className="text-xs text-right text-blue-500 hover:text-blue-600 mt-2 active:scale-105">
                 Click to apply
               </p>
             </div>
