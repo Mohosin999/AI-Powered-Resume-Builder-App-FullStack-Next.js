@@ -7,16 +7,17 @@ import { PageHeader } from "@/components/PageHeader";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
+import { Education } from "@/lib/type";
 
-interface Education {
-  id: string;
-  institution: string;
-  degree: string;
-  field?: string | null;
-  startDate: string;
-  endDate?: string | null;
-  current: boolean;
-}
+// interface Education {
+//   id: string;
+//   institution: string;
+//   degree: string;
+//   field?: string | null;
+//   startDate: string;
+//   endDate?: string | null;
+//   current: boolean;
+// }
 
 interface EducationPageClientProps {
   educations: Education[];

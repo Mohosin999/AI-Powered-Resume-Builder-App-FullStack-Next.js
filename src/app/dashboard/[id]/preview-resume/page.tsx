@@ -217,6 +217,7 @@ import {
 } from "@/actions/resume-actions";
 import { DownloadResumeBtn } from "@/components/ui/download-button";
 import ResumeHeading from "@/components/ui/resume-heading";
+import { Education, Experience, Project, Skill } from "@/lib/type";
 
 const PreviewResume = async ({ params }: { params: { id: string } }) => {
   const { id } = await params;
@@ -281,7 +282,7 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
           <div>
             <ResumeHeading title="E" highlight="xperience" />
             <div className="space-y-4">
-              {experiences.map((experience) => (
+              {experiences.map((experience: Experience) => (
                 <div key={experience.id} className="mt-2 text-sm">
                   <div>
                     <div className="flex justify-between items-center">
@@ -327,7 +328,7 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
         {projects?.length > 0 && (
           <div>
             <ResumeHeading title="P" highlight="rojects" />
-            {projects.map((project) => (
+            {projects.map((project: Project) => (
               <div key={project.id} className="mt-2 text-sm">
                 <div>
                   <div className="flex justify-between items-center">
@@ -363,7 +364,7 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
         {educations?.length > 0 && (
           <div>
             <ResumeHeading title="E" highlight="ducations" />
-            {educations.map((education) => (
+            {educations.map((education: Education) => (
               <div key={education.id} className="mt-2 text-sm">
                 <div>
                   <div className="">
@@ -397,7 +398,7 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
           <div>
             <ResumeHeading title="S" highlight="kills" />
             <p className="mt-2 text-sm">
-              {skills.map((skill) => skill.name).join(" • ")}
+              {skills.map((skill: Skill) => skill.name).join(" • ")}
             </p>
           </div>
         )}

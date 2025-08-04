@@ -7,15 +7,16 @@ import { deleteProject, upsertProject } from "@/actions/resume-actions";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
+import { Project } from "@/lib/type";
 
-interface Project {
-  id: string;
-  name: string;
-  description: string;
-  url?: string | null;
-  startDate?: string | null;
-  endDate?: string | null;
-}
+// interface Project {
+//   id: string;
+//   name: string;
+//   description: string;
+//   url?: string | null;
+//   startDate?: string | null;
+//   endDate?: string | null;
+// }
 
 interface ProjectPageClientProps {
   projects: Project[];

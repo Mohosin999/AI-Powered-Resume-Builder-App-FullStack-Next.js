@@ -7,17 +7,18 @@ import { PageHeader } from "@/components/PageHeader";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
+import { Experience } from "@/lib/type";
 
-interface Experience {
-  id: string;
-  jobTitle: string;
-  company: string;
-  location?: string | null;
-  startDate: string;
-  endDate?: string | null;
-  current: boolean;
-  description: string;
-}
+// interface Experience {
+//   id: string;
+//   jobTitle: string;
+//   company: string;
+//   location?: string | null;
+//   startDate: string;
+//   endDate?: string | null;
+//   current: boolean;
+//   description: string;
+// }
 
 interface ExperiencePageClientProps {
   experiences: Experience[];

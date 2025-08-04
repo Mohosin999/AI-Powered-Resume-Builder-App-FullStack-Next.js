@@ -5,11 +5,12 @@ import { SkillForm } from "@/components/skill-form";
 import { PageHeader } from "@/components/PageHeader";
 import { deleteSkill } from "@/actions/resume-actions";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
+import { Skill } from "@/lib/type";
 
-interface Skill {
-  id: string;
-  name: string;
-}
+// interface Skill {
+//   id: string;
+//   name: string;
+// }
 
 interface SkillPageClientProps {
   skills: Skill[];
