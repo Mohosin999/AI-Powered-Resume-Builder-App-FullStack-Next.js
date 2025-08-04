@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
+import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 // import { redirect } from "next/navigation";
 
@@ -133,7 +134,7 @@ export async function upsertPersonalDetails(formData: FormData) {
   }
 
   try {
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // Verify the resume belongs to the user
       const resume = await tx.resume.findUnique({
         where: { id: resumeId, userId: user.id },
@@ -188,7 +189,7 @@ export async function upsertSummary(formData: FormData) {
   const content = formData.get("content") as string;
 
   try {
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // Verify the resume belongs to the user
       const resume = await tx.resume.findUnique({
         where: { id: resumeId, userId: user.id },
@@ -269,7 +270,7 @@ export async function upsertExperience(formData: FormData) {
   }
 
   try {
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // Verify resume belongs to user
       const resume = await tx.resume.findUnique({
         where: { id: resumeId, userId: user.id },
@@ -373,7 +374,7 @@ export async function upsertProject(formData: FormData) {
   }
 
   try {
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // Verify resume belongs to user
       const resume = await tx.resume.findUnique({
         where: { id: resumeId, userId: user.id },
@@ -472,7 +473,7 @@ export async function upsertEducation(formData: FormData) {
   }
 
   try {
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const resume = await tx.resume.findUnique({
         where: { id: resumeId, userId: user.id },
       });
@@ -556,7 +557,7 @@ export async function createSkill(formData: FormData) {
   if (!name) throw new Error("Skill name is required");
 
   try {
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const resume = await tx.resume.findUnique({
         where: { id: resumeId, userId: user.id },
       });
