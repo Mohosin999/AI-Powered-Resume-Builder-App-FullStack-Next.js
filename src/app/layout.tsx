@@ -1,5 +1,5 @@
 // import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
+// import { Inter } from "next/font/google";
 // import "./globals.css";
 // import { ClerkProvider } from "@clerk/nextjs";
 // import Navbar from "@/components/navbar";
@@ -8,14 +8,9 @@
 // import { ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
+// const inter = Inter({
 //   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
+//   display: "swap",
 // });
 
 // export const metadata: Metadata = {
@@ -32,7 +27,7 @@
 //   return (
 //     <html lang="en">
 //       <body
-//         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#131A25]`}
+//         className={`${inter.className} antialiased bg-[#131A25]`}
 //         suppressHydrationWarning
 //       >
 //         <ClerkProvider>
@@ -71,6 +66,7 @@ import Footer from "@/components/footer";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -89,32 +85,39 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.className} antialiased bg-[#131A25]`}
+        className={`${inter.className} antialiased dark:bg-[#131A25]`}
         suppressHydrationWarning
       >
         <ClerkProvider>
-          <div id="header-footer">
-            <Navbar />
-          </div>
-          {children}
-          <div id="header-footer">
-            <Footer />
-          </div>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div id="header-footer">
+              <Navbar />
+            </div>
+            {children}
+            <div id="header-footer">
+              <Footer />
+            </div>
 
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            // theme="dark"
-            theme="light"
-          />
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              // theme="dark"
+              theme="light"
+            />
+          </ThemeProvider>
         </ClerkProvider>
       </body>
     </html>

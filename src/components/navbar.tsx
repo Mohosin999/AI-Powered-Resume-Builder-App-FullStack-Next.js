@@ -11,6 +11,7 @@ import {
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import ModeToggle from "./mode-toggle";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -20,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-[#14202D] shadow-md">
+    <header className="dark:bg-[#14202D] shadow-md">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 active:scale-105">
@@ -38,6 +39,10 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-4">
+          {/* Theme Options */}
+          <ModeToggle />
+
+          {/* Navigation Links */}
           <SignedIn>
             <Link href="/dashboard">
               <Button variant="ghost" className="homepage-button-style">
@@ -87,8 +92,9 @@ const Navbar = () => {
                 Dashboard
               </Button>
             </Link>
-            <div className="mt-4 active:scale-105">
+            <div className="flex flex-col items-center justify-center gap-4 mt-4 active:scale-105">
               <UserButton afterSignOutUrl="/" />
+              <ModeToggle />
             </div>
           </SignedIn>
 
@@ -111,6 +117,9 @@ const Navbar = () => {
                 Get Started
               </Button>
             </SignUpButton>
+            <div>
+              <ModeToggle />
+            </div>
           </SignedOut>
         </div>
       )}
