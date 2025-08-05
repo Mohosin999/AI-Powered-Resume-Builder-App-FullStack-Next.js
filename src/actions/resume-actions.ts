@@ -364,8 +364,8 @@ export async function upsertProject(formData: FormData) {
     name: formData.get("name") as string,
     description: formData.get("description") as string,
     url: (formData.get("url") as string) || undefined,
-    startDate: (formData.get("startDate") as string) || undefined,
-    endDate: (formData.get("endDate") as string) || undefined,
+    repoUrl: (formData.get("repoUrl") as string) || undefined,
+    caseStudyUrl: (formData.get("caseStudyUrl") as string) || undefined,
   };
 
   // Validate required fields
@@ -386,8 +386,8 @@ export async function upsertProject(formData: FormData) {
         name: data.name,
         description: data.description,
         url: data.url,
-        startDate: data.startDate,
-        endDate: data.endDate,
+        repoUrl: data.repoUrl,
+        caseStudyUrl: data.caseStudyUrl,
         resumeId,
       };
 
