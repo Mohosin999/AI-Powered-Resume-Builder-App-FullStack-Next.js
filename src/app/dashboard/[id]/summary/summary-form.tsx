@@ -6,12 +6,7 @@ import { generatePrompt } from "@/lib/helper";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { PageHeader } from "@/components/PageHeader";
-
-type SummaryFormProps = {
-  resumeId: string;
-  defaultContent?: string;
-  jobTitle: string;
-};
+import { SummaryFormProps } from "@/lib/type";
 
 export default function SummaryForm({
   resumeId,

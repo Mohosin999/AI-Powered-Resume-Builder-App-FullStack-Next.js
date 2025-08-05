@@ -347,7 +347,7 @@ export async function getProjects(resumeId: string) {
 
   return await prisma.project.findMany({
     where: { resumeId, resume: { userId: user.id } },
-    orderBy: { startDate: "desc" },
+    orderBy: { createdAt: "desc" },
   });
 }
 

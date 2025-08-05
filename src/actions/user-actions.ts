@@ -1,9 +1,14 @@
 "use server";
-
 import { prisma } from "@/lib/db";
 import { auth, currentUser } from "@clerk/nextjs/server";
 
-// Sync user within database
+/**
+ * ================================================================
+ * Sync User Within Database
+ *
+ * @returns
+ * ================================================================
+ */
 export const syncUser = async () => {
   try {
     const { userId } = await auth();

@@ -1,3 +1,10 @@
+/**
+ * Function to Generate Prompt
+ *
+ * @param type type will be a string
+ * @param data data will be a string
+ * @returns
+ */
 export function generatePrompt(
   type: "summary" | "experience" | "project" | "skills",
   data: string

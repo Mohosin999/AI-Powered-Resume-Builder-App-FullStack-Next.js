@@ -4,16 +4,7 @@ import { upsertPersonalDetails } from "@/actions/resume-actions";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { PageHeader } from "@/components/PageHeader";
-
-type PersonalDetails = {
-  resumeId: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  jobTitle: string;
-  socialLink: string;
-};
+import { PersonalDetails } from "@/lib/type";
 
 interface PersonalDetailsFormProps {
   defaultValues: PersonalDetails;
