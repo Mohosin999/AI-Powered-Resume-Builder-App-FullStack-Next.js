@@ -9,7 +9,7 @@ const SummaryPage = async ({ params }: { params: { id: string } }) => {
   const jobTitle = personalDetails?.jobTitle || "Professional";
 
   return (
-    <div className="max-w-4xl mx-auto card-style">
+    <div className="max-w-4xl mx-auto card">
       <SummaryForm
         resumeId={id}
         defaultContent={summaryInfo?.content || ""}

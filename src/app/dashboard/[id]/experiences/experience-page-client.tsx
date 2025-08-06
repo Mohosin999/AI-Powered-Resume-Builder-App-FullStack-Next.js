@@ -39,7 +39,7 @@ export default function ExperiencePageClient({
   };
 
   return (
-    <div className="max-w-4xl mx-auto card-style">
+    <div className="max-w-4xl mx-auto card">
       <PageHeader
         title="Experiences"
         resumeId={resumeId}
@@ -64,10 +64,7 @@ export default function ExperiencePageClient({
       {experiences.length > 0 && (
         <div className="space-y-6">
           {experiences.map((exp) => (
-            <div
-              key={exp.id}
-              className="p-4 lg:p-6 rounded-lg shadow-md border border-gray-700"
-            >
+            <div key={exp.id} className="p-4 lg:p-6 rounded-lg custom-border">
               <form
                 action={handleSubmit}
                 onChange={handleEditStart}
@@ -79,7 +76,7 @@ export default function ExperiencePageClient({
                 <div className="flex justify-between items-start">
                   <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 w-full">
                     <div>
-                      <label className="label-style">
+                      <label className="label">
                         Job Title - Technologies Used *
                       </label>
                       <input
@@ -88,52 +85,52 @@ export default function ExperiencePageClient({
                         defaultValue={exp.jobTitle}
                         placeholder="Frontend Developer - Next.js, TypeScript, Prisma"
                         required
-                        className="input-style"
+                        className="input"
                       />
                     </div>
                     <div>
-                      <label className="label-style">Company *</label>
+                      <label className="label">Company *</label>
                       <input
                         name="company"
                         type="text"
                         defaultValue={exp.company}
                         placeholder="Google | Freelance"
                         required
-                        className="text-sm input-style"
+                        className="text-sm input"
                       />
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <label className="label-style">Location</label>
+                  <label className="label">Location</label>
                   <input
                     name="location"
                     type="text"
                     defaultValue={exp.location || ""}
                     placeholder="San Francisco, USA | Remote"
-                    className="input-style"
+                    className="input"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="label-style">Start Date *</label>
+                    <label className="label">Start Date *</label>
                     <input
                       name="startDate"
                       type="date"
                       defaultValue={exp.startDate}
                       required
-                      className="input-style"
+                      className="input"
                     />
                   </div>
                   <div>
-                    <label className="label-style">End Date</label>
+                    <label className="label">End Date</label>
                     <input
                       name="endDate"
                       type="date"
                       defaultValue={exp.endDate || ""}
-                      className="input-style"
+                      className="input"
                     />
                     <div className="mt-2 flex items-center">
                       <input
@@ -154,14 +151,13 @@ export default function ExperiencePageClient({
                 </div>
 
                 <div>
-                  <label className="label-style">Description *</label>
-
+                  <label className="label">Description *</label>
                   <textarea
                     name="description"
                     rows={7}
                     defaultValue={exp.description}
                     required
-                    className="input-style"
+                    className="input"
                   />
                 </div>
 

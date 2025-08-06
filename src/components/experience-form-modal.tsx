@@ -14,7 +14,7 @@ export function ExperienceFormModal({ resumeId }: { resumeId: string }) {
       <Button
         onClick={() => setIsOpen(!isOpen)}
         variant="ghost"
-        className="homepage-button-style"
+        className="ghost-btn-2nd"
       >
         <FaPlus />
         Add New Experience
@@ -27,12 +27,10 @@ export function ExperienceFormModal({ resumeId }: { resumeId: string }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="mt-4 p-4 lg:p-6 rounded-lg shadow-md w-full max-w-3xl mx-auto border border-gray-700"
+            className="mt-4 p-4 lg:p-6 rounded-lg w-full max-w-3xl mx-auto custom-border"
           >
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl text-gray-300 font-semibold">
-                Add New Experience
-              </h2>
+              <h2 className="h2">Add New Experience</h2>
               {/* Cross icon */}
               <button
                 onClick={() => setIsOpen(false)}

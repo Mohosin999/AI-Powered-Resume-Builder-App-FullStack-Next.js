@@ -48,51 +48,46 @@ export function ExperienceForm({
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         <div>
-          <label className="label-style">Job Title - Technologies Used *</label>
+          <label className="label">Job Title - Technologies Used *</label>
           <input
             name="jobTitle"
             type="text"
             onChange={(e) => setJobTitle(e.target.value)}
             placeholder="Frontend Developer - Next.js, TypeScript, Prisma"
             required
-            className="input-style"
+            className="input"
           />
         </div>
         <div>
-          <label className="label-style">Company *</label>
+          <label className="label">Company *</label>
           <input
             name="company"
             type="text"
             placeholder="Google | Freelance"
             required
-            className="input-style"
+            className="input"
           />
         </div>
       </div>
 
       <div>
-        <label className="label-style">Location</label>
+        <label className="label">Location</label>
         <input
           name="location"
           type="text"
           placeholder="San Francisco, USA | Remote"
-          className="input-style"
+          className="input"
         />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="label-style">Start Date *</label>
-          <input
-            name="startDate"
-            type="date"
-            required
-            className="input-style"
-          />
+          <label className="label">Start Date *</label>
+          <input name="startDate" type="date" required className="input" />
         </div>
         <div>
-          <label className="label-style">End Date</label>
-          <input name="endDate" type="date" className="input-style" />
+          <label className="label">End Date</label>
+          <input name="endDate" type="date" className="input" />
           <div className="mt-2 flex items-center">
             <input
               id="current-new"
@@ -112,10 +107,7 @@ export function ExperienceForm({
 
       <div>
         <div className="flex justify-between items-end">
-          <label
-            htmlFor="content"
-            className="block text-sm font-medium text-[#72839E] mb-1"
-          >
+          <label htmlFor="content" className="label">
             Description *
           </label>
 
@@ -130,15 +122,12 @@ export function ExperienceForm({
           value={content ?? ""}
           onChange={(e) => setContent(e.target.value)}
           required
-          className="input-style"
+          className="input"
         />
       </div>
 
       <div className="flex justify-end">
-        <Button
-          variant="outline"
-          className="w-full lg:w-auto text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
-        >
+        <Button variant="ghost" className="ghost-btn-3rd">
           Add Experience
         </Button>
       </div>

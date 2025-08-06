@@ -39,54 +39,44 @@ export default function CreateResumeDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          className="hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
-        >
+        <Button variant="ghost" className="ghost-btn-3rd">
           <FaPlus />
-          Create New Resume
+          Create Resume
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-[425px] bg-[#131A25] border-gray-700 text-gray-100 shadow-lg">
+      <DialogContent className="max-w-[425px] card">
         <form action={handleAction}>
           <DialogHeader>
-            <DialogTitle>Create Your New Resume</DialogTitle>
-            <DialogDescription className="text-[#72839E]">
+            <DialogTitle className="h2">Create Your New Resume</DialogTitle>
+            <DialogDescription className="paragraph lg:!text-sm">
               Enter your actual resume title here as it&apos;s not editable.
             </DialogDescription>
           </DialogHeader>
 
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
-              <Label htmlFor="title" className="text-gray-300">
+              <Label htmlFor="title" className="label">
                 Title
               </Label>
               <Input
                 id="title"
                 name="title"
-                placeholder="ex. Frontend Developer Resume"
+                placeholder="ex. MERN Stack Developer"
                 required
+                className="input"
               />
             </div>
           </div>
 
           <DialogFooter className="mt-4">
             <DialogClose asChild>
-              <Button
-                type="button"
-                variant="ghost"
-                className="homepage-button-style"
-              >
+              <Button type="button" variant="ghost" className="ghost-btn-2nd">
                 Cancel
               </Button>
             </DialogClose>
             {/* <SubmitButton /> */}
-            <Button
-              type="submit"
-              variant="outline"
-              className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
-            >
+            <Button type="submit" variant="ghost" className="ghost-btn-3rd">
               Create
             </Button>
           </DialogFooter>

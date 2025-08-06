@@ -54,7 +54,7 @@ export default function PersonalDetailsForm({
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div>
-            <label htmlFor="firstName" className="label-style">
+            <label htmlFor="firstName" className="label">
               First Name *
             </label>
             <input
@@ -65,12 +65,12 @@ export default function PersonalDetailsForm({
               onChange={handleChange}
               placeholder="John"
               required
-              className="input-style"
+              className="input"
             />
           </div>
 
           <div>
-            <label htmlFor="lastName" className="label-style">
+            <label htmlFor="lastName" className="label">
               Last Name *
             </label>
             <input
@@ -81,13 +81,13 @@ export default function PersonalDetailsForm({
               onChange={handleChange}
               placeholder="Doe"
               required
-              className="input-style"
+              className="input"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="email" className="label-style">
+          <label htmlFor="email" className="label">
             Email *
           </label>
           <input
@@ -98,12 +98,12 @@ export default function PersonalDetailsForm({
             onChange={handleChange}
             placeholder="jhondoe@example.com"
             required
-            className="input-style"
+            className="input"
           />
         </div>
 
         <div>
-          <label htmlFor="jobTitle" className="label-style">
+          <label htmlFor="jobTitle" className="label">
             Job Title *
           </label>
           <input
@@ -114,12 +114,12 @@ export default function PersonalDetailsForm({
             onChange={handleChange}
             placeholder="MERN Stack Developer"
             required
-            className="input-style"
+            className="input"
           />
         </div>
 
         <div>
-          <label htmlFor="socialLink" className="label-style">
+          <label htmlFor="socialLink" className="label">
             Social Media Link (LinkedIn, GitHub, etc.) *
           </label>
           <input
@@ -130,7 +130,7 @@ export default function PersonalDetailsForm({
             onChange={handleChange}
             placeholder="https://www.linkedin.com/in/johndoe"
             required
-            className="input-style"
+            className="input"
           />
         </div>
 

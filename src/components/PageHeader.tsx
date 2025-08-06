@@ -18,9 +18,7 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <div className="flex justify-between items-center">
-      <h1 className="text-gray-100 text-lg md:text-xl lg:text-2xl font-bold mb-6">
-        {title}
-      </h1>
+      <h2 className="h2 mb-6">{title}</h2>
 
       <div className="flex items-center gap-3 mb-6">
         {showSkip && <SkipButton id={resumeId} pageName={nextPage} />}

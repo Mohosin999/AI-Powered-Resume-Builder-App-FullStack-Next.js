@@ -55,21 +55,19 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
         {allResumes?.map((resume) => (
           <div
             key={resume.id}
-            className="card-style text-white lg:!p-8 relative flex flex-col justify-between min-h-[220px]"
+            className="card lg:!p-8 relative flex flex-col justify-between min-h-[220px]"
           >
             {/* Resume Title */}
             <div>
               <Link href={`/dashboard/${resume.id}/personal-details`}>
-                <h1 className="text-lg font-semibold active:scale-105">
-                  {resume.title}
-                </h1>
+                <h2 className="h2">{resume.title}</h2>
               </Link>
             </div>
 
             {/* Three-dot menu */}
             <div className="absolute bottom-2 right-2 text-right">
               <DropdownMenu>
-                <DropdownMenuTrigger className="cursor-pointer text-white active:scale-105">
+                <DropdownMenuTrigger className="text-gray-900 dark:text-gray-100 active:scale-105 cursor-pointer">
                   <BsThreeDotsVertical />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
@@ -112,7 +110,7 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
         open={!!deleteId}
         onOpenChange={(open) => !open && setDeleteId(null)}
       >
-        <AlertDialogContent className="bg-[#131A25] border-gray-700 text-gray-100 shadow-lg">
+        <AlertDialogContent className="card">
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription className="text-[#72839E]">
