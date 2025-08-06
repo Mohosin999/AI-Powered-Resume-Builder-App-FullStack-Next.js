@@ -93,7 +93,7 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
                   </Link>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
-                    className="cursor-pointer text-red-600"
+                    className="cursor-pointer"
                     onClick={() => setDeleteId(resume.id)}
                   >
                     Delete
@@ -105,15 +105,19 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
         ))}
       </div>
 
-      {/* AlertDialog (Controlled by deleteId) */}
+      {/*=====================================================================
+      =           AlertDialog For Deleting (Controlled by deleteId)          =
+      =====================================================================*/}
       <AlertDialog
         open={!!deleteId}
         onOpenChange={(open) => !open && setDeleteId(null)}
       >
         <AlertDialogContent className="card">
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription className="text-[#72839E]">
+            <AlertDialogTitle className="h2">
+              Are you absolutely sure?
+            </AlertDialogTitle>
+            <AlertDialogDescription className="paragraph lg:!text-sm">
               This action cannot be undone. This will permanently delete your
               resume.
             </AlertDialogDescription>
@@ -121,19 +125,17 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
           <AlertDialogFooter>
             <AlertDialogCancel
               onClick={() => setDeleteId(null)}
-              className="bg-[#131A25] text-emerald-400 border-emerald-400 hover:border-white hover:text-gray-900 cursor-pointer"
+              className="ghost-btn-2nd"
             >
               Cancel
             </AlertDialogCancel>
-            <AlertDialogAction
-              onClick={handleDelete}
-              className="bg-white text-gray-900 hover:bg-emerald-400 cursor-pointer"
-            >
+            <AlertDialogAction onClick={handleDelete} className="ghost-btn-3rd">
               Continue
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+      {/*========================= End of AlertDialog =======================*/}
     </>
   );
 };

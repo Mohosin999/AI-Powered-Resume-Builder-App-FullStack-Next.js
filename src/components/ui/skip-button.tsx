@@ -10,7 +10,7 @@ interface NextButtonProps {
 const SkipButton = ({ id, pageName }: NextButtonProps) => {
   return (
     <Link href={`/dashboard/${id}/${pageName}`}>
-      <Button variant="ghost" className="homepage-button-style">
+      <Button variant="ghost" className="ghost-btn-2nd">
         Skip
       </Button>
     </Link>
