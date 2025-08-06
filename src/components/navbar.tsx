@@ -21,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="dark:bg-[#14202D] shadow-md">
+    <header className="bg-white dark:bg-[#1C2434] shadow-sm">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 active:scale-105">
@@ -48,7 +48,7 @@ const Navbar = () => {
           <SignedIn>
             <div className="flex items-center space-x-4">
               <Link href="/dashboard">
-                <Button variant="ghost" className="ghost-btn-style">
+                <Button variant="ghost" className="ghost-btn">
                   Dashboard
                 </Button>
               </Link>
@@ -61,12 +61,12 @@ const Navbar = () => {
 
           <SignedOut>
             <SignInButton mode="modal">
-              <Button variant="ghost" className="ghost-btn-style">
+              <Button variant="ghost" className="ghost-btn">
                 Sign in
               </Button>
             </SignInButton>
             <SignUpButton mode="modal">
-              <Button variant="ghost" className="ghost-btn-style">
+              <Button variant="ghost" className="ghost-btn">
                 Get Started
               </Button>
             </SignUpButton>
@@ -83,7 +83,7 @@ const Navbar = () => {
             variant="ghost"
             size="icon"
             onClick={toggleMobileMenu}
-            className="ghost-btn-style"
+            className="ghost-btn"
           >
             {isMobileMenuOpen ? (
               <X className="h-6 w-6 text-gray-700 dark:text-gray-200" />
@@ -103,7 +103,7 @@ const Navbar = () => {
           <SignedIn>
             <div className="flex flex-col items-center space-y-4">
               <Link href="/dashboard" onClick={toggleMobileMenu}>
-                <Button variant="ghost" className="ghost-btn-style">
+                <Button variant="ghost" className="ghost-btn">
                   Dashboard
                 </Button>
               </Link>
@@ -116,7 +116,7 @@ const Navbar = () => {
             <SignInButton mode="modal">
               <Button
                 variant="ghost"
-                className="ghost-btn-style"
+                className="ghost-btn"
                 onClick={toggleMobileMenu}
               >
                 Sign in
@@ -125,7 +125,7 @@ const Navbar = () => {
             <SignUpButton mode="modal">
               <Button
                 variant="ghost"
-                className="ghost-btn-style"
+                className="ghost-btn"
                 onClick={toggleMobileMenu}
               >
                 Get Started

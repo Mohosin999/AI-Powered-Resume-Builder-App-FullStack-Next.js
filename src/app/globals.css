@@ -148,32 +148,60 @@
 }
 
 /*======================================================================
-=                        Reusable css style                            =
+=                           Button Styles                              =
 ======================================================================*/
 .homepage-button-style {
   @apply text-emerald-400 border border-emerald-400 hover:border-white hover:text-gray-900 active:scale-105 cursor-pointer;
 }
 
-.ghost-btn-style {
-  @apply text-[15px] text-gray-700 dark:text-gray-200 rounded-full cursor-pointer;
+.ghost-btn {
+  @apply text-[15px] text-gray-700 dark:text-gray-200 rounded-full active:scale-105 cursor-pointer;
 }
 
-.paragraph-text-style {
-  @apply text-[#72839E] text-sm md:text-base;
+.ghost-btn-2nd {
+  @apply text-[15px] text-emerald-500 border border-emerald-500 rounded-full active:scale-105 cursor-pointer;
 }
 
-.card-style {
-  @apply bg-[#1C2434] p-4 lg:p-14 rounded-lg shadow-sm lg:shadow-md;
+.social-icon-btn {
+  @apply text-emerald-500 hover:text-emerald-600 active:scale-105;
 }
 
-.resume-contact-info-style {
-  @apply flex items-center gap-2 text-sm italic;
+/*======================================================================
+=                         Text Elements Styles                         =
+======================================================================*/
+.paragraph {
+  @apply text-gray-600 dark:text-gray-300 text-sm md:text-base;
 }
 
+.heading {
+  @apply text-center text-2xl md:text-3xl font-bold text-emerald-500 mb-8;
+}
+
+.sub-heading {
+  @apply text-xl text-gray-700 dark:text-gray-200 font-semibold;
+}
+
+/*======================================================================
+=                         Text Elements Styles                         =
+======================================================================*/
+.card {
+  @apply bg-white dark:bg-[#1C2434] p-4 lg:p-14 rounded-lg shadow-sm;
+}
+
+/*======================================================================
+=                         Form Elements Styles                         =
+======================================================================*/
 .input-style {
   @apply text-sm lg:text-base w-full p-2 border border-gray-300 rounded-md text-gray-300;
 }
 
 .label-style {
   @apply block text-sm lg:text-base font-medium text-[#72839E] mb-1;
+}
+
+/*======================================================================
+=                        Resume Preview Styles                         =
+======================================================================*/
+.resume-contact-info-style {
+  @apply flex items-center gap-2 text-sm italic;
 }

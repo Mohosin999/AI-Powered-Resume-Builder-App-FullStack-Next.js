@@ -20,7 +20,7 @@ export default async function PersonalDetailsPage({
   };
 
   return (
-    <div className="max-w-4xl mx-auto card-style">
+    <div className="max-w-4xl mx-auto card">
       <PersonalDetailsForm resumeId={id} defaultValues={defaultValues} />
     </div>
   );
