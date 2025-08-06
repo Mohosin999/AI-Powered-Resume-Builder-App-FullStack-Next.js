@@ -18,12 +18,12 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
   ];
 
   return (
-    <div className="bg-[#131A25] px-3 md:px-10 lg:px-14">
+    <div className="px-3 md:px-10 lg:px-14">
       {/* <Navbar /> */}
 
       <div className="min-h-screen">
         <div>
-          <h1 className="text-3xl md:text-5xl font-bold text-center pt-10 lg:pt-14 text-emerald-400">
+          <h1 className="text-3xl md:text-5xl font-bold text-center pt-10 lg:pt-14 text-emerald-500">
             Build Your Professional Resume
           </h1>
 

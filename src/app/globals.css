@@ -147,9 +147,15 @@
   margin: 0mm;
 }
 
-/* Reusable css style */
+/*======================================================================
+=                        Reusable css style                            =
+======================================================================*/
 .homepage-button-style {
   @apply text-emerald-400 border border-emerald-400 hover:border-white hover:text-gray-900 active:scale-105 cursor-pointer;
+}
+
+.ghost-btn-style {
+  @apply text-[15px] text-gray-700 dark:text-gray-200 rounded-full cursor-pointer;
 }
 
 .paragraph-text-style {

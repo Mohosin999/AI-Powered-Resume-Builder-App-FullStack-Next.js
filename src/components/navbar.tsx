@@ -32,52 +32,63 @@ const Navbar = () => {
             height={40}
             className="w-6 h-6"
           />
-          <span className="text-emerald-400 text-xl font-semibold tracking-wide">
+          <span className="text-emerald-500 text-xl font-semibold tracking-wide">
             AI Resume Builder
           </span>
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-4">
+        {/*=====================================================================
+        =                           Desktop Menu                               =
+        =====================================================================*/}
+        <div className="hidden md:flex items-center space-x-1">
           {/* Theme Options */}
           <ModeToggle />
 
           {/* Navigation Links */}
           <SignedIn>
-            <Link href="/dashboard">
-              <Button variant="ghost" className="homepage-button-style">
-                Dashboard
-              </Button>
-            </Link>
-            <div className="active:scale-105 flex items-center">
-              <UserButton afterSignOutUrl="/" />
+            <div className="flex items-center space-x-4">
+              <Link href="/dashboard">
+                <Button variant="ghost" className="ghost-btn-style">
+                  Dashboard
+                </Button>
+              </Link>
+              {/* User Button */}
+              <div className="active:scale-105 flex items-center">
+                <UserButton afterSignOutUrl="/" />
+              </div>
             </div>
           </SignedIn>
 
           <SignedOut>
             <SignInButton mode="modal">
-              <Button variant="ghost" className="homepage-button-style">
+              <Button variant="ghost" className="ghost-btn-style">
                 Sign in
               </Button>
             </SignInButton>
             <SignUpButton mode="modal">
-              <Button
-                variant="outline"
-                className="hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
-              >
+              <Button variant="ghost" className="ghost-btn-style">
                 Get Started
               </Button>
             </SignUpButton>
           </SignedOut>
         </div>
+        {/*======================== End of Desktop Menu =====================*/}
 
+        {/*=====================================================================
+        =                            Mobile Menu                               =
+        =====================================================================*/}
         {/* Mobile Menu Button */}
         <div className="flex md:hidden">
-          <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleMobileMenu}
+            className="ghost-btn-style"
+          >
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6 text-white" />
+              <X className="h-6 w-6 text-gray-700 dark:text-gray-200" />
             ) : (
-              <Menu className="h-6 w-6 text-white" />
+              <Menu className="h-6 w-6 text-gray-700 dark:text-gray-200" />
             )}
           </Button>
         </div>
@@ -85,16 +96,19 @@ const Navbar = () => {
 
       {/* Mobile Dropdown Menu */}
       {isMobileMenuOpen && (
-        <div className="text-center md:hidden bg-[#14202D] text-white px-4 py-6 space-y-4">
+        <div className="flex flex-col items-center text-center md:hidden dark:bg-[#14202D] text-white p-4 pb-6 space-y-1">
+          {/* Theme Options */}
+          <ModeToggle />
+
           <SignedIn>
-            <Link href="/dashboard" onClick={toggleMobileMenu}>
-              <Button variant="ghost" className="w-full homepage-button-style">
-                Dashboard
-              </Button>
-            </Link>
-            <div className="flex flex-col items-center justify-center gap-4 mt-4 active:scale-105">
+            <div className="flex flex-col items-center space-y-4">
+              <Link href="/dashboard" onClick={toggleMobileMenu}>
+                <Button variant="ghost" className="ghost-btn-style">
+                  Dashboard
+                </Button>
+              </Link>
+              {/* User Button */}
               <UserButton afterSignOutUrl="/" />
-              <ModeToggle />
             </div>
           </SignedIn>
 
@@ -102,7 +116,7 @@ const Navbar = () => {
             <SignInButton mode="modal">
               <Button
                 variant="ghost"
-                className="w-full homepage-button-style"
+                className="ghost-btn-style"
                 onClick={toggleMobileMenu}
               >
                 Sign in
@@ -110,19 +124,17 @@ const Navbar = () => {
             </SignInButton>
             <SignUpButton mode="modal">
               <Button
-                variant="outline"
-                className="text-gray-900 w-full hover:bg-emerald-400 hover:border-emerald-400 cursor-pointer"
+                variant="ghost"
+                className="ghost-btn-style"
                 onClick={toggleMobileMenu}
               >
                 Get Started
               </Button>
             </SignUpButton>
-            <div>
-              <ModeToggle />
-            </div>
           </SignedOut>
         </div>
       )}
+      {/*======================= End of Mobile Menu =======================*/}
     </header>
   );
 };
