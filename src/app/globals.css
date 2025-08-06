@@ -155,11 +155,11 @@
 }
 
 .ghost-btn {
-  @apply text-[15px] text-gray-700 dark:text-gray-200 rounded-full active:scale-105 cursor-pointer;
+  @apply text-[15px] text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full active:scale-105 cursor-pointer;
 }
 
 .ghost-btn-2nd {
-  @apply text-[15px] text-emerald-500 border border-emerald-500 rounded-full active:scale-105 cursor-pointer;
+  @apply text-[15px] text-emerald-500 hover:bg-gray-200 dark:hover:bg-gray-700 border border-emerald-500 rounded-full active:scale-105 cursor-pointer;
 }
 
 .social-icon-btn {
@@ -169,16 +169,16 @@
 /*======================================================================
 =                         Text Elements Styles                         =
 ======================================================================*/
-.paragraph {
-  @apply text-gray-600 dark:text-gray-300 text-sm md:text-base;
-}
-
 .heading {
   @apply text-center text-2xl md:text-3xl font-bold text-emerald-500 mb-8;
 }
 
 .sub-heading {
   @apply text-xl text-gray-700 dark:text-gray-200 font-semibold;
+}
+
+.paragraph {
+  @apply text-gray-600 dark:text-gray-400 text-sm md:text-base;
 }
 
 /*======================================================================
