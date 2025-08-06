@@ -170,15 +170,15 @@
 =                         Text Elements Styles                         =
 ======================================================================*/
 .heading {
-  @apply text-center text-2xl md:text-3xl font-bold text-emerald-500 mb-8;
+  @apply text-center text-2xl lg:text-3xl font-bold text-emerald-500 mb-8;
 }
 
 .sub-heading {
-  @apply text-xl text-gray-700 dark:text-gray-200 font-semibold;
+  @apply text-lg lg:text-xl text-gray-700 dark:text-gray-200 font-semibold;
 }
 
 .paragraph {
-  @apply text-gray-600 dark:text-gray-400 text-sm md:text-base;
+  @apply text-sm lg:text-base text-gray-600 dark:text-gray-400;
 }
 
 /*======================================================================
