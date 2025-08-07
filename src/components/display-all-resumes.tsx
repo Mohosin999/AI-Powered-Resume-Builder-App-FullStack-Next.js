@@ -23,6 +23,8 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
+import { fadeInUp } from "@/lib/helper";
 
 interface Resume {
   id: string;
@@ -53,7 +55,8 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {allResumes?.map((resume) => (
-          <div
+          <motion.div
+            {...fadeInUp}
             key={resume.id}
             className="card lg:!p-8 relative flex flex-col justify-between min-h-[220px]"
           >
@@ -101,7 +104,7 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 

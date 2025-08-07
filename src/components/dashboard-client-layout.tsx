@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { FaHome } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import { createResume } from "@/actions/resume-actions";
+import { motion } from "framer-motion";
+import { fadeInLeft } from "@/lib/helper";
 
 interface DashboardClientLayoutProps {
   children: ReactNode;
@@ -34,7 +36,10 @@ export default function DashboardClientLayout({
       {/*=====================================================================
         =                             Sidebar                                =
       =====================================================================*/}
-      <aside className="w-full md:w-[260px] lg:w-[300px] md:border-r md:border-gray-400 md:dark:border-gray-700 py-10 lg:py-14 flex flex-col items-center gap-6">
+      <motion.aside
+        {...fadeInLeft}
+        className="w-full md:w-[260px] lg:w-[300px] md:border-r md:border-gray-400 md:dark:border-gray-700 py-10 lg:py-14 flex flex-col items-center gap-6"
+      >
         {/* Profile Image */}
         <div className="w-24 h-24 rounded-full border-2 bg-gray-800 border-gray-900 dark:border-gray-100 flex items-center justify-center overflow-hidden">
           {user?.image ? (
@@ -75,7 +80,7 @@ export default function DashboardClientLayout({
 
         {/* Create New Resume Button */}
         <CreateResumeDialog createResume={createResume} />
-      </aside>
+      </motion.aside>
       {/*========================== End of Sidebar =========================*/}
 
       {/*=====================================================================

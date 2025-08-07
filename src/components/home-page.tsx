@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import GetStartedButton from "@/components/ui/get-started-button";
 import { fadeInUp, features } from "@/lib/helper";
 import { motion } from "framer-motion";
+import AnimatedWords from "./animate-words";
 
 interface HomePageProps {
   isAuthenticated: boolean;
@@ -18,12 +19,10 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
         =                           Hero Section                               =
         =====================================================================*/}
         <div>
-          <motion.h1
-            {...fadeInUp}
+          <AnimatedWords
+            text="Build Your Professional Resume"
             className="text-3xl md:text-5xl font-bold text-center pt-10 lg:pt-14 text-emerald-500"
-          >
-            Build Your Professional Resume
-          </motion.h1>
+          />
 
           <motion.p {...fadeInUp} className="text-center mt-4 mb-6 paragraph">
             You don’t need to worry about resume formatting here. Simply fill
