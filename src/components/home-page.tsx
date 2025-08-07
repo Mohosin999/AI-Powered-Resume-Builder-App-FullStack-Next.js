@@ -1,11 +1,13 @@
 "use client";
+
 import React from "react";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GetStartedButton from "@/components/ui/get-started-button";
-import { fadeInUp, features } from "@/lib/helper";
 import { motion } from "framer-motion";
 import AnimatedWords from "./animate-words";
+import { fadeInUp } from "./../utils/animation";
+import { features } from "./../utils/features";
 
 interface HomePageProps {
   isAuthenticated: boolean;

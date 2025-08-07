@@ -1,4 +1,5 @@
 "use client";
+
 import { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,7 +10,7 @@ import { FaHome } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import { createResume } from "@/actions/resume-actions";
 import { motion } from "framer-motion";
-import { fadeInLeft } from "@/lib/helper";
+import { fadeInLeft } from "@/utils/animation";
 
 interface DashboardClientLayoutProps {
   children: ReactNode;
@@ -49,7 +50,7 @@ export default function DashboardClientLayout({
               width={96}
               height={96}
               priority
-              className="rounded-full object-cover"
+              className="w-auto rounded-full object-cover"
             />
           ) : (
             <span className="text-sm text-gray-700 dark:text-gray-300">

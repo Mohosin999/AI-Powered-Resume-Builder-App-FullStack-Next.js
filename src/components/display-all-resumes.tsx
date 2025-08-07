@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import Link from "next/link";
 import { deleteResume } from "@/actions/resume-actions";
@@ -24,7 +25,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
-import { fadeInUp } from "@/lib/helper";
+import { fadeInUp } from "@/utils/animation";
 
 interface Resume {
   id: string;
@@ -63,7 +64,7 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
             {/* Resume Title */}
             <div>
               <Link href={`/dashboard/${resume.id}/personal-details`}>
-                <h2 className="h2">{resume.title}</h2>
+                <h2 className="h2 active:scale-105">{resume.title}</h2>
               </Link>
             </div>
 

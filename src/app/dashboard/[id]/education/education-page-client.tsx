@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/PageHeader";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
-import { Education } from "@/lib/type";
+import { Education } from "@/utils/type";
 
 interface EducationPageClientProps {
   educations: Education[];

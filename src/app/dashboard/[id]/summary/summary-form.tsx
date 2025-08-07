@@ -117,11 +117,11 @@
 import { useState } from "react";
 import { upsertSummary } from "@/actions/resume-actions";
 import GenerateFromAIButton from "@/components/ui/generate-ai-button";
-import { generatePrompt } from "@/lib/helper";
+import { generatePrompt } from "@/utils/generate-prompt";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { PageHeader } from "@/components/PageHeader";
-import { SummaryFormProps } from "@/lib/type";
+import { SummaryFormProps } from "@/utils/type";
 
 export default function SummaryForm({
   resumeId,

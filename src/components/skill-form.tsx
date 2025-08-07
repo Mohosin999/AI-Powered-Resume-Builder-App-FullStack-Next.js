@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { createSkill, getResumeById } from "@/actions/resume-actions";
 import { Button } from "./ui/button";
-import { generatePrompt } from "@/lib/helper";
+import { generatePrompt } from "@/utils/helper";
 import { toast } from "react-toastify";
 
 export function SkillForm({ resumeId }: { resumeId: string }) {

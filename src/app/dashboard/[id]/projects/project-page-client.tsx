@@ -153,7 +153,7 @@ import { deleteProject, upsertProject } from "@/actions/resume-actions";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
-import { Project } from "@/lib/type";
+import { Project } from "@/utils/type";
 
 interface ProjectPageClientProps {
   projects: Project[];

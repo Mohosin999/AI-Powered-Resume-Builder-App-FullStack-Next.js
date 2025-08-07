@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/PageHeader";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
-import { Experience } from "@/lib/type";
+import { Experience } from "@/utils/type";
 
 interface ExperiencePageClientProps {
   experiences: Experience[];
