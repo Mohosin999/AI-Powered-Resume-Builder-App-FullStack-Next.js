@@ -21,13 +21,9 @@ const NextButton = ({ id, pageName, disabled = false }: NextButtonProps) => {
       <Button
         variant="ghost"
         disabled={disabled}
-        className={`${
-          disabled
-            ? "opacity-50 cursor-not-allowed bg-gray-100 border-gray-300"
-            : "ghost-btn-3rd"
-        }`}
+        className={`${disabled ? "disabled-btn" : "ghost-btn-3rd"}`}
       >
-        Next <GrChapterNext />
+        <GrChapterNext />
       </Button>
     </Link>
   );

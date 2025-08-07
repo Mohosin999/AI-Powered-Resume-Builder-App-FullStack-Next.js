@@ -165,7 +165,9 @@ export default function SummaryForm({
   // };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("Submitting form...");
     const formData = new FormData(e.currentTarget);
+
     await upsertSummary(formData);
     toast.success("Summary Added Successfully!");
     setIsEditing(false);
