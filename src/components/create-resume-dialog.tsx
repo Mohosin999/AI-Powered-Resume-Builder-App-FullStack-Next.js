@@ -45,7 +45,7 @@ export default function CreateResumeDialog({
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-[425px] card">
+      <DialogContent className="card">
         <form action={handleAction}>
           <DialogHeader>
             <DialogTitle className="h2">Create Your New Resume</DialogTitle>

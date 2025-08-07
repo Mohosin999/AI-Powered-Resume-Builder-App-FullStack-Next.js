@@ -158,10 +158,6 @@
   @apply text-[15px] text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full active:scale-105 cursor-pointer;
 }
 
-/* .ghost-btn-2nd {
-  @apply text-[15px] text-emerald-500 hover:bg-gray-200 dark:hover:bg-gray-700 border border-emerald-500 dark:border-emerald-500 rounded-full active:scale-105 cursor-pointer;
-} */
-
 .ghost-btn-2nd {
   @apply text-[15px] text-gray-900 dark:text-gray-200 dark:hover:text-gray-900 hover:bg-emerald-500  border border-gray-900 dark:border-gray-200 dark:hover:border-emerald-500 hover:border-emerald-500 rounded-full active:scale-105 cursor-pointer;
 }
