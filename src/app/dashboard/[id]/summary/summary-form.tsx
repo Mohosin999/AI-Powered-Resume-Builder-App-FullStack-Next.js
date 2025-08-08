@@ -127,23 +127,26 @@
 import { useState } from "react";
 import GenerateFromAIButton from "@/components/ui/generate-ai-button";
 import { generatePrompt } from "@/utils/generate-prompt";
-import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { PageHeader } from "@/components/PageHeader";
 import { SummaryFormProps } from "@/utils/type";
+import LoadingButton from "@/components/ui/loadingl-button";
 
 export default function SummaryForm({
   resumeId,
   defaultContent = "",
   jobTitle,
 }: SummaryFormProps) {
-  const [content, setContent] = useState(defaultContent);
+  const [formValues, setFormValues] = useState<string>(defaultContent);
+  console.log(formValues);
+
   const [aiSuggestion, setAiSuggestion] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [aiGenerating, setAiGenerating] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleGenerate = async () => {
-    setLoading(true);
+    setAiGenerating(true);
     const prompt = generatePrompt("summary", jobTitle);
     const res = await fetch("/api/gemini", {
       method: "POST",
@@ -155,17 +158,17 @@ export default function SummaryForm({
 
     const data = await res.json();
     if (data.result) setAiSuggestion(data.result);
-    setLoading(false);
+    setAiGenerating(false);
   };
 
   const handleAcceptSuggestion = () => {
-    setContent(aiSuggestion);
+    setFormValues(aiSuggestion);
     setAiSuggestion("");
     setIsEditing(true);
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
+    setFormValues(e.target.value);
     setIsEditing(true);
   };
 
@@ -176,8 +179,11 @@ export default function SummaryForm({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData();
+    formData.append("resumeId", resumeId);
+    formData.append("content", formValues);
 
     try {
       const res = await fetch("/api/summary", {
@@ -196,6 +202,8 @@ export default function SummaryForm({
     } catch (error: unknown) {
       console.error("Failed to save summary:", error);
       toast.error("Failed to save summary");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -222,23 +230,28 @@ export default function SummaryForm({
               Summary
             </label>
 
-            <GenerateFromAIButton onclick={handleGenerate} loading={loading} />
+            <GenerateFromAIButton
+              onclick={handleGenerate}
+              loading={aiGenerating}
+            />
           </div>
 
           <textarea
             name="content"
             id="content"
             rows={7}
-            value={content}
+            value={formValues}
             onChange={handleOnChange}
             className="text-sm lg:text-base mt-1 block w-full border border-gray-500 rounded-md text-gray-700 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 bg-transparent"
           />
         </div>
 
         <div className="flex justify-end">
-          <Button type="submit" variant="ghost" className="ghost-btn-3rd">
-            Add Summary
-          </Button>
+          <LoadingButton
+            loading={loading}
+            loadingText="Adding"
+            title="Add Summary"
+          />
         </div>
 
         {aiSuggestion && (

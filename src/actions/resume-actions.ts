@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/db";
+import { authenticationForGet } from "@/utils/helper-functions";
 import { auth } from "@clerk/nextjs/server";
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
@@ -162,17 +163,14 @@ export async function getResumeById(id: string) {
 //   }
 // }
 
-// // Get Personal Details
-// export async function getPersonalDetails(resumeId: string) {
-//   const user = await getAuthenticatedUser();
-//   if (!user) throw new Error("Unauthorized");
+// Get Personal Details
+export async function getPersonalDetails(resumeId: string) {
+  const { user } = await authenticationForGet(resumeId);
 
-//   if (!resumeId) throw new Error("Resume ID is required");
-
-//   return await prisma.personalDetails.findUnique({
-//     where: { resumeId },
-//   });
-// }
+  return await prisma.personalDetails.findUnique({
+    where: { resumeId, resume: { userId: user.id } },
+  });
+}
 
 /**
  * ========================================================================
@@ -218,16 +216,13 @@ export async function getResumeById(id: string) {
 // }
 
 // Get Summary
-// export async function getSummary(resumeId: string) {
-//   const user = await getAuthenticatedUser();
-//   if (!user) throw new Error("Unauthorized");
+export async function getSummary(resumeId: string) {
+  const { user } = await authenticationForGet(resumeId);
 
-//   if (!resumeId) throw new Error("Resume ID is required");
-
-//   return await prisma.summary.findUnique({
-//     where: { resumeId },
-//   });
-// }
+  return await prisma.summary.findUnique({
+    where: { resumeId, resume: { userId: user.id } },
+  });
+}
 
 /**
  * ========================================================================

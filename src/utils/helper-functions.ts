@@ -55,30 +55,39 @@ export async function authenticateForPOST(req: NextRequest) {
 /** ============================================================================
  *                       Authenticate for GET request
 ==============================================================================*/
-export async function authenticateForGET(req: NextRequest) {
+// export async function authenticateForGET(req: NextRequest) {
+//   const user = await getAuthenticatedUser();
+//   if (!user) {
+//     return {
+//       errorResponse: NextResponse.json(
+//         { error: "Unauthorized" },
+//         { status: 401 }
+//       ),
+//     };
+//   }
+
+//   const { searchParams } = new URL(req.url);
+//   const resumeId = searchParams.get("resumeId");
+
+//   if (!resumeId) {
+//     return {
+//       errorResponse: NextResponse.json(
+//         { error: "Resume ID is required" },
+//         { status: 400 }
+//       ),
+//     };
+//   }
+
+//   return { user, resumeId };
+// }
+
+export async function authenticationForGet(resumeId: string) {
   const user = await getAuthenticatedUser();
-  if (!user) {
-    return {
-      errorResponse: NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      ),
-    };
-  }
+  if (!user) throw new Error("Unauthorized");
 
-  const { searchParams } = new URL(req.url);
-  const resumeId = searchParams.get("resumeId");
+  if (!resumeId) throw new Error("Resume ID is required");
 
-  if (!resumeId) {
-    return {
-      errorResponse: NextResponse.json(
-        { error: "Resume ID is required" },
-        { status: 400 }
-      ),
-    };
-  }
-
-  return { user, resumeId };
+  return { user };
 }
 
 /** ============================================================================

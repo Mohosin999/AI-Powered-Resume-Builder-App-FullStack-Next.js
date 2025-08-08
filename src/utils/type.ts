@@ -3,7 +3,6 @@ export type PersonalDetails = {
   firstName: string;
   lastName: string;
   email: string;
-  phone: string;
   jobTitle: string;
   socialLink: string;
 };

@@ -1,3 +1,4 @@
+import { getPersonalDetails } from "@/actions/resume-actions";
 import PersonalDetailsForm from "./personal-details-form";
 
 export default async function PersonalDetailsPage({
@@ -6,15 +7,15 @@ export default async function PersonalDetailsPage({
   params: { id: string };
 }) {
   const { id } = await params;
+  const personalDetails = await getPersonalDetails(id);
 
   const defaultValues = {
     resumeId: id,
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    jobTitle: "",
-    socialLink: "",
+    firstName: personalDetails?.firstName || "",
+    lastName: personalDetails?.lastName || "",
+    email: personalDetails?.email || "",
+    jobTitle: personalDetails?.jobTitle || "",
+    socialLink: personalDetails?.socialLink || "",
   };
 
   return (

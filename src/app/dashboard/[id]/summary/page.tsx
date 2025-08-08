@@ -1,5 +1,5 @@
-import SummaryForm from "./summary-form";
 import { getPersonalDetails, getSummary } from "@/actions/resume-actions";
+import SummaryForm from "./summary-form";
 
 const SummaryPage = async ({ params }: { params: { id: string } }) => {
   const { id } = await params;

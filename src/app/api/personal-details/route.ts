@@ -86,46 +86,46 @@ export async function POST(req: NextRequest) {
  * GET /api/personal-details?resumeId=abc123
  * Fetches personal details for the given resumeId from query parameters.
 ==============================================================================*/
-export async function GET(req: NextRequest) {
-  try {
-    const user = await getAuthenticatedUser();
+// export async function GET(req: NextRequest) {
+//   try {
+//     const user = await getAuthenticatedUser();
 
-    // Check if user is authenticated
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+//     // Check if user is authenticated
+//     if (!user) {
+//       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+//     }
 
-    // Extract resumeId from query parameters
-    const { searchParams } = new URL(req.url);
-    const resumeId = searchParams.get("resumeId");
+//     // Extract resumeId from query parameters
+//     const { searchParams } = new URL(req.url);
+//     const resumeId = searchParams.get("resumeId");
 
-    // Validate resumeId
-    if (!resumeId) {
-      return NextResponse.json(
-        { error: "Resume ID is required" },
-        { status: 400 }
-      );
-    }
+//     // Validate resumeId
+//     if (!resumeId) {
+//       return NextResponse.json(
+//         { error: "Resume ID is required" },
+//         { status: 400 }
+//       );
+//     }
 
-    // Fetch personal details from DB
-    const personalDetails = await prisma.personalDetails.findUnique({
-      where: { resumeId },
-    });
+//     // Fetch personal details from DB
+//     const personalDetails = await prisma.personalDetails.findUnique({
+//       where: { resumeId },
+//     });
 
-    // Return 404 if not found
-    if (!personalDetails) {
-      return NextResponse.json(
-        { error: "Personal details not found" },
-        { status: 404 }
-      );
-    }
+//     // Return 404 if not found
+//     if (!personalDetails) {
+//       return NextResponse.json(
+//         { error: "Personal details not found" },
+//         { status: 404 }
+//       );
+//     }
 
-    // Return success response
-    return NextResponse.json({ data: personalDetails }, { status: 200 });
-  } catch (error: unknown) {
-    const errorMessage =
-      error instanceof Error ? error.message : "Internal Server Error";
+//     // Return success response
+//     return NextResponse.json({ data: personalDetails }, { status: 200 });
+//   } catch (error: unknown) {
+//     const errorMessage =
+//       error instanceof Error ? error.message : "Internal Server Error";
 
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
-  }
-}
+//     return NextResponse.json({ error: errorMessage }, { status: 500 });
+//   }
+// }
