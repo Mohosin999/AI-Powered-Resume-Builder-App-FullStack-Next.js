@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { PageHeader } from "@/components/PageHeader";
@@ -18,6 +19,7 @@ export default function PersonalDetailsForm({
   resumeId,
 }: PersonalDetailsFormProps) {
   const [formValues, setFormValues] = useState<PersonalDetails>(defaultValues);
+
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -84,12 +86,8 @@ export default function PersonalDetailsForm({
       toast.success("Details saved successfully!");
       setIsEditing(false);
     } catch (error: unknown) {
-      const errorMessage =
-        error instanceof Error
-          ? error.message
-          : "Failed to fetch personal details.";
-
-      toast.error(errorMessage || "Failed to save details.");
+      console.error("Failed to save details:", error);
+      toast.error("Failed to save details.");
     } finally {
       setLoading(false);
     }

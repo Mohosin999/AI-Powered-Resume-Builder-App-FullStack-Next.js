@@ -75,8 +75,6 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (error: unknown) {
-    console.error("Failed to update personal details:", error);
-
     const errorMessage =
       error instanceof Error ? error.message : "Internal Server Error";
 
@@ -125,8 +123,6 @@ export async function GET(req: NextRequest) {
     // Return success response
     return NextResponse.json({ data: personalDetails }, { status: 200 });
   } catch (error: unknown) {
-    console.error("Failed to fetch personal details:", error);
-
     const errorMessage =
       error instanceof Error ? error.message : "Internal Server Error";
 
