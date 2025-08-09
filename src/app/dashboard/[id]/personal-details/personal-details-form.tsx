@@ -7,7 +7,7 @@ import { PersonalDetails } from "@/utils/type";
 import TextInput from "@/components/ui/text-input";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/utils/animation";
-import LoadingButton from "@/components/ui/loadingl-button";
+import LoadingButton from "@/components/ui/loading-button";
 
 interface PersonalDetailsFormProps {
   personalDetails: PersonalDetails;
@@ -41,7 +41,7 @@ export default function PersonalDetailsForm({
       } else {
         toast.error(data.error || "Failed to save details.");
       }
-    } catch (error: unknown) {
+    } catch (error) {
       console.error(error);
       toast.error("Failed to save details.");
     } finally {

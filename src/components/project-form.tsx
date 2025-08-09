@@ -1,7 +1,7 @@
 "use client";
 import { upsertProject } from "@/actions/resume-actions";
 import { Button } from "./ui/button";
-import { generatePrompt } from "@/utils/helper";
+import { generatePrompt } from "@/utils/generate-prompt";
 import { useState } from "react";
 import GenerateFromAIButton from "./ui/generate-ai-button";
 import { toast } from "react-toastify";

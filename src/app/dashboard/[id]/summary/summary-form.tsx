@@ -5,7 +5,7 @@ import GenerateFromAIButton from "@/components/ui/generate-ai-button";
 import { generatePrompt } from "@/utils/generate-prompt";
 import { toast } from "react-toastify";
 import { PageHeader } from "@/components/PageHeader";
-import LoadingButton from "@/components/ui/loadingl-button";
+import LoadingButton from "@/components/ui/loading-button";
 import { Summary } from "@/utils/type";
 
 interface SummaryFormProps {
@@ -61,7 +61,7 @@ export default function SummaryForm({
       } else {
         toast.error(data.error || "Failed to add summary");
       }
-    } catch (error: unknown) {
+    } catch (error) {
       console.error(error);
       toast.error("Failed to add summary");
     } finally {
