@@ -7,10 +7,10 @@ export type PersonalDetails = {
   socialLink: string;
 };
 
-export type SummaryFormProps = {
+export type Summary = {
+  id: string;
   resumeId: string;
-  defaultContent?: string;
-  jobTitle: string;
+  content: string;
 };
 
 export interface Experience {

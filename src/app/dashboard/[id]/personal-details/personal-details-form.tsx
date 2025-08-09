@@ -21,10 +21,6 @@ export default function PersonalDetailsForm({
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleEditStart = () => {
-    setIsEditing(true);
-  };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -37,18 +33,24 @@ export default function PersonalDetailsForm({
         body: formData,
       });
 
-      const result = await res.json();
+      const data = await res.json();
 
-      if (!res.ok) throw new Error(result.error || "Submission failed");
-
-      toast.success("Details saved successfully!");
-      setIsEditing(false);
+      if (res.ok) {
+        toast.success("Details Added Successfully!");
+        setIsEditing(false);
+      } else {
+        toast.error(data.error || "Failed to Save Details.");
+      }
     } catch (error: unknown) {
       console.error("Failed to save details:", error);
-      toast.error("Failed to save details.");
+      toast.error("Failed to Save Details.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleEditStart = () => {
+    setIsEditing(true);
   };
 
   return (
