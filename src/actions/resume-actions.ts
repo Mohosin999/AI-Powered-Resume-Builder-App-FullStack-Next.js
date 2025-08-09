@@ -113,55 +113,55 @@ export async function getResumeById(id: string) {
  * ========================================================================
  */
 // Create or Update Personal Details
-// export async function upsertPersonalDetails(formData: FormData) {
-//   const user = await getAuthenticatedUser();
-//   if (!user) throw new Error("Unauthorized");
+export async function upsertPersonalDetails(formData: FormData) {
+  const user = await getAuthenticatedUser();
+  if (!user) throw new Error("Unauthorized");
 
-//   const resumeId = formData.get("resumeId") as string;
-//   if (!resumeId) throw new Error("Resume ID is required");
+  const resumeId = formData.get("resumeId") as string;
+  if (!resumeId) throw new Error("Resume ID is required");
 
-//   const data = {
-//     firstName: formData.get("firstName") as string,
-//     lastName: formData.get("lastName") as string,
-//     email: formData.get("email") as string,
-//     phone: formData.get("phone") as string | undefined,
-//     jobTitle: formData.get("jobTitle") as string,
-//     socialLink: formData.get("socialLink") as string | undefined,
-//   };
+  const data = {
+    firstName: formData.get("firstName") as string,
+    lastName: formData.get("lastName") as string,
+    email: formData.get("email") as string,
+    phone: formData.get("phone") as string | undefined,
+    jobTitle: formData.get("jobTitle") as string,
+    socialLink: formData.get("socialLink") as string | undefined,
+  };
 
-//   // Validate required fields
-//   if (!data.firstName || !data.lastName || !data.email || !data.jobTitle) {
-//     throw new Error("Required fields are missing");
-//   }
+  // Validate required fields
+  if (!data.firstName || !data.lastName || !data.email || !data.jobTitle) {
+    throw new Error("Required fields are missing");
+  }
 
-//   try {
-//     await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
-//       // Verify the resume belongs to the user
-//       const resume = await tx.resume.findUnique({
-//         where: { id: resumeId, userId: user.id },
-//       });
+  try {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+      // Verify the resume belongs to the user
+      const resume = await tx.resume.findUnique({
+        where: { id: resumeId, userId: user.id },
+      });
 
-//       if (!resume) throw new Error("Resume not found or access denied");
+      if (!resume) throw new Error("Resume not found or access denied");
 
-//       // Upsert the personal details
-//       await tx.personalDetails.upsert({
-//         where: { resumeId },
-//         create: {
-//           ...data,
-//           resumeId,
-//         },
-//         update: data,
-//       });
-//     });
+      // Upsert the personal details
+      await tx.personalDetails.upsert({
+        where: { resumeId },
+        create: {
+          ...data,
+          resumeId,
+        },
+        update: data,
+      });
+    });
 
-//     revalidatePath(`/dashboard/${resumeId}/personal-details`);
-//     // Optionally redirect after successful submission
-//     // redirect(`/dashboard/${resumeId}/experiences`);
-//   } catch (error) {
-//     console.error("Failed to save personal details:", error);
-//     throw error;
-//   }
-// }
+    revalidatePath(`/dashboard/${resumeId}/personal-details`);
+    // Optionally redirect after successful submission
+    // redirect(`/dashboard/${resumeId}/experiences`);
+  } catch (error) {
+    console.error("Failed to save personal details:", error);
+    throw error;
+  }
+}
 
 // Get Personal Details
 export async function getPersonalDetails(resumeId: string) {
@@ -177,45 +177,46 @@ export async function getPersonalDetails(resumeId: string) {
  *                               Summary
  * ========================================================================
  */
-// export async function upsertSummary(formData: FormData) {
-//   const user = await getAuthenticatedUser();
-//   if (!user) throw new Error("Unauthorized");
+export async function upsertSummary(formData: FormData) {
+  const user = await getAuthenticatedUser();
+  if (!user) throw new Error("Unauthorized");
 
-//   const resumeId = formData.get("resumeId") as string;
-//   if (!resumeId) throw new Error("Resume ID is required");
+  const resumeId = formData.get("resumeId") as string;
+  if (!resumeId) throw new Error("Resume ID is required");
 
-//   const content = formData.get("content") as string;
+  const content = formData.get("content") as string;
 
-//   try {
-//     await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
-//       // Verify the resume belongs to the user
-//       const resume = await tx.resume.findUnique({
-//         where: { id: resumeId, userId: user.id },
-//       });
+  try {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+      // Verify the resume belongs to the user
+      const resume = await tx.resume.findUnique({
+        where: { id: resumeId, userId: user.id },
+      });
 
-//       if (!resume) throw new Error("Resume not found or access denied");
+      if (!resume) throw new Error("Resume not found or access denied");
 
-//       // Upsert the summary
-//       await tx.summary.upsert({
-//         where: { resumeId },
-//         create: {
-//           content,
-//           resumeId,
-//         },
-//         update: { content },
-//       });
-//     });
+      // Upsert the summary
+      await tx.summary.upsert({
+        where: { resumeId },
+        create: {
+          content,
+          resumeId,
+        },
+        update: { content },
+      });
+    });
 
-//     revalidatePath(`/dashboard/${resumeId}/summary`);
-//     // Optionally redirect after successful submission
-//     // redirect(`/dashboard/${resumeId}`);
-//   } catch (error) {
-//     console.error("Failed to save summary:", error);
-//     throw error;
-//   }
-// }
+    revalidatePath(`/dashboard/${resumeId}/summary`);
+    // Optionally redirect after successful submission
+    // redirect(`/dashboard/${resumeId}`);
+  } catch (error) {
+    console.error("Failed to save summary:", error);
+    throw error;
+  }
+}
 
 // Get Summary
+
 export async function getSummary(resumeId: string) {
   const { user } = await authenticationForGet(resumeId);
 
@@ -240,70 +241,70 @@ export async function getExperiences(resumeId: string) {
 }
 
 // Create or Update
-// export async function upsertExperience(formData: FormData) {
-//   const user = await getAuthenticatedUser();
-//   if (!user) throw new Error("Unauthorized");
+export async function upsertExperience(formData: FormData) {
+  const user = await getAuthenticatedUser();
+  if (!user) throw new Error("Unauthorized");
 
-//   const resumeId = formData.get("resumeId") as string;
-//   if (!resumeId) throw new Error("Resume ID is required");
+  const resumeId = formData.get("resumeId") as string;
+  if (!resumeId) throw new Error("Resume ID is required");
 
-//   const data = {
-//     id: formData.get("id") as string | undefined,
-//     jobTitle: formData.get("jobTitle") as string,
-//     company: formData.get("company") as string,
-//     location: (formData.get("location") as string) || undefined,
-//     startDate: formData.get("startDate") as string,
-//     endDate: (formData.get("endDate") as string) || undefined,
-//     current: formData.get("current") === "on",
-//     description: formData.get("description") as string,
-//   };
+  const data = {
+    id: formData.get("id") as string | undefined,
+    jobTitle: formData.get("jobTitle") as string,
+    company: formData.get("company") as string,
+    location: (formData.get("location") as string) || undefined,
+    startDate: formData.get("startDate") as string,
+    endDate: (formData.get("endDate") as string) || undefined,
+    current: formData.get("current") === "on",
+    description: formData.get("description") as string,
+  };
 
-//   // Validate required fields
-//   if (!data.jobTitle || !data.company || !data.startDate || !data.description) {
-//     throw new Error("Required fields are missing");
-//   }
+  // Validate required fields
+  if (!data.jobTitle || !data.company || !data.startDate || !data.description) {
+    throw new Error("Required fields are missing");
+  }
 
-//   try {
-//     await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
-//       // Verify resume belongs to user
-//       const resume = await tx.resume.findUnique({
-//         where: { id: resumeId, userId: user.id },
-//       });
-//       if (!resume) throw new Error("Resume not found or access denied");
+  try {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+      // Verify resume belongs to user
+      const resume = await tx.resume.findUnique({
+        where: { id: resumeId, userId: user.id },
+      });
+      if (!resume) throw new Error("Resume not found or access denied");
 
-//       // Prepare the data object
-//       const experienceData = {
-//         jobTitle: data.jobTitle,
-//         company: data.company,
-//         location: data.location,
-//         startDate: data.startDate,
-//         endDate: data.current ? null : data.endDate, // Clear endDate if current
-//         current: data.current,
-//         description: data.description,
-//         resumeId,
-//       };
+      // Prepare the data object
+      const experienceData = {
+        jobTitle: data.jobTitle,
+        company: data.company,
+        location: data.location,
+        startDate: data.startDate,
+        endDate: data.current ? null : data.endDate, // Clear endDate if current
+        current: data.current,
+        description: data.description,
+        resumeId,
+      };
 
-//       if (data.id) {
-//         // Update existing experience
-//         await tx.experience.update({
-//           where: { id: data.id },
-//           data: experienceData,
-//         });
-//       } else {
-//         // Create new experience
-//         await tx.experience.create({
-//           data: experienceData,
-//         });
-//       }
-//     });
+      if (data.id) {
+        // Update existing experience
+        await tx.experience.update({
+          where: { id: data.id },
+          data: experienceData,
+        });
+      } else {
+        // Create new experience
+        await tx.experience.create({
+          data: experienceData,
+        });
+      }
+    });
 
-//     revalidatePath(`/dashboard/${resumeId}/experiences`);
-//     // redirect(`/dashboard/${resumeId}/experiences`);
-//   } catch (error) {
-//     console.error("Failed to upsert experience:", error);
-//     throw error;
-//   }
-// }
+    revalidatePath(`/dashboard/${resumeId}/experiences`);
+    // redirect(`/dashboard/${resumeId}/experiences`);
+  } catch (error) {
+    console.error("Failed to upsert experience:", error);
+    throw error;
+  }
+}
 
 // Delete
 export async function deleteExperience(formData: FormData) {
