@@ -1,7 +1,6 @@
 "use client";
-import { upsertExperience } from "@/actions/resume-actions";
 import { Button } from "./ui/button";
-import { generatePrompt } from "@/utils/helper";
+import { generatePrompt } from "@/utils/generate-prompt";
 import { useState } from "react";
 import GenerateFromAIButton from "./ui/generate-ai-button";
 import { toast } from "react-toastify";
@@ -36,7 +35,7 @@ export function ExperienceForm({
   };
 
   const handleSubmit = async (formData: FormData) => {
-    await upsertExperience(formData);
+    // await upsertExperience(formData);
     if (onSuccess) onSuccess();
 
     toast.success("Experience Added Successfully!");

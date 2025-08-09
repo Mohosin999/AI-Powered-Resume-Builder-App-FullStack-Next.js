@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAuthenticatedUser } from "@/utils/helper-functions";
+import {
+  authenticateForPOST,
+  handleServerError,
+} from "@/utils/helper-functions";
 import { prisma } from "@/lib/db";
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
@@ -10,22 +13,9 @@ import { revalidatePath } from "next/cache";
 ==============================================================================*/
 export async function POST(req: NextRequest) {
   try {
-    const user = await getAuthenticatedUser();
-    // Check if user is authenticated
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const formData = await req.formData();
-
-    const resumeId = formData.get("resumeId") as string;
-    // Check if resumeId is provided
-    if (!resumeId) {
-      return NextResponse.json(
-        { error: "Resume ID is required" },
-        { status: 400 }
-      );
-    }
+    const { errorResponse, user, resumeId, formData } =
+      await authenticateForPOST(req);
+    if (errorResponse) return errorResponse;
 
     // Get form data
     const data = {
@@ -75,10 +65,8 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (error: unknown) {
-    const errorMessage =
-      error instanceof Error ? error.message : "Internal Server Error";
-
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+    console.error("Failed to add personal details:", error);
+    return handleServerError(error);
   }
 }
 

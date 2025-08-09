@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { Prisma } from "@prisma/client";
 import {
-  authenticateForGET,
+  // authenticateForGET,
   authenticateForPOST,
   handleServerError,
 } from "@/utils/helper-functions";
@@ -55,22 +55,22 @@ export async function POST(req: NextRequest) {
  * GET /api/summary
  * Creates or updates summary for a given resume.
 ==============================================================================*/
-export async function GET(req: NextRequest) {
-  try {
-    const { errorResponse, user, resumeId } = await authenticateForGET(req);
-    if (errorResponse) return errorResponse;
+// export async function GET(req: NextRequest) {
+//   try {
+//     const { errorResponse, user, resumeId } = await authenticateForGET(req);
+//     if (errorResponse) return errorResponse;
 
-    const summary = await prisma.summary.findUnique({
-      where: { resumeId, resume: { userId: user.id } },
-    });
+//     const summary = await prisma.summary.findUnique({
+//       where: { resumeId, resume: { userId: user.id } },
+//     });
 
-    if (!summary) {
-      return NextResponse.json({ error: "Summary not found" }, { status: 404 });
-    }
+//     if (!summary) {
+//       return NextResponse.json({ error: "Summary not found" }, { status: 404 });
+//     }
 
-    return NextResponse.json({ data: summary }, { status: 200 });
-  } catch (error: unknown) {
-    console.error("Failed to get summary:", error);
-    return handleServerError(error);
-  }
-}
+//     return NextResponse.json({ data: summary }, { status: 200 });
+//   } catch (error: unknown) {
+//     console.error("Failed to get summary:", error);
+//     return handleServerError(error);
+//   }
+// }
