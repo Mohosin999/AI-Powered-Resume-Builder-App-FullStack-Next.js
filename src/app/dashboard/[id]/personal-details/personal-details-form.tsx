@@ -36,14 +36,14 @@ export default function PersonalDetailsForm({
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("Details Added Successfully!");
+        toast.success("Details added successfully!");
         setIsEditing(false);
       } else {
-        toast.error(data.error || "Failed to Save Details.");
+        toast.error(data.error || "Failed to save details.");
       }
     } catch (error: unknown) {
-      console.error("Failed to save details:", error);
-      toast.error("Failed to Save Details.");
+      console.error(error);
+      toast.error("Failed to save details.");
     } finally {
       setLoading(false);
     }

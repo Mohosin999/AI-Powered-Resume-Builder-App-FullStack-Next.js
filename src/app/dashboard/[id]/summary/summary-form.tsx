@@ -56,14 +56,14 @@ export default function SummaryForm({
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("Summary Added Successfully!");
+        toast.success("Summary added successfully!");
         setIsEditing(false);
       } else {
-        toast.error(data.error || "Failed to Add Summary");
+        toast.error(data.error || "Failed to add summary");
       }
     } catch (error: unknown) {
-      console.error("Failed to save summary:", error);
-      toast.error("Failed to Add Summary");
+      console.error(error);
+      toast.error("Failed to add summary");
     } finally {
       setLoading(false);
     }

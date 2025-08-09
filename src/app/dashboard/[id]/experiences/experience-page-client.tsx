@@ -40,14 +40,14 @@ export default function ExperiencePageClient({
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("Experience Updated Successfully!");
+        toast.success("Experience updated successfully!");
         setIsEditing(false);
       } else {
-        toast.error(data.error || "Failed to Update Experience");
+        toast.error(data.error || "Failed to update experience");
       }
     } catch (err) {
       console.error(err);
-      toast.error("Failed to Update Experience");
+      toast.error("Failed to update experience");
     } finally {
       setLoading(false);
     }
