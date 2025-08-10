@@ -1,19 +1,174 @@
+// "use client";
+
+// import React from "react";
+// import { GithubIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
+// import { Button } from "@/components/ui/button";
+// import GetStartedButton from "@/components/ui/get-started-button";
+// import { motion } from "framer-motion";
+// import AnimatedWords from "./animate-words";
+// import { fadeInUp } from "./../utils/animation";
+// import { features } from "./../utils/features";
+
+// interface HomePageProps {
+//   isAuthenticated: boolean;
+// }
+
+// /**
+//  * Home page component
+//  *
+//  * @param {HomePageProps} param0 - The component props.
+//  * @param {boolean} param0.isAuthenticated - Whether the user is authenticated.
+//  * @returns {JSX.Element} The home page component.
+//  */
+// const HomePage = ({ isAuthenticated }: HomePageProps) => {
+//   return (
+//     <div className="px-3 md:px-10 lg:px-14">
+//       <div className="min-h-screen">
+//         {/*=====================================================================
+//         =                           Hero Section                               =
+//         =====================================================================*/}
+//         <div>
+//           <AnimatedWords
+//             text="Build Your Professional Resume"
+//             className="text-3xl md:text-5xl font-bold text-center pt-10 lg:pt-14 text-emerald-500"
+//           />
+
+//           <motion.p {...fadeInUp} className="text-center mt-4 mb-6 paragraph">
+//             You don’t need to worry about resume formatting here. Simply fill
+//             out the forms casually, and our system will automatically generate a
+//             world-class professional resume format for you. An even bigger
+//             advantage is that you can use AI to create your resume or get
+//             professional suggestions and ideas. Stay free from formatting
+//             hassles and let AI smartly enhance your resume with precision and
+//             style.
+//           </motion.p>
+
+//           {/* Buttons */}
+//           <motion.div
+//             {...fadeInUp}
+//             className="flex flex-col md:flex-row items-center justify-center gap-3"
+//           >
+//             <GetStartedButton isAuthenticated={isAuthenticated} />
+
+//             <a
+//               href="https://github.com/Mohosin999/FullStack-AI-Resume-Builder-App-Next.js"
+//               target="_blank"
+//               rel="noopener noreferrer"
+//               className="text-center w-full md:w-auto"
+//             >
+//               <Button variant="ghost" className="ghost-btn-2nd">
+//                 View GitHub Repository <GithubIcon className="ml-2 w-5 h-5" />
+//               </Button>
+//             </a>
+//           </motion.div>
+
+//           {/* Social Links */}
+//           <div className="mt-6 md:mt-12">
+//             <motion.h2 {...fadeInUp} className="text-center mt-5 h2">
+//               Connect With Me
+//             </motion.h2>
+//             <motion.div
+//               {...fadeInUp}
+//               className="flex items-center justify-center gap-6 mt-3"
+//             >
+//               <a href="https://www.linkedin.com/in/mohosinh99/" target="_blank">
+//                 <LinkedinIcon className="social-icon-btn" />
+//               </a>
+//               <a href="https://x.com/mohosinh99" target="_blank">
+//                 <TwitterIcon className="social-icon-btn" />
+//               </a>
+//               <a href="https://github.com/Mohosin999" target="_blank">
+//                 <GithubIcon className="social-icon-btn" />
+//               </a>
+//             </motion.div>
+//           </div>
+//         </div>
+//         {/*======================== End of Hero Section =====================*/}
+
+//         {/*=====================================================================
+//         =                           Key Features                               =
+//         =====================================================================*/}
+//         <div className="w-full py-10 md:pt-16 md:pb-6">
+//           <div>
+//             <motion.h1 {...fadeInUp} className="h1">
+//               Why Our Resume Builder?
+//             </motion.h1>
+
+//             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
+//               {features.map((feature, index) => (
+//                 <motion.div {...fadeInUp} key={index} className="card">
+//                   <h2 className="h2 mb-3">{feature.title}</h2>
+//                   <p className="paragraph">{feature.description}</p>
+//                 </motion.div>
+//               ))}
+//             </div>
+//           </div>
+//         </div>
+//         {/*======================== End of Key Features =====================*/}
+
+//         {/*=====================================================================
+//         =                            Testimonials                              =
+//         =====================================================================*/}
+//         <div className="w-full md:pt-16 pb-10 md:pb-20">
+//           {/* <div className="w-[90%] md:w-[80%] lg:w-[70%] mx-auto text-center"> */}
+//           <div>
+//             <motion.h1 {...fadeInUp} className="h1">
+//               What Our Users Are Saying
+//             </motion.h1>
+
+//             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
+//               {[
+//                 {
+//                   name: "John Doe",
+//                   comment:
+//                     "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Duis consequat, metus ac aliquam luctus.",
+//                 },
+//                 {
+//                   name: "Jane Smith",
+//                   comment:
+//                     "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Duis consequat, metus ac aliquam luctus.",
+//                 },
+//               ].map((testimonial, i) => (
+//                 <motion.div {...fadeInUp} key={i} className="card">
+//                   <p className="italic paragraph">{testimonial.comment}</p>
+//                   <h4 className="mt-4 text-gray-400 font-semibold">
+//                     - {testimonial.name}
+//                   </h4>
+//                 </motion.div>
+//               ))}
+//             </div>
+//           </div>
+//         </div>
+//         {/*======================== End of Testimonials =====================*/}
+//       </div>
+
+//       {/* <Footer /> */}
+//     </div>
+//   );
+// };
+
+// export default HomePage;
+
 "use client";
 
 import React from "react";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GetStartedButton from "@/components/ui/get-started-button";
-import { motion } from "framer-motion";
-import AnimatedWords from "./animate-words";
-import { fadeInUp } from "./../utils/animation";
 import { features } from "./../utils/features";
+import AnimatedHeading from "./animated-heading";
 
 interface HomePageProps {
   isAuthenticated: boolean;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
+/**
+ * Home page component
+ *
+ * @param {boolean} isAuthenticated Whether the user is authenticated.
+ * @returns {JSX.Element} The home page component.
+ */
+const HomePage = ({ isAuthenticated }: HomePageProps) => {
   return (
     <div className="px-3 md:px-10 lg:px-14">
       <div className="min-h-screen">
@@ -21,12 +176,12 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
         =                           Hero Section                               =
         =====================================================================*/}
         <div>
-          <AnimatedWords
+          <AnimatedHeading
             text="Build Your Professional Resume"
             className="text-3xl md:text-5xl font-bold text-center pt-10 lg:pt-14 text-emerald-500"
           />
 
-          <motion.p {...fadeInUp} className="text-center mt-4 mb-6 paragraph">
+          <p className="text-center mt-4 mb-6 paragraph">
             You don’t need to worry about resume formatting here. Simply fill
             out the forms casually, and our system will automatically generate a
             world-class professional resume format for you. An even bigger
@@ -34,13 +189,10 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
             professional suggestions and ideas. Stay free from formatting
             hassles and let AI smartly enhance your resume with precision and
             style.
-          </motion.p>
+          </p>
 
           {/* Buttons */}
-          <motion.div
-            {...fadeInUp}
-            className="flex flex-col md:flex-row items-center justify-center gap-3"
-          >
+          <div className="flex flex-col md:flex-row items-center justify-center gap-3">
             <GetStartedButton isAuthenticated={isAuthenticated} />
 
             <a
@@ -53,17 +205,12 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
                 View GitHub Repository <GithubIcon className="ml-2 w-5 h-5" />
               </Button>
             </a>
-          </motion.div>
+          </div>
 
           {/* Social Links */}
           <div className="mt-6 md:mt-12">
-            <motion.h2 {...fadeInUp} className="text-center mt-5 h2">
-              Connect With Me
-            </motion.h2>
-            <motion.div
-              {...fadeInUp}
-              className="flex items-center justify-center gap-6 mt-3"
-            >
+            <h2 className="text-center mt-5 h2">Connect With Me</h2>
+            <div className="flex items-center justify-center gap-6 mt-3">
               <a href="https://www.linkedin.com/in/mohosinh99/" target="_blank">
                 <LinkedinIcon className="social-icon-btn" />
               </a>
@@ -73,7 +220,7 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
               <a href="https://github.com/Mohosin999" target="_blank">
                 <GithubIcon className="social-icon-btn" />
               </a>
-            </motion.div>
+            </div>
           </div>
         </div>
         {/*======================== End of Hero Section =====================*/}
@@ -83,16 +230,14 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
         =====================================================================*/}
         <div className="w-full py-10 md:pt-16 md:pb-6">
           <div>
-            <motion.h1 {...fadeInUp} className="h1">
-              Why Our Resume Builder?
-            </motion.h1>
+            <h1 className="h1">Why Our Resume Builder?</h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
               {features.map((feature, index) => (
-                <motion.div {...fadeInUp} key={index} className="card">
+                <div key={index} className="card">
                   <h2 className="h2 mb-3">{feature.title}</h2>
                   <p className="paragraph">{feature.description}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -105,9 +250,7 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
         <div className="w-full md:pt-16 pb-10 md:pb-20">
           {/* <div className="w-[90%] md:w-[80%] lg:w-[70%] mx-auto text-center"> */}
           <div>
-            <motion.h1 {...fadeInUp} className="h1">
-              What Our Users Are Saying
-            </motion.h1>
+            <h1 className="h1">What Our Users Are Saying</h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
               {[
@@ -122,12 +265,12 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
                     "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Duis consequat, metus ac aliquam luctus.",
                 },
               ].map((testimonial, i) => (
-                <motion.div {...fadeInUp} key={i} className="card">
+                <div key={i} className="card">
                   <p className="italic paragraph">{testimonial.comment}</p>
                   <h4 className="mt-4 text-gray-400 font-semibold">
                     - {testimonial.name}
                   </h4>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
