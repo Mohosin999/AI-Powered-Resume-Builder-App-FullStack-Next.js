@@ -1,72 +1,94 @@
 "use client";
+
 import { upsertEducation } from "@/actions/resume-actions";
-import { Button } from "./ui/button";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import LoadingButton from "./ui/loading-button";
+import TextInput from "./ui/text-input";
+
+interface EducationFormProps {
+  resumeId: string;
+  handleModalClose?: () => void;
+}
 
 export function EducationForm({
   resumeId,
-  onSuccess,
-}: {
-  resumeId: string;
-  onSuccess?: () => void;
-}) {
-  const handleSubmit = async (formData: FormData) => {
-    await upsertEducation(formData);
-    if (onSuccess) onSuccess();
+  handleModalClose,
+}: EducationFormProps) {
+  const [loading, setLoading] = useState(false);
 
-    toast.success("Education Added Successfully!");
+  /**
+   * Handles form submission
+   * Creates education
+   */
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      // Get form data
+      const formData = new FormData(e.currentTarget);
+
+      // Create education
+      await upsertEducation(formData);
+
+      if (handleModalClose) handleModalClose();
+      toast.success("Education added successfully!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to add education");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <form action={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Hidden ID */}
       <input type="hidden" name="resumeId" value={resumeId} />
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+        {/* Institution */}
         <div>
-          <label className="label-style">Institution *</label>
-          <input
+          <label className="label">Institution *</label>
+          <TextInput
             name="institution"
-            type="text"
+            id="institution"
             placeholder="University of California, Los Angeles"
             required
-            className="input-style"
           />
         </div>
+        {/* Degree  */}
         <div>
-          <label className="label-style">Degree *</label>
-          <input
+          <label className="label">Degree *</label>
+          <TextInput
             name="degree"
-            type="text"
+            id="degree"
             placeholder="Bachelor"
             required
-            className="input-style"
           />
         </div>
       </div>
 
+      {/* Field of study */}
       <div>
-        <label className="label-style">Field of Study</label>
-        <input
-          name="field"
-          type="text"
-          placeholder="Computer Science"
-          className="input-style"
-        />
+        <label className="label">Field of Study</label>
+        <TextInput name="field" id="field" placeholder="Computer Science" />
       </div>
 
+      {/* Start date & end date */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Start date */}
         <div>
-          <label className="label-style">Start Date *</label>
-          <input
-            name="startDate"
-            type="date"
-            required
-            className="input-style"
-          />
+          <label className="label">Start Date *</label>
+          <TextInput type="date" name="startDate" id="startDate" />
         </div>
+
+        {/* End date */}
         <div>
-          <label className="label-style">End Date</label>
-          <input name="endDate" type="date" className="input-style" />
+          <label className="label">End Date</label>
+          <TextInput type="date" name="endDate" id="endDate" />
+          {/* Checkbox for the current study */}
           <div className="mt-2 flex items-center">
             <input
               id="current-new"
@@ -84,13 +106,13 @@ export function EducationForm({
         </div>
       </div>
 
+      {/* Add button */}
       <div className="flex justify-end">
-        <Button
-          variant="outline"
-          className="w-full lg:w-auto text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
-        >
-          Add Education
-        </Button>
+        <LoadingButton
+          loading={loading}
+          loadingText="Adding"
+          title="Add Education"
+        />
       </div>
     </form>
   );

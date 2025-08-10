@@ -9,5 +9,6 @@ export default async function EducationPage({
   const { id } = await params;
 
   const educations = await getEducations(id);
+
   return <EducationPageClient educations={educations} resumeId={id} />;
 }

@@ -69,7 +69,7 @@ const ProjectForm = ({ resumeId, handleModalClose }: ProjectFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
       {/* Hidden ID */}
       <input type="hidden" name="resumeId" value={resumeId} />
 

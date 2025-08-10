@@ -72,7 +72,7 @@ export function ExperienceForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
       {/* Hidden resume ID */}
       <input type="hidden" name="resumeId" value={resumeId} />
 

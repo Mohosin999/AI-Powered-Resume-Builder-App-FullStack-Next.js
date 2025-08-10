@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { deleteEducation, upsertEducation } from "@/actions/resume-actions";
 import { EducationFormModal } from "@/components/education-form-modal";
@@ -8,38 +9,65 @@ import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { Education } from "@/utils/type";
+import TextInput from "@/components/ui/text-input";
+import LoadingButton from "@/components/ui/loading-button";
 
 interface EducationPageClientProps {
   educations: Education[];
   resumeId: string;
 }
 
-export default function EducationPageClient({
+const EducationPageClient = ({
   educations,
   resumeId,
-}: EducationPageClientProps) {
+}: EducationPageClientProps) => {
   const [open, setOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (formData: FormData) => {
-    await upsertEducation(formData);
-    toast.success("Education Updated Successfully!");
-    setIsEditing(false);
+  /**
+   * Handles form submission
+   * Updates education
+   */
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      // Get form data
+      const formData = new FormData(e.currentTarget);
+
+      // Update education
+      await upsertEducation(formData);
+
+      toast.success("Education updated successfully!");
+      setIsEditing(false);
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to update education");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // Add this function to detect when editing starts
+  /**
+   * Handles edit start
+   */
   const handleEditStart = () => {
     setIsEditing(true);
   };
 
+  /**
+   * Confirms the deletion of an education
+   */
   const confirmDelete = (id: string) => {
     setDeleteId(id);
     setOpen(true);
   };
 
   return (
-    <div className="max-w-4xl mx-auto card-style">
+    <div className="max-w-4xl mx-auto card">
       <PageHeader
         title="Education"
         resumeId={resumeId}
@@ -48,6 +76,9 @@ export default function EducationPageClient({
         isEditing={isEditing}
       />
 
+      {/*=====================================================================
+      =  Show modal button to add education if any exist, otherwise show inline form =
+      ======================================================================*/}
       {educations.length > 0 ? (
         <div className="mb-6">
           <EducationFormModal resumeId={resumeId} />
@@ -61,76 +92,86 @@ export default function EducationPageClient({
         </div>
       )}
 
+      {/*=====================================================================
+      =         Render editable forms for each existing education            =
+      ======================================================================*/}
       {educations.length > 0 && (
         <div className="space-y-6">
           {educations.map((edu) => (
-            <div
-              key={edu.id}
-              className="p-4 lg:p-6 rounded-lg shadow-md border border-gray-700"
-            >
-              <form
-                action={handleSubmit}
-                onChange={handleEditStart}
-                className="space-y-4"
-              >
+            <div key={edu.id} className="p-4 lg:p-6 rounded-lg custom-border">
+              {/*===============================================================
+              =                         Form section                           =
+              ===============================================================*/}
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Hidden ID & resume ID */}
                 <input type="hidden" name="id" value={edu.id} />
                 <input type="hidden" name="resumeId" value={resumeId} />
 
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+                  {/* Institution */}
                   <div>
-                    <label className="label-style">Institution *</label>
-                    <input
+                    <label className="label">Institution *</label>
+                    <TextInput
                       name="institution"
-                      type="text"
-                      defaultValue={edu.institution}
+                      id="institution"
                       placeholder="University of California, Los Angeles"
+                      value={edu.institution}
+                      onChange={handleEditStart}
                       required
-                      className="input-style"
                     />
                   </div>
+
+                  {/* Degree */}
                   <div>
-                    <label className="label-style">Degree *</label>
-                    <input
+                    <label className="label">Degree *</label>
+                    <TextInput
                       name="degree"
-                      type="text"
-                      defaultValue={edu.degree}
+                      id="degree"
                       placeholder="Bachelor"
+                      value={edu.degree}
+                      onChange={handleEditStart}
                       required
-                      className="input-style"
                     />
                   </div>
                 </div>
 
+                {/* Field of study */}
                 <div>
-                  <label className="label-style">Field of Study</label>
-                  <input
+                  <label className="label">Field of Study</label>
+                  <TextInput
                     name="field"
-                    type="text"
-                    defaultValue={edu.field || ""}
+                    id="field"
                     placeholder="Computer Science"
-                    className="input-style"
+                    value={edu.field || ""}
+                    onChange={handleEditStart}
                   />
                 </div>
 
+                {/* Start date & end date */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Start date */}
                   <div>
-                    <label className="label-style">Start Date *</label>
-                    <input
-                      name="startDate"
+                    <label className="label">Start Date *</label>
+                    <TextInput
                       type="date"
-                      defaultValue={edu.startDate}
-                      required
-                      className="input-style"
+                      name="startDate"
+                      id="startDate"
+                      value={edu.startDate}
+                      onChange={handleEditStart}
                     />
                   </div>
+
+                  {/* End date */}
                   <div>
-                    <label className="label-style">End Date</label>
-                    <input
-                      name="endDate"
+                    <label className="label">End Date</label>
+                    <TextInput
                       type="date"
-                      defaultValue={edu.endDate || ""}
-                      className="input-style"
+                      name="endDate"
+                      id="endDate"
+                      value={edu.endDate || ""}
+                      onChange={handleEditStart}
                     />
+                    {/* Checkbox for the current education */}
                     <div className="mt-2 flex items-center">
                       <input
                         id={`current-${edu.id}`}
@@ -149,15 +190,16 @@ export default function EducationPageClient({
                   </div>
                 </div>
 
+                {/* Update & delete buttons */}
                 <div className="flex flex-col lg:flex-row justify-start lg:justify-between gap-2">
-                  <Button
-                    type="submit"
-                    variant="outline"
-                    className="text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
-                  >
-                    Update Education
-                  </Button>
+                  {/* Update button */}
+                  <LoadingButton
+                    loading={loading}
+                    loadingText="Updating"
+                    title="Update Education"
+                  />
 
+                  {/* Delete button */}
                   <Button
                     type="button"
                     onClick={() => confirmDelete(edu.id)}
@@ -167,11 +209,15 @@ export default function EducationPageClient({
                   </Button>
                 </div>
               </form>
+              {/*=================== End of form section ====================*/}
             </div>
           ))}
         </div>
       )}
 
+      {/*=====================================================================
+      =                      Delete confirmation dialog                       =
+      ======================================================================*/}
       <DeleteConfirmDialog
         open={open}
         setOpen={setOpen}
@@ -182,4 +228,6 @@ export default function EducationPageClient({
       />
     </div>
   );
-}
+};
+
+export default EducationPageClient;
