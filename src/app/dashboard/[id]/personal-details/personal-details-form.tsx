@@ -1,303 +1,3 @@
-// "use client";
-
-// import { useState } from "react";
-// import { toast } from "react-toastify";
-// import { PageHeader } from "@/components/PageHeader";
-// import { PersonalDetails } from "@/utils/type";
-// import TextInput from "@/components/ui/text-input";
-// import { motion } from "framer-motion";
-// import { fadeInUp } from "@/utils/animation";
-// import LoadingButton from "@/components/ui/loading-button";
-
-// interface PersonalDetailsFormProps {
-//   personalDetails: PersonalDetails;
-//   resumeId: string;
-// }
-
-// export default function PersonalDetailsForm({
-//   personalDetails,
-//   resumeId,
-// }: PersonalDetailsFormProps) {
-//   const [isEditing, setIsEditing] = useState(false);
-//   const [loading, setLoading] = useState(false);
-
-//   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-//     e.preventDefault();
-//     setLoading(true);
-
-//     const formData = new FormData(e.currentTarget);
-
-//     try {
-//       const res = await fetch("/api/personal-details", {
-//         method: "POST",
-//         body: formData,
-//       });
-
-//       const data = await res.json();
-
-//       if (res.ok) {
-//         toast.success("Details added successfully!");
-//         setIsEditing(false);
-//       } else {
-//         toast.error(data.error || "Failed to save details.");
-//       }
-//     } catch (error) {
-//       console.error(error);
-//       toast.error("Failed to save details.");
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   const handleEditStart = () => {
-//     setIsEditing(true);
-//   };
-
-//   return (
-//     <motion.div {...fadeInUp} className="card">
-//       <PageHeader
-//         title="Personal Details"
-//         resumeId={resumeId}
-//         nextPage="summary"
-//         isEditing={isEditing}
-//       />
-
-//       <form onSubmit={handleSubmit} className="space-y-6">
-//         {/* Hidden Resume ID */}
-//         <input type="hidden" name="resumeId" value={resumeId} />
-
-//         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-//           <div>
-//             <label htmlFor="firstName" className="label">
-//               First Name*
-//             </label>
-//             <TextInput
-//               name="firstName"
-//               id="firstName"
-//               value={personalDetails?.firstName}
-//               onChange={handleEditStart}
-//               placeholder="John"
-//               required
-//             />
-//           </div>
-
-//           <div>
-//             <label htmlFor="lastName" className="label">
-//               Last Name*
-//             </label>
-//             <TextInput
-//               name="lastName"
-//               id="lastName"
-//               value={personalDetails.lastName}
-//               onChange={handleEditStart}
-//               placeholder="Doe"
-//               required
-//             />
-//           </div>
-//         </div>
-
-//         <div>
-//           <label htmlFor="email" className="label">
-//             Email*
-//           </label>
-//           <TextInput
-//             type="email"
-//             name="email"
-//             id="email"
-//             value={personalDetails.email}
-//             onChange={handleEditStart}
-//             placeholder="johndoe@example.com"
-//             required
-//           />
-//         </div>
-
-//         <div>
-//           <label htmlFor="jobTitle" className="label">
-//             Job Title*
-//           </label>
-//           <TextInput
-//             name="jobTitle"
-//             id="jobTitle"
-//             value={personalDetails.jobTitle}
-//             onChange={handleEditStart}
-//             placeholder="FullStack Developer"
-//             required
-//           />
-//         </div>
-
-//         <div>
-//           <label htmlFor="socialLink" className="label">
-//             Social Link*
-//           </label>
-//           <TextInput
-//             type="url"
-//             name="socialLink"
-//             id="socialLink"
-//             value={personalDetails.socialLink}
-//             onChange={handleEditStart}
-//             placeholder="https://www.linkedin.com/in/johndoe"
-//             required
-//           />
-//         </div>
-
-//         <div className="flex justify-end">
-//           <LoadingButton
-//             loading={loading}
-//             loadingText="Adding"
-//             title="Add Details"
-//           />
-//         </div>
-//       </form>
-//     </motion.div>
-//   );
-// }
-
-// "use client";
-
-// import { useState } from "react";
-// import { toast } from "react-toastify";
-// import { PageHeader } from "@/components/PageHeader";
-// import { PersonalDetails } from "@/utils/type";
-// import TextInput from "@/components/ui/text-input";
-// import { motion } from "framer-motion";
-// import { fadeInUp } from "@/utils/animation";
-// import LoadingButton from "@/components/ui/loading-button";
-// import { upsertPersonalDetails } from "@/actions/resume-actions";
-
-// interface PersonalDetailsFormProps {
-//   personalDetails: PersonalDetails;
-//   resumeId: string;
-// }
-
-// export default function PersonalDetailsForm({
-//   personalDetails,
-//   resumeId,
-// }: PersonalDetailsFormProps) {
-//   const [isEditing, setIsEditing] = useState(false);
-//   const [loading, setLoading] = useState(false);
-
-//   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-//     e.preventDefault();
-//     setLoading(true);
-
-//     const formData = new FormData(e.currentTarget);
-
-//     try {
-//       await upsertPersonalDetails(formData);
-//       toast.success("Details added successfully!");
-//       setIsEditing(false);
-//     } catch (error) {
-//       console.error(error);
-//       toast.error(
-//         error instanceof Error ? error.message : "Failed to save details."
-//       );
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   const handleEditStart = () => {
-//     setIsEditing(true);
-//   };
-
-//   return (
-//     <motion.div {...fadeInUp} className="card">
-//       <PageHeader
-//         title="Personal Details"
-//         resumeId={resumeId}
-//         nextPage="summary"
-//         isEditing={isEditing}
-//       />
-
-//       <form onSubmit={handleSubmit} className="space-y-6">
-//         <input type="hidden" name="resumeId" value={resumeId} />
-
-//         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-//           <div>
-//             <label htmlFor="firstName" className="label">
-//               First Name*
-//             </label>
-//             <TextInput
-//               name="firstName"
-//               id="firstName"
-//               value={personalDetails?.firstName}
-//               onChange={handleEditStart}
-//               placeholder="John"
-//               required
-//             />
-//           </div>
-
-//           <div>
-//             <label htmlFor="lastName" className="label">
-//               Last Name*
-//             </label>
-//             <TextInput
-//               name="lastName"
-//               id="lastName"
-//               value={personalDetails?.lastName}
-//               onChange={handleEditStart}
-//               placeholder="Doe"
-//               required
-//             />
-//           </div>
-//         </div>
-
-//         <div>
-//           <label htmlFor="email" className="label">
-//             Email*
-//           </label>
-//           <TextInput
-//             type="email"
-//             name="email"
-//             id="email"
-//             value={personalDetails?.email}
-//             onChange={handleEditStart}
-//             placeholder="johndoe@example.com"
-//             required
-//           />
-//         </div>
-
-//         <div>
-//           <label htmlFor="jobTitle" className="label">
-//             Job Title*
-//           </label>
-//           <TextInput
-//             name="jobTitle"
-//             id="jobTitle"
-//             value={personalDetails?.jobTitle}
-//             onChange={handleEditStart}
-//             placeholder="FullStack Developer"
-//             required
-//           />
-//         </div>
-
-//         <div>
-//           <label htmlFor="socialLink" className="label">
-//             Social Link*
-//           </label>
-//           <TextInput
-//             type="url"
-//             name="socialLink"
-//             id="socialLink"
-//             value={personalDetails?.socialLink}
-//             onChange={handleEditStart}
-//             placeholder="https://www.linkedin.com/in/johndoe"
-//             required
-//           />
-//         </div>
-
-//         <div className="flex justify-end">
-//           <LoadingButton
-//             loading={loading}
-//             loadingText="Adding"
-//             title="Add Details"
-//           />
-//         </div>
-//       </form>
-//     </motion.div>
-//   );
-// }
-
 "use client";
 
 import { useState } from "react";
@@ -313,17 +13,31 @@ interface PersonalDetailsFormProps {
   resumeId: string;
 }
 
-export default function PersonalDetailsForm({
+/**
+ * Personal details form component
+ *
+ * @param {Object} PersonalDetails The personal details object containing user info
+ * @param {string} resumeId The ID of the resume
+ * @returns {JSX.Element} The personal details form
+ */
+const PersonalDetailsForm = ({
   personalDetails,
   resumeId,
-}: PersonalDetailsFormProps) {
+}: PersonalDetailsFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Handles form submission
+   *
+   * @param {React.FormEvent<HTMLFormElement>} e The form event
+   * @returns {Promise<void>} A promise that resolves when the form is submitted
+   */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
+    // Get form data
     const formData = new FormData(e.currentTarget);
 
     try {
@@ -333,13 +47,16 @@ export default function PersonalDetailsForm({
     } catch (error) {
       console.error(error);
       toast.error(
-        error instanceof Error ? error.message : "Failed to save details."
+        error instanceof Error ? error.message : "Failed to add details."
       );
     } finally {
       setLoading(false);
     }
   };
 
+  /**
+   * Handle editing start: sets the editing state to true
+   */
   const handleEditStart = () => {
     setIsEditing(true);
   };
@@ -353,9 +70,14 @@ export default function PersonalDetailsForm({
         isEditing={isEditing}
       />
 
+      {/*=====================================================================
+        =                          Form section                               =
+      ======================================================================*/}
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Hidden resume ID */}
         <input type="hidden" name="resumeId" value={resumeId} />
 
+        {/* First and last name */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div>
             <label htmlFor="firstName" className="label">
@@ -386,6 +108,7 @@ export default function PersonalDetailsForm({
           </div>
         </div>
 
+        {/* Email */}
         <div>
           <label htmlFor="email" className="label">
             Email*
@@ -401,6 +124,7 @@ export default function PersonalDetailsForm({
           />
         </div>
 
+        {/* Job title */}
         <div>
           <label htmlFor="jobTitle" className="label">
             Job Title*
@@ -415,6 +139,7 @@ export default function PersonalDetailsForm({
           />
         </div>
 
+        {/* Social link */}
         <div>
           <label htmlFor="socialLink" className="label">
             Social Link*
@@ -430,6 +155,7 @@ export default function PersonalDetailsForm({
           />
         </div>
 
+        {/* Submit button */}
         <div className="flex justify-end">
           <LoadingButton
             loading={loading}
@@ -438,6 +164,9 @@ export default function PersonalDetailsForm({
           />
         </div>
       </form>
+      {/*======================= End of form section ========================*/}
     </div>
   );
-}
+};
+
+export default PersonalDetailsForm;

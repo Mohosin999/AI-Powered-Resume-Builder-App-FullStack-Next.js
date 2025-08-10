@@ -173,7 +173,7 @@ const HomePage = ({ isAuthenticated }: HomePageProps) => {
     <div className="px-3 md:px-10 lg:px-14">
       <div className="min-h-screen">
         {/*=====================================================================
-        =                           Hero Section                               =
+        =                           Hero section                               =
         =====================================================================*/}
         <div>
           <AnimatedHeading
@@ -207,7 +207,7 @@ const HomePage = ({ isAuthenticated }: HomePageProps) => {
             </a>
           </div>
 
-          {/* Social Links */}
+          {/* Social links */}
           <div className="mt-6 md:mt-12">
             <h2 className="text-center mt-5 h2">Connect With Me</h2>
             <div className="flex items-center justify-center gap-6 mt-3">
@@ -223,10 +223,10 @@ const HomePage = ({ isAuthenticated }: HomePageProps) => {
             </div>
           </div>
         </div>
-        {/*======================== End of Hero Section =====================*/}
+        {/*======================== End of hero section =====================*/}
 
         {/*=====================================================================
-        =                           Key Features                               =
+        =                           Key features                               =
         =====================================================================*/}
         <div className="w-full py-10 md:pt-16 md:pb-6">
           <div>
@@ -242,13 +242,12 @@ const HomePage = ({ isAuthenticated }: HomePageProps) => {
             </div>
           </div>
         </div>
-        {/*======================== End of Key Features =====================*/}
+        {/*======================== End of key features =====================*/}
 
         {/*=====================================================================
         =                            Testimonials                              =
         =====================================================================*/}
         <div className="w-full md:pt-16 pb-10 md:pb-20">
-          {/* <div className="w-[90%] md:w-[80%] lg:w-[70%] mx-auto text-center"> */}
           <div>
             <h1 className="h1">What Our Users Are Saying</h1>
 
@@ -275,7 +274,7 @@ const HomePage = ({ isAuthenticated }: HomePageProps) => {
             </div>
           </div>
         </div>
-        {/*======================== End of Testimonials =====================*/}
+        {/*======================== End of testimonials =====================*/}
       </div>
 
       {/* <Footer /> */}
