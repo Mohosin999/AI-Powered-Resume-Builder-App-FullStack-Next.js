@@ -8,6 +8,7 @@ import { PageHeader } from "@/components/PageHeader";
 import LoadingButton from "@/components/ui/loading-button";
 import { Summary } from "@/utils/type";
 import { upsertSummary } from "@/actions/resume-actions";
+import Textarea from "@/components/ui/text-area";
 
 interface SummaryFormProps {
   resumeId: string;
@@ -15,25 +16,15 @@ interface SummaryFormProps {
   jobTitle: string;
 }
 
-/**
- * Summary form component
- *
- * @param {string} resumeId The ID of the resume
- * @param {Object} summaryInfo The summary object
- * @param {string} jobTitle The job title from personal details section
- * @returns {JSX.Element} The summary form
- */
 const SummaryForm = ({ resumeId, summaryInfo, jobTitle }: SummaryFormProps) => {
+  const [summaryContent, setSummaryContent] = useState(summaryInfo.content);
   const [aiSuggestion, setAiSuggestion] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [aiGenerating, setAiGenerating] = useState(false);
   const [loading, setLoading] = useState(false);
 
   /**
-   * Handles generate button click
    * Generates summary from AI based on job title
-   *
-   * @returns {Promise<void>} A promise that resolves when the button is clicked
    */
   const handleGenerate = async () => {
     setAiGenerating(true);
@@ -57,9 +48,7 @@ const SummaryForm = ({ resumeId, summaryInfo, jobTitle }: SummaryFormProps) => {
 
   /**
    * Handles form submission
-   *
-   * @param {React.FormEvent<HTMLFormElement>} e The form event
-   * @returns {Promise<void>} A promise that resolves when the form is submitted
+   * Updates summary
    */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -76,20 +65,26 @@ const SummaryForm = ({ resumeId, summaryInfo, jobTitle }: SummaryFormProps) => {
       setIsEditing(false);
     } catch (error) {
       console.error(error);
-      toast.error(
-        error instanceof Error ? error.message : "Failed to add summary"
-      );
+      toast.error("Failed to add summary");
     } finally {
       setLoading(false);
     }
   };
 
+  /**
+   * Accepts AI suggestion
+   */
   const handleAcceptSuggestion = () => {
+    setSummaryContent(aiSuggestion);
     setAiSuggestion("");
     setIsEditing(true);
   };
 
-  const handleContentChange = () => {
+  /**
+   * Handles content change
+   */
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setSummaryContent(e.target.value);
     setIsEditing(true);
   };
 
@@ -107,6 +102,7 @@ const SummaryForm = ({ resumeId, summaryInfo, jobTitle }: SummaryFormProps) => {
       =                            Form section                              =
       ======================================================================*/}
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Hidden resume ID */}
         <input type="hidden" name="resumeId" value={resumeId} />
 
         <div className="mt-4">
@@ -123,13 +119,12 @@ const SummaryForm = ({ resumeId, summaryInfo, jobTitle }: SummaryFormProps) => {
           </div>
 
           {/* Textarea */}
-          <textarea
+          <Textarea
             name="content"
             id="content"
-            rows={7}
-            defaultValue={summaryInfo.content}
+            value={summaryContent}
             onChange={handleContentChange}
-            className="text-sm lg:text-base mt-1 block w-full border border-gray-500 rounded-md text-gray-700 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 bg-transparent"
+            required
           />
         </div>
 

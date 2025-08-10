@@ -13,13 +13,6 @@ interface PersonalDetailsFormProps {
   resumeId: string;
 }
 
-/**
- * Personal details form component
- *
- * @param {Object} PersonalDetails The personal details object containing user info
- * @param {string} resumeId The ID of the resume
- * @returns {JSX.Element} The personal details form
- */
 const PersonalDetailsForm = ({
   personalDetails,
   resumeId,
@@ -29,9 +22,7 @@ const PersonalDetailsForm = ({
 
   /**
    * Handles form submission
-   *
-   * @param {React.FormEvent<HTMLFormElement>} e The form event
-   * @returns {Promise<void>} A promise that resolves when the form is submitted
+   * Updates personal details
    */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -48,9 +39,7 @@ const PersonalDetailsForm = ({
       setIsEditing(false);
     } catch (error) {
       console.error(error);
-      toast.error(
-        error instanceof Error ? error.message : "Failed to add details."
-      );
+      toast.error("Failed to add details");
     } finally {
       setLoading(false);
     }
@@ -83,7 +72,7 @@ const PersonalDetailsForm = ({
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div>
             <label htmlFor="firstName" className="label">
-              First Name*
+              First Name *
             </label>
             <TextInput
               name="firstName"
@@ -97,7 +86,7 @@ const PersonalDetailsForm = ({
 
           <div>
             <label htmlFor="lastName" className="label">
-              Last Name*
+              Last Name *
             </label>
             <TextInput
               name="lastName"
@@ -113,7 +102,7 @@ const PersonalDetailsForm = ({
         {/* Email */}
         <div>
           <label htmlFor="email" className="label">
-            Email*
+            Email *
           </label>
           <TextInput
             type="email"
@@ -129,7 +118,7 @@ const PersonalDetailsForm = ({
         {/* Job title */}
         <div>
           <label htmlFor="jobTitle" className="label">
-            Job Title*
+            Job Title *
           </label>
           <TextInput
             name="jobTitle"
@@ -144,7 +133,7 @@ const PersonalDetailsForm = ({
         {/* Social link */}
         <div>
           <label htmlFor="socialLink" className="label">
-            Social Link*
+            Social Link *
           </label>
           <TextInput
             type="url"

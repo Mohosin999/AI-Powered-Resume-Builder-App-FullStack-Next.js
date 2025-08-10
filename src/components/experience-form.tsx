@@ -1,168 +1,37 @@
-// "use client";
-
-// import { Button } from "./ui/button";
-// import { generatePrompt } from "@/utils/generate-prompt";
-// import { useState } from "react";
-// import GenerateFromAIButton from "./ui/generate-ai-button";
-// import { toast } from "react-toastify";
-
-// export function ExperienceForm({
-//   resumeId,
-//   onSuccess,
-// }: {
-//   resumeId: string;
-//   onSuccess?: () => void;
-// }) {
-//   const [jobTitle, setJobTitle] = useState<string>("");
-//   const [content, setContent] = useState<string | null>(null);
-//   const [loading, setLoading] = useState(false);
-
-//   const handleGenerate = async (jobTitle: string) => {
-//     setLoading(true);
-
-//     const prompt = generatePrompt("experience", jobTitle);
-//     const res = await fetch("/api/gemini", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ prompt }),
-//     });
-
-//     const data = await res.json();
-
-//     if (data.result) setContent(data.result);
-//     setLoading(false);
-//   };
-
-//   const handleSubmit = async (formData: FormData) => {
-//     // await upsertExperience(formData);
-//     if (onSuccess) onSuccess();
-
-//     toast.success("Experience Added Successfully!");
-//   };
-
-//   return (
-//     <form action={handleSubmit} className="space-y-4">
-//       <input type="hidden" name="resumeId" value={resumeId} />
-
-//       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-//         <div>
-//           <label className="label">Job Title - Technologies Used *</label>
-//           <input
-//             name="jobTitle"
-//             type="text"
-//             onChange={(e) => setJobTitle(e.target.value)}
-//             placeholder="Frontend Developer - Next.js, TypeScript, Prisma"
-//             required
-//             className="input"
-//           />
-//         </div>
-//         <div>
-//           <label className="label">Company *</label>
-//           <input
-//             name="company"
-//             type="text"
-//             placeholder="Google | Freelance"
-//             required
-//             className="input"
-//           />
-//         </div>
-//       </div>
-
-//       <div>
-//         <label className="label">Location</label>
-//         <input
-//           name="location"
-//           type="text"
-//           placeholder="San Francisco, USA | Remote"
-//           className="input"
-//         />
-//       </div>
-
-//       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//         <div>
-//           <label className="label">Start Date *</label>
-//           <input name="startDate" type="date" required className="input" />
-//         </div>
-//         <div>
-//           <label className="label">End Date</label>
-//           <input name="endDate" type="date" className="input" />
-//           <div className="mt-2 flex items-center">
-//             <input
-//               id="current-new"
-//               name="current"
-//               type="checkbox"
-//               className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-//             />
-//             <label
-//               htmlFor="current-new"
-//               className="ml-2 block text-sm text-[#72839E]"
-//             >
-//               I currently work here
-//             </label>
-//           </div>
-//         </div>
-//       </div>
-
-//       <div>
-//         <div className="flex justify-between items-end">
-//           <label htmlFor="content" className="label">
-//             Description *
-//           </label>
-
-//           <GenerateFromAIButton
-//             onclick={() => handleGenerate(jobTitle)}
-//             loading={loading}
-//           />
-//         </div>
-//         <textarea
-//           name="description"
-//           rows={7}
-//           value={content ?? ""}
-//           onChange={(e) => setContent(e.target.value)}
-//           required
-//           className="input"
-//         />
-//       </div>
-
-//       <div className="flex justify-end">
-//         <Button variant="ghost" className="ghost-btn-3rd">
-//           Add Experience
-//         </Button>
-//       </div>
-//     </form>
-//   );
-// }
-
 "use client";
 
 import { generatePrompt } from "@/utils/generate-prompt";
 import { useState } from "react";
 import GenerateFromAIButton from "./ui/generate-ai-button";
 import { toast } from "react-toastify";
+import { upsertExperience } from "@/actions/resume-actions";
 import LoadingButton from "./ui/loading-button";
-import { useRouter } from "next/navigation";
+import TextInput from "./ui/text-input";
+import Textarea from "./ui/text-area";
+
+interface ExperienceFormProps {
+  resumeId: string;
+  handleModalClose?: () => void;
+}
 
 export function ExperienceForm({
   resumeId,
-  onSuccess,
-}: {
-  resumeId: string;
-  onSuccess?: () => void;
-}) {
-  const [jobTitle, setJobTitle] = useState<string>("");
-  const [content, setContent] = useState<string | null>(null);
+  handleModalClose,
+}: ExperienceFormProps) {
+  const [jobTitle, setJobTitle] = useState("");
+  const [content, setContent] = useState("");
   const [aiGenerating, setAiGenerating] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Router
-  const router = useRouter();
-
+  /**
+   * Generates experience from AI based on job title
+   */
   const handleGenerate = async (jobTitle: string) => {
     setAiGenerating(true);
 
+    // Generate prompt based on job title
     const prompt = generatePrompt("experience", jobTitle);
+
     const res = await fetch("/api/gemini", {
       method: "POST",
       headers: {
@@ -177,83 +46,80 @@ export function ExperienceForm({
     setAiGenerating(false);
   };
 
+  /**
+   * Handles form submission
+   * Creates experience
+   */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
-    const formData = new FormData(e.currentTarget);
-
     try {
-      const res = await fetch("/api/experiences", {
-        method: "POST",
-        body: formData,
-      });
+      // Get form data
+      const formData = new FormData(e.currentTarget);
 
-      const data = await res.json();
+      // Create experience
+      await upsertExperience(formData);
 
-      if (res.ok) {
-        toast.success("Experience Added successfully!");
-        router.refresh();
-      } else {
-        toast.error(data.error || "Failed to Added experience");
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Failed to Added experience");
+      if (handleModalClose) handleModalClose();
+      toast.success("Experience Added Successfully!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to add experience");
     } finally {
       setLoading(false);
     }
-
-    // onSuccess function to close the modal
-    if (onSuccess) onSuccess();
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Hidden resume ID */}
       <input type="hidden" name="resumeId" value={resumeId} />
 
-      {/* <div className="grid grid-cols-1 xl:grid-cols-2 gap-4"> */}
+      {/* Job title - technologies used */}
       <div>
         <label className="label">Job Title - Technologies Used *</label>
-        <input
+        <TextInput
           name="jobTitle"
-          type="text"
+          id="jobTitle"
+          placeholder="Next.js Developer - Next.js, TypeScript, Prisma etc."
           onChange={(e) => setJobTitle(e.target.value)}
-          placeholder="Frontend Developer - Next.js, TypeScript, Prisma"
           required
-          className="input"
         />
       </div>
+
+      {/* Company */}
       <div>
         <label className="label">Company *</label>
-        <input
+        <TextInput
           name="company"
-          type="text"
+          id="company"
           placeholder="Google | Freelance"
           required
-          className="input"
         />
       </div>
-      {/* </div> */}
 
+      {/* Location */}
       <div>
         <label className="label">Location</label>
-        <input
+        <TextInput
           name="location"
-          type="text"
+          id="location"
           placeholder="San Francisco, USA | Remote"
-          className="input"
+          required
         />
       </div>
 
+      {/* Start and end date */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="label">Start Date *</label>
-          <input name="startDate" type="date" required className="input" />
+          <TextInput type="date" name="startDate" id="startDate" required />
         </div>
         <div>
           <label className="label">End Date</label>
-          <input name="endDate" type="date" className="input" />
+          <TextInput type="date" name="endDate" id="endDate" />
+          {/* Checkbox for current job */}
           <div className="mt-2 flex items-center">
             <input
               id="current-new"
@@ -271,27 +137,30 @@ export function ExperienceForm({
         </div>
       </div>
 
+      {/* Description */}
       <div>
         <div className="flex justify-between items-end">
           <label htmlFor="content" className="label">
             Description *
           </label>
 
+          {/* Generate from AI button */}
           <GenerateFromAIButton
             onclick={() => handleGenerate(jobTitle)}
             loading={aiGenerating}
           />
         </div>
-        <textarea
+
+        <Textarea
           name="description"
-          rows={7}
+          id="description"
           value={content ?? ""}
           onChange={(e) => setContent(e.target.value)}
           required
-          className="input"
         />
       </div>
 
+      {/* Submit button */}
       <div className="flex justify-end">
         <LoadingButton
           loading={loading}

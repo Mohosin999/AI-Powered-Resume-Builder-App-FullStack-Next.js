@@ -9,8 +9,14 @@ import { AnimatePresence, motion } from "framer-motion";
 export function ExperienceFormModal({ resumeId }: { resumeId: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Handler function to close the modal
+  const handleModalClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="w-full">
+      {/* Add new experience button */}
       <Button
         onClick={() => setIsOpen(!isOpen)}
         variant="ghost"
@@ -20,6 +26,7 @@ export function ExperienceFormModal({ resumeId }: { resumeId: string }) {
         Add New Experience
       </Button>
 
+      {/* Experience form modal */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -31,7 +38,7 @@ export function ExperienceFormModal({ resumeId }: { resumeId: string }) {
           >
             <div className="flex justify-between items-center mb-4">
               <h2 className="h2">Add New Experience</h2>
-              {/* Cross icon */}
+              {/* Cross icon button */}
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-gray-500 hover:text-gray-700 text-2xl cursor-pointer"
@@ -39,9 +46,11 @@ export function ExperienceFormModal({ resumeId }: { resumeId: string }) {
                 &times;
               </button>
             </div>
+
+            {/* Experience form */}
             <ExperienceForm
               resumeId={resumeId}
-              onSuccess={() => setIsOpen(false)}
+              handleModalClose={handleModalClose}
             />
           </motion.div>
         )}

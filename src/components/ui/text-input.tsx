@@ -1,31 +1,17 @@
-import React, { ChangeEventHandler, InputHTMLAttributes } from "react";
+import React from "react";
 
-interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface TextInputProps {
   type?: string;
   name: string;
-  id: string;
-  value: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  id?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   required?: boolean;
   className?: string;
 }
 
-/**
- * Text Input component
- *
- * @param {string} [type="text"] - The input type attribute, default is "text" (e.g., "text", "email", "password").
- * @param {string} name - The name attribute of the input element.
- * @param {string} id - The id attribute of the input element.
- * @param {string} value - The current value of the input.
- * @param {ChangeEventHandler<HTMLInputElement>} onChange - Change event handler for input value.
- * @param {string} [placeholder] - Placeholder text shown when input is empty.
- * @param {boolean} [required=false] - Whether the input is required.
- * @param {string} [className] - Additional CSS classes for custom styling.
- *
- * @returns {JSX.Element} The styled input element.
- */
-const TextInput: React.FC<TextInputProps> = ({
+const TextInput = ({
   type = "text",
   name,
   id,
@@ -34,7 +20,7 @@ const TextInput: React.FC<TextInputProps> = ({
   placeholder = "",
   required = false,
   className = "",
-}) => {
+}: TextInputProps) => {
   return (
     <input
       type={type}

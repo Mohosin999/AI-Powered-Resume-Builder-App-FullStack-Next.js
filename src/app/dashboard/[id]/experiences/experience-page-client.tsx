@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { deleteExperience } from "@/actions/resume-actions";
+import { deleteExperience, upsertExperience } from "@/actions/resume-actions";
 import { ExperienceFormModal } from "@/components/experience-form-modal";
 import { ExperienceForm } from "@/components/experience-form";
 import { PageHeader } from "@/components/PageHeader";
@@ -9,57 +9,62 @@ import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { Experience } from "@/utils/type";
-import { LoaderCircle } from "lucide-react";
+import LoadingButton from "@/components/ui/loading-button";
+import TextInput from "@/components/ui/text-input";
+import Textarea from "@/components/ui/text-area";
 
 interface ExperiencePageClientProps {
   experiences: Experience[];
   resumeId: string;
 }
 
-export default function ExperiencePageClient({
+const ExperiencePageClient = ({
   experiences,
   resumeId,
-}: ExperiencePageClientProps) {
+}: ExperiencePageClientProps) => {
   const [open, setOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Handles form submission
+   * Updates experience
+   */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
-    const formData = new FormData(e.currentTarget);
-
     try {
-      const res = await fetch("/api/experiences", {
-        method: "POST",
-        body: formData,
-      });
+      // Get form data
+      const formData = new FormData(e.currentTarget);
 
-      const data = await res.json();
+      // Upsert experience
+      await upsertExperience(formData);
 
-      if (res.ok) {
-        toast.success("Experience updated successfully!");
-        setIsEditing(false);
-      } else {
-        toast.error(data.error || "Failed to update experience");
-      }
-    } catch (err) {
-      console.error(err);
+      toast.success("Experience updated successfully!");
+      setIsEditing(false);
+    } catch (error) {
+      console.error(error);
       toast.error("Failed to update experience");
     } finally {
       setLoading(false);
     }
   };
 
-  const handleEditStart = () => {
-    setIsEditing(true);
-  };
-
+  /**
+   * Confirms the deletion of an experience
+   */
   const confirmDelete = (id: string) => {
     setDeleteId(id);
     setOpen(true);
+  };
+
+  /**
+   * Handles the start of editing an experience
+   */
+  const handleEditStart = () => {
+    setIsEditing(true);
   };
 
   return (
@@ -72,6 +77,10 @@ export default function ExperiencePageClient({
         isEditing={isEditing}
       />
 
+      {/*=====================================================================
+      =  Show modal button to add experience if any exist,
+      otherwise show inline form =
+      ======================================================================*/}
       {experiences.length > 0 ? (
         <div className="mb-6">
           <ExperienceFormModal resumeId={resumeId} />
@@ -85,76 +94,85 @@ export default function ExperiencePageClient({
         </div>
       )}
 
+      {/*=====================================================================
+      =         Render editable forms for each existing experience           =
+      ======================================================================*/}
       {experiences.length > 0 && (
         <div className="space-y-6">
           {experiences.map((exp) => (
             <div key={exp.id} className="p-4 lg:p-6 rounded-lg custom-border">
+              {/*===============================================================
+              =                         Form section                           =
+              ===============================================================*/}
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Hidden ID & resume ID */}
                 <input type="hidden" name="id" value={exp.id} />
                 <input type="hidden" name="resumeId" value={resumeId} />
 
-                <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 w-full">
-                  <div>
-                    <label className="label">
-                      Job Title - Technologies Used *
-                    </label>
-                    <input
-                      name="jobTitle"
-                      type="text"
-                      defaultValue={exp.jobTitle}
-                      placeholder="Frontend Developer - Next.js, TypeScript, Prisma"
-                      required
-                      className="input"
-                      onChange={handleEditStart}
-                    />
-                  </div>
-                  <div>
-                    <label className="label">Company *</label>
-                    <input
-                      name="company"
-                      type="text"
-                      defaultValue={exp.company}
-                      placeholder="Google | Freelance"
-                      required
-                      className="text-sm input"
-                      onChange={handleEditStart}
-                    />
-                  </div>
-                </div>
-
+                {/* Job Title - Technologies Used */}
                 <div>
-                  <label className="label">Location</label>
-                  <input
-                    name="location"
-                    type="text"
-                    defaultValue={exp.location || ""}
-                    placeholder="San Francisco, USA | Remote"
-                    className="input"
+                  <label className="label">
+                    Job Title - Technologies Used *
+                  </label>
+                  <TextInput
+                    name="jobTitle"
+                    id="jobTitle"
+                    placeholder="Next.js Developer - Next.js, TypeScript, Prisma etc."
+                    value={exp.jobTitle}
                     onChange={handleEditStart}
+                    required
                   />
                 </div>
 
+                {/* Company */}
+                <div>
+                  <label className="label">Company *</label>
+                  <TextInput
+                    name="company"
+                    id="company"
+                    placeholder="Google | Freelance"
+                    value={exp.company}
+                    onChange={handleEditStart}
+                    required
+                  />
+                </div>
+
+                {/* Location */}
+                <div>
+                  <label className="label">Location</label>
+                  <TextInput
+                    name="location"
+                    id="location"
+                    placeholder="San Francisco, USA | Remote"
+                    value={exp.location || ""}
+                    onChange={handleEditStart}
+                    required
+                  />
+                </div>
+
+                {/* Start date & end date */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="label">Start Date *</label>
-                    <input
-                      name="startDate"
+                    <TextInput
                       type="date"
-                      defaultValue={exp.startDate}
-                      required
-                      className="input"
+                      name="startDate"
+                      id="startDate"
+                      value={exp.startDate || ""}
                       onChange={handleEditStart}
+                      required
                     />
                   </div>
                   <div>
                     <label className="label">End Date</label>
-                    <input
-                      name="endDate"
+                    <TextInput
                       type="date"
-                      defaultValue={exp.endDate || ""}
-                      className="input"
+                      name="endDate"
+                      id="endDate"
+                      value={exp.endDate || ""}
                       onChange={handleEditStart}
                     />
+                    {/* Checkbox for current job */}
                     <div className="mt-2 flex items-center">
                       <input
                         id={`current-${exp.id}`}
@@ -174,31 +192,27 @@ export default function ExperiencePageClient({
                   </div>
                 </div>
 
+                {/* Description */}
                 <div>
                   <label className="label">Description *</label>
-                  <textarea
+                  <Textarea
                     name="description"
-                    rows={7}
-                    defaultValue={exp.description}
-                    required
-                    className="input"
+                    id="description"
+                    value={exp.description}
                     onChange={handleEditStart}
+                    required
                   />
                 </div>
 
                 <div className="flex flex-col lg:flex-row justify-start lg:justify-between gap-2">
-                  <Button
-                    type="submit"
-                    variant="outline"
-                    disabled={loading}
-                    className="flex items-center gap-2 text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
-                  >
-                    {loading && (
-                      <LoaderCircle className="h-4 w-4 animate-spin" />
-                    )}
-                    {loading ? "Updating..." : "Update Experience"}
-                  </Button>
+                  {/* Update button */}
+                  <LoadingButton
+                    loading={loading}
+                    loadingText="Updating..."
+                    title={"Update Experience"}
+                  />
 
+                  {/* Delete button */}
                   <Button
                     type="button"
                     onClick={() => confirmDelete(exp.id)}
@@ -208,11 +222,15 @@ export default function ExperiencePageClient({
                   </Button>
                 </div>
               </form>
+              {/*=================== End of form section ====================*/}
             </div>
           ))}
         </div>
       )}
 
+      {/*=====================================================================
+      =                      Delete confirmation dialog                       =
+      ======================================================================*/}
       <DeleteConfirmDialog
         open={open}
         setOpen={setOpen}
@@ -223,4 +241,6 @@ export default function ExperiencePageClient({
       />
     </div>
   );
-}
+};
+
+export default ExperiencePageClient;
