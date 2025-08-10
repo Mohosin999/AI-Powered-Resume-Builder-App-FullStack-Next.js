@@ -24,16 +24,8 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { toast } from "react-toastify";
-import { motion } from "framer-motion";
-import { fadeInUp } from "@/utils/animation";
-
-interface Resume {
-  id: string;
-  userId: string;
-  title: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
+import { Resume } from "@/utils/type";
+import { Loader } from "lucide-react";
 
 interface ResumeUpdateProps {
   allResumes: Resume[];
@@ -41,14 +33,27 @@ interface ResumeUpdateProps {
 
 const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
+  /**
+   * Handler function to confirms the deletion of a resume
+   */
   const handleDelete = async () => {
-    if (deleteId) {
-      await deleteResume(deleteId);
-      setDeleteId(null);
+    setLoading(true);
 
-      // Show toast message
-      toast.success("Resume Deleted Successfully!");
+    try {
+      if (deleteId) {
+        await deleteResume(deleteId);
+        setDeleteId(null);
+
+        // Show toast message
+        toast.success("Resume deleted successfully!");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to delete resume");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,8 +61,7 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {allResumes?.map((resume) => (
-          <motion.div
-            {...fadeInUp}
+          <div
             key={resume.id}
             className="card lg:!p-8 relative flex flex-col justify-between min-h-[220px]"
           >
@@ -105,7 +109,7 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
@@ -126,6 +130,8 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
               resume.
             </AlertDialogDescription>
           </AlertDialogHeader>
+
+          {/* Buttons */}
           <AlertDialogFooter>
             <AlertDialogCancel
               onClick={() => setDeleteId(null)}
@@ -134,7 +140,14 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction onClick={handleDelete} className="ghost-btn-3rd">
-              Continue
+              {loading ? (
+                <div className="flex items-center gap-2">
+                  <Loader className="w-4 h-4 animate-spin" />
+                  Deleting
+                </div>
+              ) : (
+                "Continue"
+              )}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+
+import React, { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,6 +12,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { toast } from "react-toastify";
+import { Loader } from "lucide-react";
 
 interface DeleteConfirmDialogProps {
   open: boolean;
@@ -29,41 +31,58 @@ const DeleteConfirmDialog = ({
   deleteAction,
   description = "This action cannot be undone. This will permanently delete the item.",
 }: DeleteConfirmDialogProps) => {
+  const [loading, setLoading] = useState(false);
+
+  // Handler function to delete
   const handleDelete = async () => {
     if (!id) return;
+    setLoading(true);
 
-    const formData = new FormData();
-    formData.append("id", id);
-    formData.append("resumeId", resumeId);
+    try {
+      const formData = new FormData();
+      formData.append("id", id);
+      formData.append("resumeId", resumeId);
 
-    await deleteAction(formData);
-    setOpen(false);
+      await deleteAction(formData);
+      setOpen(false);
 
-    // Show toast message
-    toast.success("Deleted Successfully!");
+      // Show toast message
+      toast.success("Deleted Successfully!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to delete");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <AlertDialog open={open} onOpenChange={(v) => setOpen(v)}>
-      <AlertDialogContent className="bg-[#131A25] border-gray-700 text-gray-100 shadow-lg">
+      <AlertDialogContent className="card">
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription className="text-[#72839E]">
             {description}
           </AlertDialogDescription>
         </AlertDialogHeader>
+
+        {/* Buttons */}
         <AlertDialogFooter>
           <AlertDialogCancel
             onClick={() => setOpen(false)}
-            className="bg-[#131A25] text-emerald-400 border-emerald-400 hover:border-white hover:text-gray-900 cursor-pointer"
+            className="ghost-btn-2nd"
           >
             Cancel
           </AlertDialogCancel>
-          <AlertDialogAction
-            onClick={handleDelete}
-            className="bg-white text-gray-900 hover:bg-emerald-400 cursor-pointer"
-          >
-            Continue
+          <AlertDialogAction onClick={handleDelete} className="ghost-btn-3rd">
+            {loading ? (
+              <div className="flex items-center gap-2">
+                <Loader className="w-4 h-4 animate-spin" />
+                Deleting
+              </div>
+            ) : (
+              "Continue"
+            )}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

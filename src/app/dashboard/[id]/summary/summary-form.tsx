@@ -141,14 +141,12 @@ const SummaryForm = ({ resumeId, summaryInfo, jobTitle }: SummaryFormProps) => {
         {/* AI suggestion */}
         {aiSuggestion && (
           <div>
-            <h3 className="text-green-400 font-bold">Generated From AI</h3>
+            <h3 className="text-green-500 font-bold">Generated From AI 🎉</h3>
             <div
               className="mt-4 p-4 lg:p-6 rounded-lg shadow-md mb-0 border border-gray-700 cursor-pointer"
               onClick={handleAcceptSuggestion}
             >
-              <p className="text-sm lg:text-base text-white whitespace-pre-line">
-                {aiSuggestion}
-              </p>
+              <p className="paragraph whitespace-pre-line">{aiSuggestion}</p>
               <p className="text-xs text-right text-blue-500 hover:text-blue-600 mt-2 active:scale-105">
                 Click to apply
               </p>

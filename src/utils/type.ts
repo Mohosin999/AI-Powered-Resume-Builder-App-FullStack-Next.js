@@ -48,3 +48,11 @@ export interface Skill {
   id: string;
   name: string;
 }
+
+export interface Resume {
+  id: string;
+  userId: string;
+  title: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
