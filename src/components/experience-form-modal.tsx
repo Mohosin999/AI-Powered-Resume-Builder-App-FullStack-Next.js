@@ -38,9 +38,9 @@ export function ExperienceFormModal({ resumeId }: { resumeId: string }) {
           >
             <div className="flex justify-between items-center mb-4">
               <h2 className="h2">Add New Experience</h2>
-              {/* Cross icon button */}
+              {/* Close icon button */}
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={handleModalClose}
                 className="text-gray-500 hover:text-gray-700 text-2xl cursor-pointer"
               >
                 &times;

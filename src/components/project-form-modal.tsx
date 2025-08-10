@@ -1,26 +1,32 @@
-// components/project-form-modal.tsx
 "use client";
 
 import { useState } from "react";
-import { ProjectForm } from "./project-form";
 import { Button } from "./ui/button";
 import { FaPlus } from "react-icons/fa6";
 import { AnimatePresence, motion } from "framer-motion";
+import ProjectForm from "./project-form";
 
 export function ProjectFormModal({ resumeId }: { resumeId: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Handler function to close the modal
+  const handleModalClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="w-full">
+      {/* Add new project button */}
       <Button
         onClick={() => setIsOpen(!isOpen)}
         variant="ghost"
-        className="homepage-button-style"
+        className="ghost-btn-2nd"
       >
         <FaPlus />
         Add New Project
       </Button>
 
+      {/* Project form modal */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -34,16 +40,19 @@ export function ProjectFormModal({ resumeId }: { resumeId: string }) {
               <h2 className="text-xl text-gray-300 font-semibold">
                 Add New Project
               </h2>
+              {/* Close icon button */}
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={handleModalClose}
                 className="text-gray-500 hover:text-gray-700 text-2xl cursor-pointer"
               >
                 &times;
               </button>
             </div>
+
+            {/* Project form */}
             <ProjectForm
               resumeId={resumeId}
-              onSuccess={() => setIsOpen(false)}
+              handleModalClose={handleModalClose}
             />
           </motion.div>
         )}

@@ -24,7 +24,7 @@ export function ExperienceForm({
   const [loading, setLoading] = useState(false);
 
   /**
-   * Generates experience from AI based on job title
+   * Generates experience description from AI based on job title
    */
   const handleGenerate = async (jobTitle: string) => {
     setAiGenerating(true);
@@ -164,7 +164,7 @@ export function ExperienceForm({
       <div className="flex justify-end">
         <LoadingButton
           loading={loading}
-          loadingText="Adding..."
+          loadingText="Adding"
           title="Add Experience"
         />
       </div>

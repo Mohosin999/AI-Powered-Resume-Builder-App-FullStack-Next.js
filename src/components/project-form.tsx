@@ -1,26 +1,34 @@
 "use client";
+
 import { upsertProject } from "@/actions/resume-actions";
-import { Button } from "./ui/button";
 import { generatePrompt } from "@/utils/generate-prompt";
 import { useState } from "react";
 import GenerateFromAIButton from "./ui/generate-ai-button";
 import { toast } from "react-toastify";
+import TextInput from "./ui/text-input";
+import LoadingButton from "./ui/loading-button";
+import Textarea from "./ui/text-area";
 
-export function ProjectForm({
-  resumeId,
-  onSuccess,
-}: {
+interface ProjectFormProps {
   resumeId: string;
-  onSuccess?: () => void;
-}) {
-  const [projectName, setProjectName] = useState<string>("");
+  handleModalClose?: () => void;
+}
+
+const ProjectForm = ({ resumeId, handleModalClose }: ProjectFormProps) => {
+  const [projectName, setProjectName] = useState("");
   const [content, setContent] = useState<string | null>(null);
+  const [aiGenerating, setAiGenerating] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Generates project description from AI based on job title
+   */
   const handleGenerate = async (projectName: string) => {
-    setLoading(true);
+    setAiGenerating(true);
 
+    // Generate prompt based on job title
     const prompt = generatePrompt("project", projectName);
+
     const res = await fetch("/api/gemini", {
       method: "POST",
       headers: {
@@ -32,70 +40,118 @@ export function ProjectForm({
     const data = await res.json();
 
     if (data.result) setContent(data.result);
-    setLoading(false);
+    setAiGenerating(false);
   };
-  const handleSubmit = async (formData: FormData) => {
-    await upsertProject(formData);
-    if (onSuccess) onSuccess();
 
-    toast.success("Project Added Successfully!");
+  /**
+   * Handles form submission
+   * Creates project
+   */
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      // Get form data
+      const formData = new FormData(e.currentTarget);
+
+      // Create project
+      await upsertProject(formData);
+
+      if (handleModalClose) handleModalClose();
+      toast.success("Project added successfully!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to add project");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <form action={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Hidden ID */}
       <input type="hidden" name="resumeId" value={resumeId} />
 
+      {/* Project Name */}
       <div>
-        <label className="label-style">Project Name *</label>
-        <input
+        <label className="label">Project Name *</label>
+        <TextInput
           name="name"
-          type="text"
-          onChange={(e) => setProjectName(e.target.value)}
+          id="name"
           placeholder="AI Resume Builder App"
+          onChange={(e) => setProjectName(e.target.value)}
           required
-          className="input-style"
         />
       </div>
 
+      {/* Description */}
       <div>
         <div className="flex justify-between items-end">
-          <label htmlFor="content" className="label-style">
+          <label htmlFor="content" className="label">
             Description *
           </label>
 
+          {/* Generate from AI Button */}
           <GenerateFromAIButton
             onclick={() => handleGenerate(projectName)}
-            loading={loading}
+            loading={aiGenerating}
           />
         </div>
-        <textarea
+
+        {/* Textarea */}
+        <Textarea
           name="description"
-          rows={7}
+          id="description"
           value={content ?? ""}
           onChange={(e) => setContent(e.target.value)}
           required
-          className="input-style"
         />
       </div>
 
+      {/* Live url */}
       <div>
-        <label className="label-style">Live Link</label>
-        <input
-          name="url"
+        <label className="label">Live Link</label>
+        <TextInput
           type="url"
+          name="url"
+          id="url"
           placeholder="https://ai-resume-builder.vercel.app/"
-          className="input-style"
         />
       </div>
 
+      {/* Repository url */}
+      <div>
+        <label className="label">Repository Url</label>
+        <TextInput
+          type="url"
+          name="repoUrl"
+          id="repoUrl"
+          placeholder="https://ai-resume-builder.vercel.app/"
+        />
+      </div>
+
+      {/* Case study url */}
+      <div>
+        <label className="label">Case-Study Url</label>
+        <TextInput
+          type="url"
+          name="caseStudyUrl"
+          id="caseStudyUrl"
+          placeholder="https://ai-resume-builder.vercel.app/"
+        />
+      </div>
+
+      {/* Add Button */}
       <div className="flex justify-end">
-        <Button
-          variant="outline"
-          className="w-full lg:w-auto mt-1 text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
-        >
-          Add Project
-        </Button>
+        <LoadingButton
+          loading={loading}
+          loadingText="Adding"
+          title="Add Project"
+        />
       </div>
     </form>
   );
-}
+};
+
+export default ProjectForm;

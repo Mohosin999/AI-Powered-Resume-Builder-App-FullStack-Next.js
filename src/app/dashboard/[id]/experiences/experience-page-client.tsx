@@ -61,7 +61,7 @@ const ExperiencePageClient = ({
   };
 
   /**
-   * Handles the start of editing an experience
+   * Handles edit start
    */
   const handleEditStart = () => {
     setIsEditing(true);
@@ -204,11 +204,12 @@ const ExperiencePageClient = ({
                   />
                 </div>
 
+                {/* Buttons */}
                 <div className="flex flex-col lg:flex-row justify-start lg:justify-between gap-2">
                   {/* Update button */}
                   <LoadingButton
                     loading={loading}
-                    loadingText="Updating..."
+                    loadingText="Updating"
                     title={"Update Experience"}
                   />
 
