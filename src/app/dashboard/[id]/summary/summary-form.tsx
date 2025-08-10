@@ -95,6 +95,7 @@ const SummaryForm = ({ resumeId, summaryInfo, jobTitle }: SummaryFormProps) => {
         resumeId={resumeId}
         nextPage="experiences"
         showSkip={true}
+        showPrevious={true}
         isEditing={isEditing}
       />
 

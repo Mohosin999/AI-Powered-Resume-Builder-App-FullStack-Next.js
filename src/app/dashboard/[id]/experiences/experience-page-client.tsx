@@ -74,6 +74,7 @@ const ExperiencePageClient = ({
         resumeId={resumeId}
         nextPage="projects"
         showSkip={true}
+        showPrevious={true}
         isEditing={isEditing}
       />
 

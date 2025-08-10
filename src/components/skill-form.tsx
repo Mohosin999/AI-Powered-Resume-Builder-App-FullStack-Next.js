@@ -1,16 +1,24 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { createSkill, getResumeById } from "@/actions/resume-actions";
-import { Button } from "./ui/button";
-import { generatePrompt } from "@/utils/helper";
+import { generatePrompt } from "@/utils/generate-prompt";
 import { toast } from "react-toastify";
+import LoadingButton from "./ui/loading-button";
+import TextInput from "./ui/text-input";
 
 export function SkillForm({ resumeId }: { resumeId: string }) {
   const [skillInput, setSkillInput] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [aiGenerating, setAiGenerating] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Auto-generate suggestions on first visit and cache it
+  {
+    /*=====================================================================
+  =   Auto generate suggestions from AI on the first visit and store it
+  inside local storage   =
+  ======================================================================*/
+  }
   useEffect(() => {
     const fetchSuggestions = async () => {
       // Check if suggestions are already cached
@@ -22,13 +30,14 @@ export function SkillForm({ resumeId }: { resumeId: string }) {
 
       // Get the resume to get the title
       const resume = await getResumeById(resumeId);
+
       if (!resume || !resume.title) {
         console.warn("Resume not found or missing title");
         return;
       }
 
-      // Generate suggestions
-      setLoading(true);
+      setAiGenerating(true);
+      // Generate prompt based on the resume title
       const prompt = generatePrompt("skills", resume.title);
 
       const res = await fetch("/api/gemini", {
@@ -38,6 +47,7 @@ export function SkillForm({ resumeId }: { resumeId: string }) {
       });
 
       const data = await res.json();
+
       if (data?.result) {
         const skillsArray = data.result
           .split(",")
@@ -47,38 +57,62 @@ export function SkillForm({ resumeId }: { resumeId: string }) {
         // Cache the suggestions
         localStorage.setItem(`skills-${resumeId}`, JSON.stringify(skillsArray));
       }
-      setLoading(false);
+
+      setAiGenerating(false);
     };
 
     fetchSuggestions();
   }, [resumeId]);
+  {
+    /*=========================== End of useEffect ===========================*/
+  }
 
-  const handleSubmit = async (formData: FormData) => {
-    await createSkill(formData);
-    setSkillInput("");
-    toast.success("Skill Added Successfully!");
+  /**
+   * Handles form submission
+   * Creates skills
+   */
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      // Get form data
+      const formData = new FormData(e.currentTarget);
+
+      // Create skill
+      await createSkill(formData);
+
+      setSkillInput("");
+      toast.success("Skill Added Successfully!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to add skill");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <form action={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Hidden resume ID */}
       <input type="hidden" name="resumeId" value={resumeId} />
 
+      {/* Skill name */}
       <div>
-        <label className="label-style">Skill Name *</label>
-        <input
+        <label className="label">Skill Name *</label>
+        <TextInput
           name="name"
-          type="text"
-          required
+          id="name"
+          placeholder="JavaScript"
           value={skillInput}
           onChange={(e) => setSkillInput(e.target.value)}
-          placeholder="JavaScript, React.js, Express.js, etc."
-          className="input-style"
+          required
         />
       </div>
 
       {/* Suggestion buttons */}
       <div className="flex flex-wrap gap-2">
-        {loading ? (
+        {aiGenerating ? (
           <p className="text-sm text-gray-500">Generating suggestions...</p>
         ) : (
           suggestions.map((skill, idx) => (
@@ -94,12 +128,8 @@ export function SkillForm({ resumeId }: { resumeId: string }) {
         )}
       </div>
 
-      <Button
-        variant="outline"
-        className="w-full lg:w-auto text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer"
-      >
-        Add Skill
-      </Button>
+      {/* Add skill button */}
+      <LoadingButton loading={loading} loadingText="Adding" title="Add Skill" />
     </form>
   );
 }

@@ -37,6 +37,7 @@ interface PageHeaderProps {
   resumeId: string;
   nextPage: string;
   showSkip?: boolean;
+  showPrevious?: boolean;
   isEditing?: boolean;
 }
 
@@ -46,6 +47,7 @@ export function PageHeader({
   nextPage,
   showSkip = false,
   isEditing = false,
+  showPrevious = false,
 }: PageHeaderProps) {
   return (
     <div className="flex justify-between items-center">
@@ -53,7 +55,7 @@ export function PageHeader({
 
       <div className="flex items-center gap-3 mb-6">
         {showSkip && <SkipButton id={resumeId} pageName={nextPage} />}
-        {showSkip && <PreviousButton />}
+        {showPrevious && <PreviousButton />}
         <NextButton id={resumeId} pageName={nextPage} disabled={isEditing} />
       </div>
     </div>

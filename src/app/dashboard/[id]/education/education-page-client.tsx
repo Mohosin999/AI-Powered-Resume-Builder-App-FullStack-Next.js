@@ -73,6 +73,7 @@ const EducationPageClient = ({
         resumeId={resumeId}
         nextPage="skills"
         showSkip={true}
+        showPrevious={true}
         isEditing={isEditing}
       />
 

@@ -32,7 +32,7 @@ export function ProjectFormModal({ resumeId }: { resumeId: string }) {
         {isOpen && (
           <motion.div
             {...fadeInUp}
-            className="mt-4 p-4 lg:p-6 rounded-lg shadow-md w-full max-w-3xl mx-auto border border-gray-700"
+            className="mt-4 p-4 lg:p-6 rounded-lg shadow-md w-full max-w-3xl mx-auto custom-border"
           >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl text-gray-300 font-semibold">

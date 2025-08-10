@@ -71,6 +71,7 @@ const ProjectPageClient = ({ projects, resumeId }: ProjectPageClientProps) => {
         resumeId={resumeId}
         nextPage="education"
         showSkip={true}
+        showPrevious={true}
         isEditing={isEditing}
       />
 
