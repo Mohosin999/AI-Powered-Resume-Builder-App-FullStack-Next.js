@@ -85,10 +85,8 @@ const EducationPageClient = ({
           <EducationFormModal resumeId={resumeId} />
         </div>
       ) : (
-        <div className="bg-[#1C2434] p-6 rounded-lg shadow-md mb-0 mt-2 border border-gray-700">
-          <h2 className="text-gray-300 text-xl font-semibold mb-4">
-            Add New Education
-          </h2>
+        <div className="p-6 rounded-lg shadow-md mb-0 mt-2 custom-border">
+          <h2 className="h2 mb-4">Add New Education</h2>
           <EducationForm resumeId={resumeId} />
         </div>
       )}
@@ -159,6 +157,7 @@ const EducationPageClient = ({
                       id="startDate"
                       value={edu.startDate}
                       onChange={handleEditStart}
+                      required
                     />
                   </div>
 

@@ -81,7 +81,7 @@ export function EducationForm({
         {/* Start date */}
         <div>
           <label className="label">Start Date *</label>
-          <TextInput type="date" name="startDate" id="startDate" />
+          <TextInput type="date" name="startDate" id="startDate" required />
         </div>
 
         {/* End date */}

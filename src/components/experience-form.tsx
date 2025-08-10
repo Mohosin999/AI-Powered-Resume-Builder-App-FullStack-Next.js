@@ -106,7 +106,6 @@ export function ExperienceForm({
           name="location"
           id="location"
           placeholder="San Francisco, USA | Remote"
-          required
         />
       </div>
 

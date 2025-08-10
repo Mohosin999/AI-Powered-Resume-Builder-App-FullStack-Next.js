@@ -120,7 +120,7 @@ export function SkillForm({ resumeId }: { resumeId: string }) {
               type="button"
               key={idx}
               onClick={() => setSkillInput(skill)}
-              className="px-3 py-1 bg-gray-700 text-sm text-white rounded-md hover:bg-emerald-500 transition-all active:scale-105 cursor-pointer"
+              className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm text-gray-700 dark:text-gray-200 rounded-md hover:bg-emerald-500 transition-all active:scale-105 cursor-pointer"
             >
               {skill}
             </button>

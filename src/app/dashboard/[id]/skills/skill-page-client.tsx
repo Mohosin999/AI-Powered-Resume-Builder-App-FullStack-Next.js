@@ -50,7 +50,7 @@ export default function SkillPageClient({
               key={skill.id}
               className="flex items-center justify-between px-6 py-3 rounded-lg shadow-md custom-border"
             >
-              <h3 className="text-white">{skill.name}</h3>
+              <h3 className="text-gray-700 dark:text-gray-200">{skill.name}</h3>
 
               <button onClick={() => handleConfirmDelete(skill.id)}>
                 <MdDelete

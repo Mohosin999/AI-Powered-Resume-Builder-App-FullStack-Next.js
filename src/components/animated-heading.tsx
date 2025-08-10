@@ -30,7 +30,9 @@ const AnimatedHeading = ({ text, className = "" }: AnimatedHeadingProps) => {
   const words = text.split(" ");
 
   return (
-    <h1 className={`text-primary text-3xl md:text-5xl font-bold ${className}`}>
+    <h1
+      className={`text-orange-500 text-3xl md:text-5xl font-bold ${className}`}
+    >
       {words.map((word, wordIndex) => (
         <span key={wordIndex} style={{ display: "inline-block" }}>
           {word.split("").map((letter, letterIndex) => {
