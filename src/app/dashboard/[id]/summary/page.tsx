@@ -6,8 +6,10 @@ const SummaryPage = async ({ params }: { params: { id: string } }) => {
 
   const summaryInfo = await getSummary(id);
   const personalDetails = await getPersonalDetails(id);
+  // Get job title from personal details to generate summary
   const jobTitle = personalDetails?.jobTitle || "Professional";
 
+  // Default values to prevent uncontrolled/controlled warnings by ensuring fields always have a string.
   const defaultValues = {
     id: summaryInfo?.id || "",
     resumeId: id,

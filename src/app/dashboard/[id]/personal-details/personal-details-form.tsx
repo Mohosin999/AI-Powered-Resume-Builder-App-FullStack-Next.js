@@ -37,11 +37,13 @@ const PersonalDetailsForm = ({
     e.preventDefault();
     setLoading(true);
 
-    // Get form data
-    const formData = new FormData(e.currentTarget);
-
     try {
+      // Get form data
+      const formData = new FormData(e.currentTarget);
+
+      // Update personal details
       await upsertPersonalDetails(formData);
+
       toast.success("Details added successfully!");
       setIsEditing(false);
     } catch (error) {
