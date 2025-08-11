@@ -26,6 +26,7 @@ import {
 import { toast } from "react-toastify";
 import { Resume } from "@/utils/type";
 import { Loader } from "lucide-react";
+import GoToTop from "./go-to-top";
 
 interface ResumeUpdateProps {
   allResumes: Resume[];
@@ -153,6 +154,9 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
         </AlertDialogContent>
       </AlertDialog>
       {/*========================= End of AlertDialog =======================*/}
+
+      {/* Go to top button */}
+      <GoToTop />
     </>
   );
 };

@@ -11,6 +11,7 @@ import { DownloadResumeBtn } from "@/components/ui/download-button";
 import ResumeHeading from "@/components/ui/resume-heading";
 import { Education, Experience, Project, Skill } from "@/utils/type";
 import ExternalLink from "@/components/ui/external-link";
+import GoToTop from "@/components/go-to-top";
 
 const PreviewResume = async ({ params }: { params: { id: string } }) => {
   const { id } = await params;
@@ -231,6 +232,9 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
         )}
       </div>
       {/*======================== End of print area =========================*/}
+
+      {/* Go to top button */}
+      <GoToTop />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { getPersonalDetails, getSummary } from "@/actions/resume-actions";
 import SummaryForm from "./summary-form";
+import GoToTop from "@/components/go-to-top";
 
 const SummaryPage = async ({ params }: { params: { id: string } }) => {
   const { id } = await params;
@@ -23,6 +24,9 @@ const SummaryPage = async ({ params }: { params: { id: string } }) => {
         summaryInfo={defaultValues}
         jobTitle={jobTitle}
       />
+
+      {/* Go to top button */}
+      <GoToTop />
     </div>
   );
 };

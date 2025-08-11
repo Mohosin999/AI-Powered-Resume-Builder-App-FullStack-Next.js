@@ -1,5 +1,6 @@
 import { getSkills } from "@/actions/resume-actions";
 import SkillPageClient from "./skill-page-client";
+import GoToTop from "@/components/go-to-top";
 
 export default async function SkillPage({
   params,
@@ -10,5 +11,12 @@ export default async function SkillPage({
 
   const skills = await getSkills(id);
 
-  return <SkillPageClient skills={skills} resumeId={id} />;
+  return (
+    <div>
+      <SkillPageClient skills={skills} resumeId={id} />
+
+      {/* Go to top button */}
+      <GoToTop />
+    </div>
+  );
 }

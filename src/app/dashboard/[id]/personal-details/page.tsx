@@ -1,5 +1,6 @@
 import { getPersonalDetails } from "@/actions/resume-actions";
 import PersonalDetailsForm from "./personal-details-form";
+import GoToTop from "@/components/go-to-top";
 
 export default async function PersonalDetailsPage({
   params,
@@ -22,6 +23,9 @@ export default async function PersonalDetailsPage({
   return (
     <div className="max-w-4xl mx-auto">
       <PersonalDetailsForm resumeId={id} personalDetails={defaultValues} />
+
+      {/* Go to top button */}
+      <GoToTop />
     </div>
   );
 }

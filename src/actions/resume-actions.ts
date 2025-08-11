@@ -5,7 +5,6 @@ import { authenticationForGet } from "@/utils/helper-functions";
 import { auth } from "@clerk/nextjs/server";
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-// import { redirect } from "next/navigation";
 
 // Helper function to get authenticated user
 async function getAuthenticatedUser() {
@@ -165,7 +164,7 @@ export async function upsertPersonalDetails(formData: FormData) {
 
 // Get Personal Details
 export async function getPersonalDetails(resumeId: string) {
-  const { user } = await authenticationForGet(resumeId);
+  const user = await authenticationForGet(resumeId);
 
   return await prisma.personalDetails.findUnique({
     where: { resumeId, resume: { userId: user.id } },
@@ -218,7 +217,7 @@ export async function upsertSummary(formData: FormData) {
 // Get Summary
 
 export async function getSummary(resumeId: string) {
-  const { user } = await authenticationForGet(resumeId);
+  const user = await authenticationForGet(resumeId);
 
   return await prisma.summary.findUnique({
     where: { resumeId, resume: { userId: user.id } },
@@ -232,7 +231,7 @@ export async function getSummary(resumeId: string) {
  */
 // Get all experience
 export async function getExperiences(resumeId: string) {
-  const { user } = await authenticationForGet(resumeId);
+  const user = await authenticationForGet(resumeId);
 
   return await prisma.experience.findMany({
     where: { resumeId, resume: { userId: user.id } },
@@ -299,7 +298,6 @@ export async function upsertExperience(formData: FormData) {
     });
 
     revalidatePath(`/dashboard/${resumeId}/experiences`);
-    // redirect(`/dashboard/${resumeId}/experiences`);
   } catch (error) {
     console.error("Failed to upsert experience:", error);
     throw error;
@@ -335,10 +333,8 @@ export async function deleteExperience(formData: FormData) {
  *                               Projects
  * ========================================================================
  */
-// Get all projects
 export async function getProjects(resumeId: string) {
-  const user = await getAuthenticatedUser();
-  if (!user) throw new Error("Unauthorized");
+  const user = await authenticationForGet(resumeId);
 
   return await prisma.project.findMany({
     where: { resumeId, resume: { userId: user.id } },
@@ -437,8 +433,7 @@ export async function deleteProject(formData: FormData) {
  * ========================================================================
  */
 export async function getEducations(resumeId: string) {
-  const user = await getAuthenticatedUser();
-  if (!user) throw new Error("Unauthorized");
+  const user = await authenticationForGet(resumeId);
 
   return await prisma.education.findMany({
     where: { resumeId, resume: { userId: user.id } },
@@ -532,8 +527,7 @@ export async function deleteEducation(formData: FormData) {
  * ========================================================================
  */
 export async function getSkills(resumeId: string) {
-  const user = await getAuthenticatedUser();
-  if (!user) throw new Error("Unauthorized");
+  const user = await authenticationForGet(resumeId);
 
   return await prisma.skill.findMany({
     where: { resumeId, resume: { userId: user.id } },

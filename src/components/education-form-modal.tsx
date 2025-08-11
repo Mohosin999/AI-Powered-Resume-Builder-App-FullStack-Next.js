@@ -21,7 +21,7 @@ export function EducationFormModal({ resumeId }: { resumeId: string }) {
       <Button
         onClick={() => setIsOpen(!isOpen)}
         variant="ghost"
-        className="homepage-button-style"
+        className="ghost-btn-2nd"
       >
         <FaPlus />
         Add New Education
