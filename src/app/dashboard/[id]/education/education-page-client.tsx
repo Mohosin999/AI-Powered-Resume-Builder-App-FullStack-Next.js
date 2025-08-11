@@ -203,7 +203,7 @@ const EducationPageClient = ({
                   <Button
                     type="button"
                     onClick={() => confirmDelete(edu.id)}
-                    className="bg-red-500 hover:bg-red-600 border border-red-500 hover:border-red-600 text-white px-4 py-2 rounded-md active:scale-105 cursor-pointer"
+                    className="bg-red-500 hover:bg-red-600 border border-red-500 hover:border-red-600 text-white px-4 py-2 rounded-full active:scale-105 cursor-pointer"
                   >
                     Delete Education
                   </Button>
