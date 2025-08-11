@@ -32,7 +32,7 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
         id="no-print"
         className="flex flex-col items-center justify-center mt-5 lg:mt-10 mb-7"
       >
-        <h1 className="text-center text-2xl lg:text-3xl font-semibold text-orange-500 mb-4">
+        <h1 className="text-center text-2xl lg:text-3xl font-semibold text-emerald-500 mb-4">
           Congrats! Your Professional Resume is Ready.
         </h1>
 
@@ -54,7 +54,7 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
         <div className="flex flex-col lg:flex-row print:!flex-row justify-center lg:justify-between print:!justify-between items-center">
           {/* Name and Job Title */}
           <div>
-            <h2 className="text-2xl font-semibold text-900-100">
+            <h2 className="text-center lg:text-left print:!text-left text-2xl font-semibold text-900-100">
               {personalDetails?.firstName} {personalDetails?.lastName}
             </h2>
             <h3 className="text-center lg:text-left print:!text-left text-800-200">

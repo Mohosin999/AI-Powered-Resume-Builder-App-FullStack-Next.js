@@ -11,15 +11,15 @@ const Dashboard = async () => {
       {allResumes.length > 0 ? (
         <DisplayAllResumes allResumes={allResumes} />
       ) : (
-        <p className="min-h-[80vh] flex flex-col items-center justify-center">
+        <p className="min-h-[40vh] lg:min-h-[70vh] flex flex-col items-center justify-center">
           <Image
             alt="no-resumes"
             src="/no-resume.png"
             width={200}
             height={200}
           />
-          <span className="text-4xl font-semibold text-emerald-400">
-            Oops! No resume found
+          <span className="text-2xl text-center lg:text-3xl font-semibold text-emerald-500">
+            Oops! No resume found. Please create one.
           </span>
         </p>
       )}

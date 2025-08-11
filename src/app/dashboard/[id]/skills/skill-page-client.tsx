@@ -44,14 +44,16 @@ export default function SkillPageClient({
       =                        Display existing skills                       =
       ======================================================================*/}
       {skills.length > 0 && (
-        <div className="space-y-6 mt-6">
+        <div className="space-y-5 mt-6">
           {skills.map((skill) => (
             <div
               key={skill.id}
               className="flex items-center justify-between px-6 py-3 rounded-lg shadow-md custom-border"
             >
               {/* Skill name */}
-              <h3 className="text-gray-700 dark:text-gray-200">{skill.name}</h3>
+              <h3 className="text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                {skill.name}
+              </h3>
 
               {/* Delete button */}
               <button onClick={() => handleConfirmDelete(skill.id)}>

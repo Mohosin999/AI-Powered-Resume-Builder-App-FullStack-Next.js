@@ -12,11 +12,11 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FaPlus } from "react-icons/fa6";
 import { toast } from "react-toastify";
 import LoadingButton from "./ui/loading-button";
+import TextInput from "./ui/text-input";
 
 export default function CreateResumeDialog({
   createResume,
@@ -75,12 +75,11 @@ export default function CreateResumeDialog({
               <Label htmlFor="title" className="label">
                 Title
               </Label>
-              <Input
-                id="title"
+              <TextInput
                 name="title"
+                id="title"
                 placeholder="ex. MERN Stack Developer"
                 required
-                className="input"
               />
             </div>
           </div>

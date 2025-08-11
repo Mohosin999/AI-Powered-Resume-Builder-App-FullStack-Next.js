@@ -106,6 +106,16 @@ const SummaryForm = ({ resumeId, summaryInfo, jobTitle }: SummaryFormProps) => {
         {/* Hidden resume ID */}
         <input type="hidden" name="resumeId" value={resumeId} />
 
+        {/* Tips for summary field */}
+        <div>
+          <p className="paragraph">
+            If you already have strong experience or impressive projects,
+            highlight those instead — in a professional resume, a summary
+            section is often optional.
+          </p>
+        </div>
+
+        {/* Summary field */}
         <div className="mt-4">
           <div className="flex justify-between items-end">
             <label htmlFor="content" className="label">
