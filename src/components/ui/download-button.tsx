@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 
 export function DownloadResumeBtn() {
@@ -9,8 +10,8 @@ export function DownloadResumeBtn() {
   return (
     <Button
       type="submit"
-      variant="outline"
-      className={`text-gray-900 hover:bg-emerald-400 hover:border-emerald-400 active:scale-105 cursor-pointer`}
+      variant="ghost"
+      className={`ghost-btn-3rd`}
       onClick={handleDownload}
     >
       Download Resume

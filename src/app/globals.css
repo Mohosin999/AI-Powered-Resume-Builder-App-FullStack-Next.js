@@ -207,13 +207,6 @@
 /*======================================================================
 =                         Form Elements Styles                         =
 ======================================================================*/
-/* .label {
-  @apply block text-sm lg:text-base font-medium text-emerald-500 mb-1;
-}
-
-.input {
-  @apply text-sm lg:text-base w-full p-2 border border-gray-500 rounded-md text-gray-700 dark:text-gray-300;
-} */
 
 .label {
   @apply block text-sm lg:text-base font-medium text-blue-500 mb-1;
@@ -226,6 +219,18 @@
 /*======================================================================
 =                        Resume Preview Styles                         =
 ======================================================================*/
-.resume-contact-info-style {
-  @apply flex items-center gap-2 text-sm italic;
+.preview-contact-style {
+  @apply flex items-center gap-2 text-xs italic text-gray-800 dark:text-gray-200 print:!text-gray-800;
+}
+
+.text-900-100 {
+  @apply text-gray-900 dark:text-gray-100 print:!text-gray-900;
+}
+
+.text-800-200 {
+  @apply text-gray-800 dark:text-gray-200 print:!text-gray-800;
+}
+
+.text-700-300 {
+  @apply text-gray-700 dark:text-gray-300 print:!text-gray-700;
 }
