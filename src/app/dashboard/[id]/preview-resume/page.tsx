@@ -106,13 +106,8 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
                       </p>
                       {/* Date */}
                       <p className="text-700-300 text-xs">
-                        {experience.startDate
-                          ? experience.startDate.slice(0, 4)
-                          : "N/A"}{" "}
-                        to{" "}
-                        {experience.endDate
-                          ? experience.endDate.slice(0, 4)
-                          : "Present"}
+                        {experience.startDate ? experience.startDate : "N/A"} -{" "}
+                        {experience.endDate ? experience.endDate : "Present"}
                       </p>
                     </div>
 
@@ -203,13 +198,8 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
                       </div>
                       {/* Date */}
                       <p className="text-700-300 text-xs">
-                        {education.startDate
-                          ? education.startDate.slice(0, 4)
-                          : "N/A"}{" "}
-                        to{" "}
-                        {education.endDate
-                          ? education.endDate.slice(0, 4)
-                          : "Present"}
+                        {education.startDate ? education.startDate : "N/A"} -{" "}
+                        {education.endDate ? education.endDate : "Present"}
                       </p>
                     </div>
                   </div>

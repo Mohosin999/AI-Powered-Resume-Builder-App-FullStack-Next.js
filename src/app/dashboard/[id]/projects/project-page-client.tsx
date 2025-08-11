@@ -83,7 +83,7 @@ const ProjectPageClient = ({ projects, resumeId }: ProjectPageClientProps) => {
           <ProjectFormModal resumeId={resumeId} />
         </div>
       ) : (
-        <div className="p-6 rounded-lg shadow-md mb-0 mt-2 custom-border">
+        <div className="p-4 lg:p-6 rounded-lg shadow-md mb-0 mt-2 custom-border">
           <h2 className="h2 mb-4">Add New Project</h2>
           <ProjectForm resumeId={resumeId} />
         </div>

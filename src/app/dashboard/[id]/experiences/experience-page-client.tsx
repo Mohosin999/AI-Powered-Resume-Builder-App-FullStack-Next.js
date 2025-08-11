@@ -87,7 +87,7 @@ const ExperiencePageClient = ({
           <ExperienceFormModal resumeId={resumeId} />
         </div>
       ) : (
-        <div className="p-6 rounded-lg shadow-md mb-0 mt-2 custom-border">
+        <div className="p-4 lg:p-6 rounded-lg shadow-md mb-0 mt-2 custom-border">
           <h2 className="h2 mb-4">Add New Experience</h2>
           <ExperienceForm resumeId={resumeId} />
         </div>
@@ -151,24 +151,24 @@ const ExperiencePageClient = ({
                 {/* Start date & end date */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="label">Start Date *</label>
+                    <label className="label">Start Year *</label>
                     <TextInput
-                      type="date"
                       name="startDate"
                       id="startDate"
                       value={exp.startDate || ""}
                       onChange={handleEditStart}
+                      placeholder="2024"
                       required
                     />
                   </div>
                   <div>
-                    <label className="label">End Date</label>
+                    <label className="label">End Year</label>
                     <TextInput
-                      type="date"
                       name="endDate"
                       id="endDate"
                       value={exp.endDate || ""}
                       onChange={handleEditStart}
+                      placeholder="2025"
                     />
                     {/* Checkbox for current job */}
                     <div className="mt-2 flex items-center">
@@ -215,7 +215,7 @@ const ExperiencePageClient = ({
                   <Button
                     type="button"
                     onClick={() => confirmDelete(exp.id)}
-                    className="bg-red-500 hover:bg-red-600 border border-red-500 hover:border-red-600 text-white px-4 py-2 rounded-md active:scale-105 cursor-pointer"
+                    className="bg-red-500 hover:bg-red-600 border border-red-500 hover:border-red-600 text-white px-4 py-2 rounded-full active:scale-105 cursor-pointer"
                   >
                     Delete Experience
                   </Button>

@@ -80,14 +80,19 @@ export function EducationForm({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Start date */}
         <div>
-          <label className="label">Start Date *</label>
-          <TextInput type="date" name="startDate" id="startDate" required />
+          <label className="label">Start Year *</label>
+          <TextInput
+            name="startDate"
+            id="startDate"
+            placeholder="2020"
+            required
+          />
         </div>
 
         {/* End date */}
         <div>
-          <label className="label">End Date</label>
-          <TextInput type="date" name="endDate" id="endDate" />
+          <label className="label">End Year</label>
+          <TextInput name="endDate" id="endDate" placeholder="2025" />
           {/* Checkbox for the current study */}
           <div className="mt-2 flex items-center">
             <input

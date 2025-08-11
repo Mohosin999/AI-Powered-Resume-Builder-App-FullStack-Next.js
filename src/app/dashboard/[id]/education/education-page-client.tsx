@@ -85,7 +85,7 @@ const EducationPageClient = ({
           <EducationFormModal resumeId={resumeId} />
         </div>
       ) : (
-        <div className="p-6 rounded-lg shadow-md mb-0 mt-2 custom-border">
+        <div className="p-4 lg:p-6 rounded-lg shadow-md mb-0 mt-2 custom-border">
           <h2 className="h2 mb-4">Add New Education</h2>
           <EducationForm resumeId={resumeId} />
         </div>
@@ -150,11 +150,11 @@ const EducationPageClient = ({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Start date */}
                   <div>
-                    <label className="label">Start Date *</label>
+                    <label className="label">Start Year *</label>
                     <TextInput
-                      type="date"
                       name="startDate"
                       id="startDate"
+                      placeholder="2020"
                       value={edu.startDate}
                       onChange={handleEditStart}
                       required
@@ -163,11 +163,11 @@ const EducationPageClient = ({
 
                   {/* End date */}
                   <div>
-                    <label className="label">End Date</label>
+                    <label className="label">End Year</label>
                     <TextInput
-                      type="date"
                       name="endDate"
                       id="endDate"
+                      placeholder="2025"
                       value={edu.endDate || ""}
                       onChange={handleEditStart}
                     />

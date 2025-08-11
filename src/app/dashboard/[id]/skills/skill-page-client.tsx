@@ -48,7 +48,7 @@ export default function SkillPageClient({
           {skills.map((skill) => (
             <div
               key={skill.id}
-              className="flex items-center justify-between px-6 py-3 rounded-lg shadow-md custom-border"
+              className="flex items-center justify-between px-4 lg:px-6 py-3 rounded-lg shadow-md custom-border"
             >
               {/* Skill name */}
               <h3 className="text-sm lg:text-base text-gray-700 dark:text-gray-300">

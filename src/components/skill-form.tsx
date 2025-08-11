@@ -5,7 +5,6 @@ import { createSkill, getResumeById } from "@/actions/resume-actions";
 import { generatePrompt } from "@/utils/generate-prompt";
 import { toast } from "react-toastify";
 import LoadingButton from "./ui/loading-button";
-import TextInput from "./ui/text-input";
 
 export function SkillForm({ resumeId }: { resumeId: string }) {
   const [skillInput, setSkillInput] = useState("");
@@ -100,13 +99,15 @@ export function SkillForm({ resumeId }: { resumeId: string }) {
       {/* Skill name */}
       <div>
         <label className="label">Skill Name *</label>
-        <TextInput
+        <input
+          type="text"
           name="name"
           id="name"
           placeholder="JavaScript"
           value={skillInput}
           onChange={(e) => setSkillInput(e.target.value)}
           required
+          className="w-full px-4 py-2 text-sm lg:text-base rounded-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 focus:outline-none shadow-md"
         />
       </div>
 
