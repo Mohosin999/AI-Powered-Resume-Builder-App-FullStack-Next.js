@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FaPlus } from "react-icons/fa6";
 import { toast } from "react-toastify";
+import LoadingButton from "./ui/loading-button";
 
 export default function CreateResumeDialog({
   createResume,
@@ -22,17 +24,31 @@ export default function CreateResumeDialog({
   createResume: (formData: FormData) => Promise<string>;
 }) {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Handles the form submission for creating a new resume.
-  async function handleAction(formData: FormData) {
-    const resumeId = await createResume(formData);
-    setOpen(false);
+  async function handleAction(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
 
-    // Show toast message
-    toast.success("Resume Created Successfully!");
+    try {
+      // Get form data
+      const formData = new FormData(e.currentTarget);
 
-    if (resumeId) {
-      window.location.href = `/dashboard/${resumeId}/personal-details`;
+      // Create resume
+      const resumeId = await createResume(formData);
+
+      setOpen(false);
+      toast.success("Resume created successfully!");
+
+      if (resumeId) {
+        window.location.href = `/dashboard/${resumeId}/personal-details`;
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to create resume");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -46,7 +62,7 @@ export default function CreateResumeDialog({
       </DialogTrigger>
 
       <DialogContent className="card">
-        <form action={handleAction}>
+        <form onSubmit={handleAction}>
           <DialogHeader>
             <DialogTitle className="h2">Create Your New Resume</DialogTitle>
             <DialogDescription className="paragraph lg:!text-sm">
@@ -76,9 +92,11 @@ export default function CreateResumeDialog({
               </Button>
             </DialogClose>
             {/* <SubmitButton /> */}
-            <Button type="submit" variant="ghost" className="ghost-btn-3rd">
-              Create
-            </Button>
+            <LoadingButton
+              loading={loading}
+              loadingText="Creating"
+              title="Create"
+            />
           </DialogFooter>
         </form>
       </DialogContent>
