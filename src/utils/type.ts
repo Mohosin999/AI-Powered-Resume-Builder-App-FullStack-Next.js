@@ -47,6 +47,7 @@ export interface Education {
 export interface Skill {
   id: string;
   name: string;
+  createdAt?: Date | null;
 }
 
 export interface Resume {

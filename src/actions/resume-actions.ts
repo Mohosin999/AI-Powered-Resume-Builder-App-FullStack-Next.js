@@ -531,7 +531,7 @@ export async function getSkills(resumeId: string) {
 
   return await prisma.skill.findMany({
     where: { resumeId, resume: { userId: user.id } },
-    orderBy: { name: "asc" },
+    orderBy: { createdAt: "asc" },
   });
 }
 

@@ -4,9 +4,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 
 /**
  * ================================================================
- * Sync User Within Database
- *
- * @returns
+ *                   Sync User Within Database
  * ================================================================
  */
 export const syncUser = async () => {

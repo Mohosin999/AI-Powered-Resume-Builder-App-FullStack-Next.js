@@ -95,4 +95,5 @@ model Skill {
   resumeId String
   resume Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
   name String
+  createdAt DateTime @default(now())
 }

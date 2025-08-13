@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend: AI-Powered Resume Builder Application
 
-## Getting Started
+## 📑 Table of Contents
 
-First, run the development server:
+- [Description](#-description)
+- [Technologies & Tools Used](#-technologies--tools-used)
+- [Features](#-features)
+- [Setup and Installation](#-setup-and-installation)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📄 Description
+
+I developed a full-stack AI-Powered Resume Builder Application using Next.js with its built-in server-side capabilities. This application helps users create professional resumes effortlessly, with world-class resume formats and full CRUD operation support. I integrated Google Gemini AI so that users can effortlessly generate professional resume descriptions using AI assistance. The system also provides intelligent skill suggestions based on the user’s resume title.
+
+This application solves a major problem for beginners who are unsure about how a professional resume format should look. Many struggle with designing layouts or structuring their information effectively. With this app, they don’t need to worry about formatting at all — they simply fill in their information, and the system automatically generates a professional resume in a world-class format. Users can then easily download the resume as a PDF, ready to use for job applications.
+
+## 💻 Technology Stack
+
+- **`Frontend:`** Next.js 14, TypeScript, Tailwind CSS, Shadcn UI, Framer Motion, React Icons
+- **`Backend:`** Next.js API Routes, Prisma ORM, PostgreSQL (Neon Database)
+- **`AI Integration:`** Google Gemini AI
+- **`Authentication:`** Clerk
+- **`Utilities & UX::`** React Toastify, Next.js Image Optimization
+
+## 🛠 Features
+
+### `Customizable Resume Sections`
+
+- Users can add, edit, or delete any resume section.
+- Support for multiple entries within a section.
+- Edit or delete specific entries.
+
+### `AI Descriptions Generation`
+
+- Generate professional resume descriptions using Google Gemini AI.
+
+### `AI Skill Suggestions`
+
+- Provides intelligent skill suggestions based on the user’s resume title.
+
+### `Download as PDF`
+
+- Users can download their resume in a PDF format.
+
+## 🚀 Setup and Installation
+
+### `Clone the Repository:`
+
+```
+https://github.com/Mohosin999/FullStack-AI-Resume-Builder-App-Next.js.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### The End
