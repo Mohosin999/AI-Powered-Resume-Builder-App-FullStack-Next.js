@@ -3,7 +3,7 @@
 ## 📑 Table of Contents
 
 - [Description](#-description)
-- [Technologies & Tools Used](#-technologies--tools-used)
+- [Technology Stack](#-technology-stack)
 - [Features](#-features)
 - [Setup and Installation](#-setup-and-installation)
 
