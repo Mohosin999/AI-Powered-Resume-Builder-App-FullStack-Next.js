@@ -20,8 +20,7 @@ This application solves a major problem for beginners who are unsure about how a
 - **`Frontend:`** Next.js 14, TypeScript, Tailwind CSS, Shadcn UI, Framer Motion, React Icons
 - **`Backend:`** Next.js API Routes, Prisma ORM, PostgreSQL (Neon Database)
 - **`AI Integration:`** Google Gemini AI
-- **`Authentication:`** Clerk
-- **`Utilities & UX::`** React Toastify, Next.js Image Optimization
+- **`Others:`** Clerk (Authentication), React Toastify
 
 ## 🛠 Features
 
