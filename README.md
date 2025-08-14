@@ -31,7 +31,7 @@ This application solves a major problem for beginners who are unsure about how a
 - Support for multiple entries within a section.
 - Edit or delete specific entries.
 
-#### `AI Descriptions Generation`
+#### `AI Description Generation`
 
 - Generate professional resume descriptions using Google Gemini AI.
 
