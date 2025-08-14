@@ -1,13 +1,14 @@
 "use client";
 
 import React from "react";
-import { GithubIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
+import Image from "next/image";
+import { GithubIcon, LinkedinIcon } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import GetStartedButton from "@/components/ui/get-started-button";
 import { aiFeatures, features } from "./../utils/features";
 import AnimatedHeading from "./animated-heading";
 import GoToTop from "./go-to-top";
-import Image from "next/image";
 
 interface HomePageProps {
   isAuthenticated: boolean;
@@ -66,7 +67,7 @@ const HomePage = ({ isAuthenticated }: HomePageProps) => {
                 <LinkedinIcon className="social-icon-btn" />
               </a>
               <a href="https://x.com/mohosinh99" target="_blank">
-                <TwitterIcon className="social-icon-btn" />
+                <FaXTwitter size={22} className="social-icon-btn" />
               </a>
               <a href="https://github.com/Mohosin999" target="_blank">
                 <GithubIcon className="social-icon-btn" />
@@ -104,7 +105,7 @@ const HomePage = ({ isAuthenticated }: HomePageProps) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
             {aiFeatures.map((item, index) => (
               <div key={index}>
-                <div className="mb-4">
+                <div className="mb-1 md:mb-2">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -113,7 +114,7 @@ const HomePage = ({ isAuthenticated }: HomePageProps) => {
                     className="object-cover rounded-lg"
                   />
                 </div>
-                <h2 className="h2 mb-2">{item.title}</h2>
+                <h2 className="h2">{item.title}</h2>
                 <p className="paragraph">{item.description}</p>
               </div>
             ))}
