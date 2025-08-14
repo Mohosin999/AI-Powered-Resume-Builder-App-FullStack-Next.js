@@ -4,9 +4,10 @@ import React from "react";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GetStartedButton from "@/components/ui/get-started-button";
-import { features } from "./../utils/features";
+import { aiFeatures, features } from "./../utils/features";
 import AnimatedHeading from "./animated-heading";
 import GoToTop from "./go-to-top";
+import Image from "next/image";
 
 interface HomePageProps {
   isAuthenticated: boolean;
@@ -78,7 +79,7 @@ const HomePage = ({ isAuthenticated }: HomePageProps) => {
         {/*=====================================================================
         =                           Key features                               =
         =====================================================================*/}
-        <div className="w-full py-10 md:pt-16 md:pb-6">
+        <div className="w-full pt-12 pb-10 md:pt-16 md:pb-6">
           <div>
             <h1 className="h1">Why Our Resume Builder?</h1>
 
@@ -95,9 +96,35 @@ const HomePage = ({ isAuthenticated }: HomePageProps) => {
         {/*======================== End of key features =====================*/}
 
         {/*=====================================================================
+        =                        AI Features with Images                       =
+        =====================================================================*/}
+        <div className="w-full pt-2 pb-10 md:pt-16 md:pb-6">
+          <h1 className="h1 text-center mb-8">How AI Enhances Your Resume</h1>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
+            {aiFeatures.map((item, index) => (
+              <div key={index}>
+                <div className="mb-4">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={1280}
+                    height={500}
+                    className="object-cover rounded-lg"
+                  />
+                </div>
+                <h2 className="h2 mb-2">{item.title}</h2>
+                <p className="paragraph">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/*==================== End of AI Features section ==================*/}
+
+        {/*=====================================================================
         =                            Testimonials                              =
         =====================================================================*/}
-        <div className="w-full md:pt-16 pb-10 md:pb-20">
+        <div className="w-full pt-2 pb-10 md:pt-16 md:pb-20">
           <div>
             <h1 className="h1">What Our Users Are Saying</h1>
 

@@ -1,4 +1,4 @@
-# Frontend: AI-Powered Resume Builder Application
+# FullStack AI Resume Builder App - Next.js
 
 ## 📑 Table of Contents
 
@@ -6,6 +6,8 @@
 - [Technologies & Tools Used](#-technologies--tools-used)
 - [Features](#-features)
 - [Setup and Installation](#-setup-and-installation)
+
+![AI Features](./public/img/ai_resume.png)
 
 ## 📄 Description
 
@@ -23,27 +25,27 @@ This application solves a major problem for beginners who are unsure about how a
 
 ## 🛠 Features
 
-### `Customizable Resume Sections`
+#### `Customizable Resume Sections`
 
 - Users can add, edit, or delete any resume section.
 - Support for multiple entries within a section.
 - Edit or delete specific entries.
 
-### `AI Descriptions Generation`
+#### `AI Descriptions Generation`
 
 - Generate professional resume descriptions using Google Gemini AI.
 
-### `AI Skill Suggestions`
+#### `AI Skill Suggestions`
 
 - Provides intelligent skill suggestions based on the user’s resume title.
 
-### `Download as PDF`
+#### `Download as PDF`
 
 - Users can download their resume in a PDF format.
 
 ## 🚀 Setup and Installation
 
-### `Clone the Repository:`
+#### `Clone the Repository:`
 
 ```
 https://github.com/Mohosin999/FullStack-AI-Resume-Builder-App-Next.js.git
