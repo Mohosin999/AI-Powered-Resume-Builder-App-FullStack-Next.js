@@ -57,7 +57,7 @@ const HomePage = () => {
                 <LinkedinIcon className="social-icon-btn" />
               </a>
               <a href="https://x.com/mohosinh99" target="_blank">
-                <FaXTwitter size={22} className="social-icon-btn" />
+                <FaXTwitter size={21} className="social-icon-btn" />
               </a>
               <a href="https://github.com/Mohosin999" target="_blank">
                 <GithubIcon className="social-icon-btn" />
