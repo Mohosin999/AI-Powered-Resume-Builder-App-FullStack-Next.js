@@ -1,7 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 import { NextRequest, NextResponse } from "next/server";
 
-// Optional: enable streaming in Next.js
 export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
@@ -19,45 +18,21 @@ export async function POST(req: NextRequest) {
       apiKey: process.env.GEMINI_API_KEY,
     });
 
-    const tools = [
-      {
-        googleSearch: {},
-      },
-    ];
-
-    const config = {
-      thinkingConfig: {
-        thinkingBudget: -1,
-      },
-      tools,
-    };
-
-    const model = "gemini-2.5-pro";
+    const model = "gemini-1.5-flash"; // ⚡ much faster
 
     const contents = [
       {
         role: "user",
-        parts: [
-          {
-            text: prompt || "Hello Gemini!",
-          },
-        ],
+        parts: [{ text: prompt || "Hello Gemini!" }],
       },
     ];
 
-    const response = await ai.models.generateContentStream({
+    const response = await ai.models.generateContent({
       model,
-      config,
       contents,
     });
 
-    // Collect stream data
-    let fullText = "";
-    for await (const chunk of response) {
-      if (chunk.text) fullText += chunk.text;
-    }
-
-    return NextResponse.json({ result: fullText });
+    return NextResponse.json({ result: response.text || "" });
   } catch (error) {
     console.error("Gemini error:", error);
     return NextResponse.json(
