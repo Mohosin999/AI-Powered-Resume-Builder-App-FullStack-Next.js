@@ -5,6 +5,7 @@ const Home = async () => {
   return (
     <div>
       <HomePage />
+      <h1>akash</h1>
     </div>
   );
 };
