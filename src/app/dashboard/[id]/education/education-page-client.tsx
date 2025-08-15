@@ -41,7 +41,7 @@ const EducationPageClient = ({
       // Update education
       await upsertEducation(formData);
 
-      toast.success("Education updated successfully!");
+      toast.success("Updated education successfully!");
       setIsEditing(false);
     } catch (error) {
       console.error(error);

@@ -42,7 +42,7 @@ const ExperiencePageClient = ({
       // Upsert experience
       await upsertExperience(formData);
 
-      toast.success("Experience updated successfully!");
+      toast.success("Updated experience successfully!");
       setIsEditing(false);
     } catch (error) {
       console.error(error);

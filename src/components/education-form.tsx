@@ -33,7 +33,7 @@ export function EducationForm({
       await upsertEducation(formData);
 
       if (handleModalClose) handleModalClose();
-      toast.success("Education added successfully!");
+      toast.success("Added education successfully!");
     } catch (error) {
       console.error(error);
       toast.error("Failed to add education");

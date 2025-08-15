@@ -17,8 +17,11 @@ const PersonalDetailsForm = ({
   personalDetails,
   resumeId,
 }: PersonalDetailsFormProps) => {
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(!personalDetails?.firstName);
   const [loading, setLoading] = useState(false);
+
+  // Determine if we're adding new details or updating existing ones
+  const isAddingNew = !personalDetails?.firstName;
 
   /**
    * Handles form submission
@@ -35,11 +38,16 @@ const PersonalDetailsForm = ({
       // Update personal details
       await upsertPersonalDetails(formData);
 
-      toast.success("Details added successfully!");
+      if (isAddingNew) {
+        toast.success("Added details successfully!");
+      } else {
+        toast.success("Updated details successfully!");
+      }
+
       setIsEditing(false);
     } catch (error) {
       console.error(error);
-      toast.error("Failed to add details");
+      toast.error("Failed to save details");
     } finally {
       setLoading(false);
     }
@@ -150,8 +158,8 @@ const PersonalDetailsForm = ({
         <div className="flex justify-end">
           <LoadingButton
             loading={loading}
-            loadingText="Adding"
-            title="Add Details"
+            loadingText={isAddingNew ? "Adding" : "Updating"}
+            title={isAddingNew ? "Add Details" : "Update Details"}
           />
         </div>
       </form>

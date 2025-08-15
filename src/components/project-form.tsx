@@ -59,7 +59,7 @@ const ProjectForm = ({ resumeId, handleModalClose }: ProjectFormProps) => {
       await upsertProject(formData);
 
       if (handleModalClose) handleModalClose();
-      toast.success("Project added successfully!");
+      toast.success("Added project successfully!");
     } catch (error) {
       console.error(error);
       toast.error("Failed to add project");

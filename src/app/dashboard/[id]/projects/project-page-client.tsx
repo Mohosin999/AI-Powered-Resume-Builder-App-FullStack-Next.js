@@ -39,7 +39,7 @@ const ProjectPageClient = ({ projects, resumeId }: ProjectPageClientProps) => {
       // Update project
       await upsertProject(formData);
 
-      toast.success("Project updated successfully!");
+      toast.success("Updated project successfully!");
       setIsEditing(false);
     } catch (error) {
       console.error(error);

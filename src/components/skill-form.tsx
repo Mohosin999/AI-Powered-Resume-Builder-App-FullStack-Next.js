@@ -106,7 +106,7 @@ export function SkillForm({ resumeId }: { resumeId: string }) {
       const formData = new FormData(e.currentTarget);
       await createSkill(formData);
       setSkillInput("");
-      toast.success("Skill added successfully!");
+      toast.success("Added skill successfully!");
     } catch (error) {
       console.error(error);
       toast.error("Failed to add skill");

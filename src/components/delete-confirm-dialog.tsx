@@ -61,7 +61,7 @@ const DeleteConfirmDialog = ({
       <AlertDialogContent className="card">
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription className="text-[#72839E]">
+          <AlertDialogDescription className="paragraph">
             {description}
           </AlertDialogDescription>
         </AlertDialogHeader>

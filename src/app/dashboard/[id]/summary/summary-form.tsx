@@ -25,6 +25,9 @@ const SummaryForm = ({ resumeId, summaryInfo, jobTitle }: SummaryFormProps) => {
 
   const suggestionRef = useRef<HTMLDivElement | null>(null);
 
+  // Determine if we're adding new summary or updating existing one
+  const isAddingNew = !summaryInfo.content;
+
   /**
    * Scroll to AI suggestion when generated
    */
@@ -62,7 +65,13 @@ const SummaryForm = ({ resumeId, summaryInfo, jobTitle }: SummaryFormProps) => {
     try {
       const formData = new FormData(e.currentTarget);
       await upsertSummary(formData);
-      toast.success("Summary added successfully!");
+
+      if (isAddingNew) {
+        toast.success("Added summary successfully!");
+      } else {
+        toast.success("Updated summary successfully!");
+      }
+
       setIsEditing(false);
     } catch (error) {
       console.error(error);
@@ -126,11 +135,12 @@ const SummaryForm = ({ resumeId, summaryInfo, jobTitle }: SummaryFormProps) => {
         <div className="flex justify-end">
           <LoadingButton
             loading={loading}
-            loadingText="Adding"
-            title="Add Summary"
+            loadingText={isAddingNew ? "Adding" : "Updating"}
+            title={isAddingNew ? "Add Summary" : "Update Summary"}
           />
         </div>
 
+        {/* AI Suggestion */}
         {aiSuggestion && (
           <div ref={suggestionRef}>
             <h3 className="text-green-500 font-bold">Generated From AI 🎉</h3>

@@ -62,7 +62,7 @@ export function ExperienceForm({
       await upsertExperience(formData);
 
       if (handleModalClose) handleModalClose();
-      toast.success("Experience Added Successfully!");
+      toast.success("Added experience Successfully!");
     } catch (error) {
       console.error(error);
       toast.error("Failed to add experience");
