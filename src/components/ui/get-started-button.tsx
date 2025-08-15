@@ -1,33 +1,16 @@
 "use client";
-import { SignUpButton } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+
+import { SignUpButton, useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-type Props = {
-  isAuthenticated: boolean;
-};
-
-/**
- * GetStartedButton Component
- *
- * This component renders a "Get Started for Free" button.
- * - If the user is authenticated, it navigates them to the dashboard.
- * - If not, it triggers the Clerk SignUp modal.
- *
- * Props:
- * - isAuthenticated (boolean): User's authentication status.
- */
-const GetStartedButton = ({ isAuthenticated }: Props) => {
+const GetStartedButton = () => {
+  const { userId } = useAuth();
   const router = useRouter();
 
-  /**
-   * Handles the click event on the button.
-   * - Redirects authenticated users to the dashboard.
-   * - Opens the SignUp modal for unauthenticated users.
-   */
   const handleClick = () => {
-    if (isAuthenticated) {
+    if (userId) {
       router.push("/dashboard");
     } else {
       // Programmatically trigger the hidden SignUpButton

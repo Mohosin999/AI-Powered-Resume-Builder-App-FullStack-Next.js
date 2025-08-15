@@ -10,17 +10,7 @@ import { aiFeatures, features } from "./../utils/features";
 import AnimatedHeading from "./animated-heading";
 import GoToTop from "./go-to-top";
 
-interface HomePageProps {
-  isAuthenticated: boolean;
-}
-
-/**
- * Home page component
- *
- * @param {boolean} isAuthenticated Whether the user is authenticated.
- * @returns {JSX.Element} The home page component.
- */
-const HomePage = ({ isAuthenticated }: HomePageProps) => {
+const HomePage = () => {
   return (
     <div className="px-3 md:px-10 lg:px-14">
       <div className="min-h-screen">
@@ -45,7 +35,7 @@ const HomePage = ({ isAuthenticated }: HomePageProps) => {
 
           {/* Buttons */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-3">
-            <GetStartedButton isAuthenticated={isAuthenticated} />
+            <GetStartedButton />
 
             <a
               href="https://github.com/Mohosin999/FullStack-AI-Resume-Builder-App-Next.js"
