@@ -1,7 +1,7 @@
+import type { Metadata } from "next";
 import { getPersonalDetails } from "@/actions/resume-actions";
 import PersonalDetailsForm from "./personal-details-form";
 import GoToTop from "@/components/go-to-top";
-import type { Metadata } from "next";
 
 // Metadata
 export async function generateMetadata({
