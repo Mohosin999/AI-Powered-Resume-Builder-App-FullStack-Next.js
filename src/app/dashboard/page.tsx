@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { getResumes } from "@/actions/resume-actions";
 import DisplayAllResumes from "@/components/display-all-resumes";
-import type { Metadata } from "next";
 
 // Metadata
 export const metadata: Metadata = {

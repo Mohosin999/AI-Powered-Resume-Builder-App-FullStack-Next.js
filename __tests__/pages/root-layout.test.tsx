@@ -17,6 +17,11 @@ jest.mock("../../src/components/theme-provider", () => ({
   ),
 }));
 
+// Mock ToastContainer
+jest.mock("react-toastify", () => ({
+  ToastContainer: () => <div data-testid="toast-container" />,
+}));
+
 // Mock Navbar
 jest.mock("../../src/components/navbar", () => {
   const MockNavbar = () => <div data-testid="mock-navbar" />;
@@ -29,6 +34,24 @@ jest.mock("../../src/components/footer", () => {
   const MockFooter = () => <div data-testid="mock-footer" />;
   MockFooter.displayName = "Footer";
   return MockFooter;
+});
+
+// 🚫 Silence <html>/<body> DOM nesting warnings only for this test file
+beforeAll(() => {
+  jest.spyOn(console, "error").mockImplementation((msg, ...args) => {
+    if (
+      typeof msg === "string" &&
+      (msg.includes("validateDOMNesting") || msg.includes("Warning:"))
+    ) {
+      return;
+    }
+    // keep other errors
+    console.error(msg, ...args);
+  });
+});
+
+afterAll(() => {
+  (console.error as jest.Mock).mockRestore();
 });
 
 describe("Root Layout", () => {
@@ -44,5 +67,6 @@ describe("Root Layout", () => {
     expect(screen.getByTestId("theme-provider")).toBeInTheDocument();
     expect(screen.getByTestId("mock-navbar")).toBeInTheDocument();
     expect(screen.getByTestId("mock-footer")).toBeInTheDocument();
+    expect(screen.getByTestId("toast-container")).toBeInTheDocument();
   });
 });
