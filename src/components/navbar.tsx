@@ -79,18 +79,13 @@ const Navbar = () => {
         =====================================================================*/}
         {/* Mobile Menu Button */}
         <div className="flex md:hidden">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleMobileMenu}
-            className="ghost-btn"
-          >
+          <div onClick={toggleMobileMenu}>
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6 text-gray-700 dark:text-gray-200" />
+              <X className="text-gray-700 dark:text-gray-200" />
             ) : (
-              <Menu className="h-6 w-6 text-gray-700 dark:text-gray-200" />
+              <Menu className="text-gray-700 dark:text-gray-200" />
             )}
-          </Button>
+          </div>
         </div>
       </div>
 

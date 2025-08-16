@@ -7,8 +7,8 @@ export default function Loader() {
       style={{ backdropFilter: "blur(1px)" }}
     >
       <div className="flex justify-center items-center gap-2">
-        <LoaderIcon className="w-4 h-4 animate-spin" />
-        <span className="text-emerald-500 text-lg font-semibold tracking-wide">
+        <LoaderIcon className="w-8 h-8 animate-spin" />
+        <span className="text-emerald-500 text-2xl font-semibold tracking-wide">
           AI Resume Builder
         </span>
       </div>
