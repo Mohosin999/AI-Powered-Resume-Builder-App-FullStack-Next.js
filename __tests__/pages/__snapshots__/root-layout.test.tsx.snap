@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Root Layout renders child inside root layout with navbar and footer 1`] = `
+<div>
+  <html
+    lang="en"
+  >
+    <body
+      class="className antialiased bg-[#F4F2EE] dark:bg-[#131A25]"
+    >
+      <div
+        data-testid="clerk-provider"
+      >
+        <div
+          data-testid="theme-provider"
+        >
+          <div
+            id="header-footer"
+          >
+            <div
+              data-testid="mock-navbar"
+            />
+          </div>
+          <div
+            class="min-h-screen"
+          >
+            <div
+              data-testid="child"
+            >
+              Child
+            </div>
+          </div>
+          <div
+            id="header-footer"
+          >
+            <div
+              data-testid="mock-footer"
+            />
+          </div>
+          <section
+            aria-atomic="false"
+            aria-label="Notifications Alt+T"
+            aria-live="polite"
+            aria-relevant="additions text"
+            class="Toastify"
+          />
+        </div>
+      </div>
+    </body>
+  </html>
+</div>
+`;
