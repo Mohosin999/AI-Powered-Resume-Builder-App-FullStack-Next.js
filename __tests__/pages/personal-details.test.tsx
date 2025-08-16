@@ -57,7 +57,6 @@ describe("PersonalDetailsPage", () => {
     expect(screen.getByTestId("mock-personal-details-form")).toHaveTextContent(
       `Form for ${fakeId} - John`
     );
-
     expect(screen.getByTestId("mock-go-to-top")).toBeInTheDocument();
   });
 
