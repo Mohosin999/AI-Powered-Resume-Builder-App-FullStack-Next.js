@@ -18,6 +18,14 @@ export const metadata: Metadata = {
   title: "AI Resume Builder - Create Professional Resumes Instantly",
   description:
     "Build your professional resume in minutes with our AI-powered resume builder. Generate job-ready resumes, summaries, experience details, and more using smart AI suggestions.",
+  keywords: [
+    "AI Resume Builder",
+    "Online Resume Dashboard",
+    "Create Resume",
+    "Manage Resumes",
+    "Edit Resume Online",
+    "Professional CV Builder",
+  ],
 };
 
 export default function RootLayout({

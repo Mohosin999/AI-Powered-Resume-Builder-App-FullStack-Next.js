@@ -14,7 +14,7 @@ import ExternalLink from "@/components/ui/external-link";
 import GoToTop from "@/components/go-to-top";
 
 const PreviewResume = async ({ params }: { params: { id: string } }) => {
-  const { id } = await params;
+  const { id } = params;
 
   const personalDetails = await getPersonalDetails(id);
   const summary = await getSummary(id);

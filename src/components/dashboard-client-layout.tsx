@@ -42,7 +42,7 @@ export default function DashboardClientLayout({
           {user?.image ? (
             <Image
               src={user.image}
-              alt="Profile"
+              alt="User profile image"
               width={96}
               height={96}
               priority

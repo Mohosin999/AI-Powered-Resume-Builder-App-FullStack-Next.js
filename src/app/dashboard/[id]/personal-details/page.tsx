@@ -1,13 +1,34 @@
 import { getPersonalDetails } from "@/actions/resume-actions";
 import PersonalDetailsForm from "./personal-details-form";
 import GoToTop from "@/components/go-to-top";
+import type { Metadata } from "next";
+
+// Metadata
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const { id } = params;
+  return {
+    title: `Edit Personal Details | Resume ${id} | AI Resume Builder`,
+    description: `Edit the personal details of your AI-generated resume ${id}. Update your name, job title, contact information, and more for a professional CV.`,
+    keywords: [
+      "AI Resume Builder",
+      "Edit Resume",
+      "Update Personal Details",
+      "Resume Editor",
+      "Professional CV Builder",
+    ],
+  };
+}
 
 export default async function PersonalDetailsPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const { id } = await params;
+  const { id } = params;
   const personalDetails = await getPersonalDetails(id);
 
   // Default values to prevent uncontrolled/controlled warnings by ensuring fields always have a string.
