@@ -1,7 +1,7 @@
+import type { Metadata } from "next";
 import { getExperiences } from "@/actions/resume-actions";
 import ExperiencePageClient from "./experience-page-client";
 import GoToTop from "@/components/go-to-top";
-import type { Metadata } from "next";
 
 // Metadata
 export async function generateMetadata({

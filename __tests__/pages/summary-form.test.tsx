@@ -3,17 +3,6 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import SummaryForm from "@/app/dashboard/[id]/summary/summary-form";
 import { upsertSummary } from "@/actions/resume-actions";
 import { toast } from "react-toastify";
-
-// Mock next/navigation
-jest.mock("next/navigation", () => ({
-  useRouter: () => ({
-    push: jest.fn(),
-    replace: jest.fn(),
-  }),
-  usePathname: () => "/dashboard/resume-123",
-  useSearchParams: () => new URLSearchParams(),
-}));
-
 // Mock actions
 jest.mock("../../src/actions/resume-actions", () => ({
   upsertSummary: jest.fn(),
@@ -25,6 +14,35 @@ jest.mock("react-toastify", () => ({
     success: jest.fn(),
     error: jest.fn(),
   },
+}));
+
+// Mock PageHeader
+jest.mock("../../src/components/PageHeader", () => ({
+  __esModule: true,
+  PageHeader: ({
+    title,
+    resumeId,
+    nextPage,
+    showSkip,
+    showPrevious,
+    isEditing,
+  }: {
+    title: string;
+    resumeId: string;
+    nextPage: string;
+    showSkip?: boolean;
+    showPrevious?: boolean;
+    isEditing?: boolean;
+  }) => (
+    <div data-testid="mock-page-header">
+      <h2>{title}</h2>
+      <p>resumeId: {resumeId}</p>
+      <p>nextPage: {nextPage}</p>
+      <p>showSkip: {showSkip ? "true" : "false"}</p>
+      <p>showPrevious: {showPrevious ? "true" : "false"}</p>
+      <p>isEditing: {isEditing ? "true" : "false"}</p>
+    </div>
+  ),
 }));
 
 jest.mock("../../src/components/ui/generate-ai-button", () => ({
@@ -112,7 +130,7 @@ describe("SummaryForm", () => {
   const defaultProps = {
     resumeId: "resume-123",
     summaryInfo: {
-      id: "summary-123",
+      id: "id-123",
       resumeId: "resume-123",
       content: "Existing summary content",
     },
@@ -139,7 +157,7 @@ describe("SummaryForm", () => {
     expect(screen.getByTestId("summary-textarea")).toHaveValue(
       "Existing summary content"
     );
-    // expect(screen.getByTestId("page-header-mock")).toBeInTheDocument();
+    expect(screen.getByTestId("mock-page-header")).toBeInTheDocument();
     expect(screen.getByTestId("generate-ai-button")).toBeInTheDocument();
   });
 
