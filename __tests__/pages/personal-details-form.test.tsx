@@ -17,7 +17,9 @@ jest.mock("react-toastify", () => ({
   },
 }));
 
-// Stop console error
+/** =======================================================================
+ *                         Stop console error
+ ========================================================================*/
 beforeAll(() => {
   jest.spyOn(console, "error").mockImplementation(() => {});
 });
@@ -26,6 +28,9 @@ afterAll(() => {
   (console.error as jest.Mock).mockRestore();
 });
 
+/** =======================================================================
+ *                             Test cases
+ ========================================================================*/
 describe("PersonalDetailsForm", () => {
   const mockUpsert = upsertPersonalDetails as jest.MockedFunction<
     typeof upsertPersonalDetails
