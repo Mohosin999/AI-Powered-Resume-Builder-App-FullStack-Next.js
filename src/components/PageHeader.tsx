@@ -41,14 +41,14 @@ interface PageHeaderProps {
   isEditing?: boolean;
 }
 
-export function PageHeader({
+const PageHeader = ({
   title,
   resumeId,
   nextPage,
   showSkip = false,
   isEditing = false,
   showPrevious = false,
-}: PageHeaderProps) {
+}: PageHeaderProps) => {
   return (
     <div className="flex justify-between items-center">
       <h2 className="h2 mb-6">{title}</h2>
@@ -60,4 +60,6 @@ export function PageHeader({
       </div>
     </div>
   );
-}
+};
+
+export default PageHeader;

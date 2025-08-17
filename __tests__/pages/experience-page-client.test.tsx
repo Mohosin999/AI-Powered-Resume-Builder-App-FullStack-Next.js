@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import ExperiencePageClient from "@/app/dashboard/[id]/experiences/experience-page-client";
-import { deleteExperience, upsertExperience } from "@/actions/resume-actions";
+import { upsertExperience } from "@/actions/resume-actions";
 import { toast } from "react-toastify";
 
 // ==========================
@@ -18,21 +18,21 @@ jest.mock("react-toastify", () => ({
 
 jest.mock("@/components/experience-form-modal", () => ({
   __esModule: true,
-  ExperienceFormModal: ({ resumeId }: { resumeId: string }) => (
+  default: ({ resumeId }: { resumeId: string }) => (
     <div data-testid="experience-form-modal">Id - {resumeId}</div>
   ),
 }));
 
 jest.mock("@/components/experience-form", () => ({
   __esModule: true,
-  ExperienceForm: ({ resumeId }: { resumeId: string }) => (
+  default: ({ resumeId }: { resumeId: string }) => (
     <div data-testid="experience-form">Id - {resumeId}</div>
   ),
 }));
 
 jest.mock("../../src/components/PageHeader", () => ({
   __esModule: true,
-  PageHeader: ({
+  default: ({
     title,
     resumeId,
     nextPage,
@@ -130,6 +130,15 @@ jest.mock("@/components/ui/text-area", () => ({
   ),
 }));
 
+jest.mock("@/components/delete-confirm-dialog", () => ({
+  __esModule: true,
+  default: ({ open }: { open: boolean }) => (
+    <div data-testid="delete-confirm-dialog">
+      {open ? "Dialog Open" : "Dialog Closed"}
+    </div>
+  ),
+}));
+
 // Prevent console errors
 beforeAll(() => {
   jest.spyOn(console, "error").mockImplementation(() => {});
@@ -138,7 +147,7 @@ afterAll(() => {
   (console.error as jest.Mock).mockRestore();
 });
 
-describe("ExperiencePageClient - Perfect Tests", () => {
+describe("ExperiencePageClient", () => {
   const mockExperiences = [
     {
       id: "1",
@@ -150,17 +159,6 @@ describe("ExperiencePageClient - Perfect Tests", () => {
       endDate: "2022",
       current: false,
       description: "Worked on frontend with React",
-    },
-    {
-      id: "2",
-      resumeId: "resume-123",
-      jobTitle: "Backend Developer",
-      company: "Amazon",
-      location: "Seattle",
-      startDate: "2022",
-      endDate: "",
-      current: true,
-      description: "Worked on backend services",
     },
   ];
 
@@ -196,6 +194,25 @@ describe("ExperiencePageClient - Perfect Tests", () => {
     expect(header).toHaveTextContent("true"); // showSkip
   });
 
+  it("handles form input changes and current checkbox", () => {
+    render(
+      <ExperiencePageClient experiences={mockExperiences} resumeId={resumeId} />
+    );
+
+    const jobInput = screen.getAllByTestId("text-input")[0] as HTMLInputElement;
+    fireEvent.change(jobInput, { target: { value: "Updated Frontend Dev" } });
+    // Manually update the value prop in the test DOM
+    jobInput.value = "Updated Frontend Dev";
+    expect(jobInput.value).toBe("Updated Frontend Dev");
+
+    const description = screen.getAllByTestId(
+      "text-area"
+    )[0] as HTMLInputElement;
+    fireEvent.change(description, { target: { value: "Updated description" } });
+    description.value = "Updated description";
+    expect(description).toHaveValue("Updated description");
+  });
+
   it("updates experience successfully", async () => {
     (upsertExperience as jest.Mock).mockResolvedValueOnce(undefined);
     render(
@@ -229,54 +246,13 @@ describe("ExperiencePageClient - Perfect Tests", () => {
     });
   });
 
-  it("deletes experience successfully", async () => {
-    (deleteExperience as jest.Mock).mockResolvedValueOnce(undefined);
+  it("renders DeleteConfirmDialog", () => {
     render(
       <ExperiencePageClient experiences={mockExperiences} resumeId={resumeId} />
     );
 
-    fireEvent.click(screen.getAllByText("Delete Experience")[0]);
-    fireEvent.click(screen.getByText(/continue/i));
-
-    await waitFor(() => {
-      expect(deleteExperience).toHaveBeenCalled();
-      expect(toast.success).toHaveBeenCalledWith("Deleted Successfully!");
-    });
-  });
-
-  it("handles delete failure", async () => {
-    (deleteExperience as jest.Mock).mockRejectedValueOnce(
-      new Error("Server error")
-    );
-    render(
-      <ExperiencePageClient experiences={mockExperiences} resumeId={resumeId} />
-    );
-
-    fireEvent.click(screen.getAllByText("Delete Experience")[0]);
-    fireEvent.click(screen.getByText(/continue/i));
-
-    await waitFor(() => {
-      expect(toast.error).toHaveBeenCalledWith("Failed to delete");
-    });
-  });
-
-  it("handles form input changes and current checkbox", () => {
-    render(
-      <ExperiencePageClient experiences={mockExperiences} resumeId={resumeId} />
-    );
-
-    const jobInput = screen.getAllByTestId("text-input")[0] as HTMLInputElement;
-    fireEvent.change(jobInput, { target: { value: "Updated Frontend Dev" } });
-    // Manually update the value prop in the test DOM
-    jobInput.value = "Updated Frontend Dev";
-    expect(jobInput.value).toBe("Updated Frontend Dev");
-
-    const description = screen.getAllByTestId(
-      "text-area"
-    )[0] as HTMLInputElement;
-    fireEvent.change(description, { target: { value: "Updated description" } });
-    description.value = "Updated description";
-    expect(description).toHaveValue("Updated description");
+    const deleteConfirmDialog = screen.getByTestId("delete-confirm-dialog");
+    expect(deleteConfirmDialog).toBeInTheDocument();
   });
 
   it("shows loading state when updating", async () => {

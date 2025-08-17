@@ -7,7 +7,7 @@ import { FaPlus } from "react-icons/fa6";
 import { AnimatePresence, motion } from "framer-motion";
 import { fadeInUp } from "@/utils/animation";
 
-export function ExperienceFormModal({ resumeId }: { resumeId: string }) {
+const ExperienceFormModal = ({ resumeId }: { resumeId: string }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Handler function to close the modal
@@ -55,4 +55,6 @@ export function ExperienceFormModal({ resumeId }: { resumeId: string }) {
       </AnimatePresence>
     </div>
   );
-}
+};
+
+export default ExperienceFormModal;

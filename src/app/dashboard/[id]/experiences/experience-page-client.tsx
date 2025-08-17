@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { deleteExperience, upsertExperience } from "@/actions/resume-actions";
-import { ExperienceFormModal } from "@/components/experience-form-modal";
-import { ExperienceForm } from "@/components/experience-form";
-import { PageHeader } from "@/components/PageHeader";
+import ExperienceFormModal from "@/components/experience-form-modal";
+import ExperienceForm from "@/components/experience-form";
+import PageHeader from "@/components/PageHeader";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";

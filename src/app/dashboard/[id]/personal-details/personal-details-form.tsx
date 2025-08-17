@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { PageHeader } from "@/components/PageHeader";
+import PageHeader from "@/components/PageHeader";
 import { PersonalDetails } from "@/utils/type";
 import TextInput from "@/components/ui/text-input";
 import LoadingButton from "@/components/ui/loading-button";

@@ -14,10 +14,10 @@ interface ExperienceFormProps {
   handleModalClose?: () => void;
 }
 
-export function ExperienceForm({
+const ExperienceForm = ({
   resumeId,
   handleModalClose,
-}: ExperienceFormProps) {
+}: ExperienceFormProps) => {
   const [jobTitle, setJobTitle] = useState("");
   const [content, setContent] = useState("");
   const [aiGenerating, setAiGenerating] = useState(false);
@@ -174,4 +174,6 @@ export function ExperienceForm({
       </div>
     </form>
   );
-}
+};
+
+export default ExperienceForm;
