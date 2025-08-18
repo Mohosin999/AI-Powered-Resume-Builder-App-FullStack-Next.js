@@ -2,12 +2,10 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import Home from "@/app/page";
 
-// Mock the HomePage component
-jest.mock("../../src/components/home-page", () => {
-  const MockHomePage = () => <div data-testid="mock-homepage" />;
-  MockHomePage.displayName = "HomePage";
-  return MockHomePage;
-});
+jest.mock("@/components/home-page", () => ({
+  __esModule: true,
+  default: () => <div data-testid="mock-homepage" />,
+}));
 
 describe("Home Page", () => {
   it("renders renders HomePage component", () => {

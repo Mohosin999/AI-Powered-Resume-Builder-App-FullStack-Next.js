@@ -18,11 +18,10 @@ interface DashboardClientLayoutProps {
     image?: string;
   } | null;
 }
-
-export default function DashboardClientLayout({
+const DashboardClientLayout = ({
   children,
   user,
-}: DashboardClientLayoutProps) {
+}: DashboardClientLayoutProps) => {
   const pathname = usePathname();
   const actualPathName = pathname.split("/").pop();
 
@@ -86,4 +85,6 @@ export default function DashboardClientLayout({
       <main className="flex-1 px-3 pt-4 pb-10 md:p-10 lg:p-14">{children}</main>
     </div>
   );
-}
+};
+
+export default DashboardClientLayout;

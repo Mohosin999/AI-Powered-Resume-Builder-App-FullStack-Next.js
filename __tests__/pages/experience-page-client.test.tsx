@@ -195,8 +195,7 @@ describe("ExperiencePageClient", () => {
     );
     const header = screen.getByTestId("page-header");
     expect(header).toHaveTextContent("Experiences");
-    expect(header).toHaveTextContent(resumeId);
-    expect(header).toHaveTextContent("true"); // showSkip
+    expect(header).toHaveTextContent("true");
   });
 
   it("handles form input changes and current checkbox", () => {

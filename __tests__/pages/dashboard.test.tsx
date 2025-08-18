@@ -3,13 +3,11 @@ import { render, screen } from "@testing-library/react";
 import Dashboard from "@/app/dashboard/page";
 import { getResumes } from "@/actions/resume-actions";
 
-// Mock getResumes
-jest.mock("../../src/actions/resume-actions", () => ({
+jest.mock("@/actions/resume-actions", () => ({
   getResumes: jest.fn(),
 }));
 
-// Mock DisplayAllResumes
-jest.mock("../../src/components/display-all-resumes", () => ({
+jest.mock("@/components/display-all-resumes", () => ({
   __esModule: true,
   default: ({ allResumes }: { allResumes: [] }) => (
     <div data-testid="display-all-resumes">

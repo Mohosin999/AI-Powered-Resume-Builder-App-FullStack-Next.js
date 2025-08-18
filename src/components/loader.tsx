@@ -1,6 +1,6 @@
 import { Loader as LoaderIcon } from "lucide-react";
 
-export default function Loader() {
+const Loader = () => {
   return (
     <div
       className="fixed inset-0 flex justify-center items-center z-50 bg-black/20"
@@ -14,4 +14,6 @@ export default function Loader() {
       </div>
     </div>
   );
-}
+};
+
+export default Loader;

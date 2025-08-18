@@ -4,39 +4,29 @@ import DashboardLayout from "@/app/dashboard/layout";
 import { auth } from "@clerk/nextjs/server";
 import { getUserByClerkId } from "@/actions/user-actions";
 
-// Mock Clerk auth
 jest.mock("@clerk/nextjs/server", () => ({
   auth: jest.fn(),
 }));
 
-// Mock getUserByClerkId
-jest.mock("../../src/actions/user-actions", () => ({
+jest.mock("@/actions/user-actions", () => ({
   getUserByClerkId: jest.fn(),
 }));
 
-// Mock DashboardClientLayout
-jest.mock("../../src/components/dashboard-client-layout", () => {
-  interface MockUser {
-    name?: string;
-    email?: string;
-  }
-
-  return {
-    __esModule: true,
-    default: ({
-      user,
-      children,
-    }: {
-      user: MockUser | null;
-      children: React.ReactNode;
-    }) => (
-      <div>
-        <div data-testid="mock-dashboard-user">{user?.email}</div>
-        <div data-testid="mock-dashboard-children">{children}</div>
-      </div>
-    ),
-  };
-});
+jest.mock("@/components/dashboard-client-layout", () => ({
+  __esModule: true,
+  default: ({
+    user,
+    children,
+  }: {
+    user: { name?: string; email?: string; image?: string };
+    children: React.ReactNode;
+  }) => (
+    <>
+      <div data-testid="mock-dashboard-user">{user?.email}</div>
+      <div data-testid="mock-dashboard-children">{children}</div>
+    </>
+  ),
+}));
 
 describe("DashboardLayout", () => {
   it("renders children and user info when authenticated", async () => {
