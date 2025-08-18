@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 
-export function DownloadResumeBtn() {
+const DownloadResumeBtn = () => {
   const handleDownload = () => {
     window.print();
   };
@@ -17,4 +17,6 @@ export function DownloadResumeBtn() {
       Download Resume
     </Button>
   );
-}
+};
+
+export default DownloadResumeBtn;

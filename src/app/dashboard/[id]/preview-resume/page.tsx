@@ -7,7 +7,7 @@ import {
   getSkills,
   getSummary,
 } from "@/actions/resume-actions";
-import { DownloadResumeBtn } from "@/components/ui/download-button";
+import DownloadResumeBtn from "@/components/ui/download-button";
 import ResumeHeading from "@/components/ui/resume-heading";
 import { Education, Experience, Project, Skill } from "@/utils/type";
 import ExternalLink from "@/components/ui/external-link";
