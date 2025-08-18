@@ -6,7 +6,7 @@ import { generatePrompt } from "@/utils/generate-prompt";
 import { toast } from "react-toastify";
 import LoadingButton from "./ui/loading-button";
 
-export function SkillForm({ resumeId }: { resumeId: string }) {
+const SkillForm = ({ resumeId }: { resumeId: string }) => {
   const [skillInput, setSkillInput] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [aiGenerating, setAiGenerating] = useState(false);
@@ -160,4 +160,6 @@ export function SkillForm({ resumeId }: { resumeId: string }) {
       </form>
     </div>
   );
-}
+};
+
+export default SkillForm;

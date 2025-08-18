@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import ProjectForm from "./project-form";
 import { fadeInUp } from "@/utils/animation";
 
-export function ProjectFormModal({ resumeId }: { resumeId: string }) {
+const ProjectFormModal = ({ resumeId }: { resumeId: string }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Handler function to close the modal
@@ -57,4 +57,6 @@ export function ProjectFormModal({ resumeId }: { resumeId: string }) {
       </AnimatePresence>
     </div>
   );
-}
+};
+
+export default ProjectFormModal;

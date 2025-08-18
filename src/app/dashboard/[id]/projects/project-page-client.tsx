@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { ProjectFormModal } from "@/components/project-form-modal";
-import { PageHeader } from "@/components/PageHeader";
+import ProjectFormModal from "@/components/project-form-modal";
+import PageHeader from "@/components/PageHeader";
 import { deleteProject, upsertProject } from "@/actions/resume-actions";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";

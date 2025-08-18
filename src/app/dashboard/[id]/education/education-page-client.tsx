@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { deleteEducation, upsertEducation } from "@/actions/resume-actions";
 import { EducationFormModal } from "@/components/education-form-modal";
 import { EducationForm } from "@/components/education-form";
-import { PageHeader } from "@/components/PageHeader";
+import PageHeader from "@/components/PageHeader";
 import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
