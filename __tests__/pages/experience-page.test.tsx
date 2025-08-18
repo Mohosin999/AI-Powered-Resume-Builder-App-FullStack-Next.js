@@ -3,87 +3,78 @@ import { render, screen } from "@testing-library/react";
 import ExperiencePage from "@/app/dashboard/[id]/experiences/page";
 import { getExperiences } from "@/actions/resume-actions";
 
-// Mock getExperiences
-jest.mock("../../src/actions/resume-actions", () => ({
+jest.mock("@/actions/resume-actions", () => ({
   getExperiences: jest.fn(),
 }));
 
-// Mock ExperiencePageClient
-jest.mock(
-  "../../src/app/dashboard/[id]/experiences/experience-page-client",
-  () => {
-    interface MockExperiencePageClientProps {
-      resumeId: string;
-      experiences: Array<{
-        id: string;
-        jobTitle: string;
-        company: string;
-      }> | null;
-    }
+jest.mock("@/app/dashboard/[id]/experiences/experience-page-client", () => ({
+  __esModule: true,
+  default: ({
+    resumeId,
+    experiences,
+  }: {
+    resumeId: string;
+    experiences: Array<{
+      id: string;
+      jobTitle: string;
+      company: string;
+      location?: string | null;
+      startDate: string;
+      endDate?: string | null;
+      current: boolean;
+      description: string;
+    }> | null;
+  }) => (
+    <div data-testid="experience-page-client">
+      Client for {resumeId} - {experiences?.[0]?.jobTitle || "No experiences"}
+    </div>
+  ),
+}));
 
-    return {
-      __esModule: true,
-      default: ({ resumeId, experiences }: MockExperiencePageClientProps) => (
-        <div data-testid="mock-experience-page-client">
-          Client for {resumeId} -{" "}
-          {experiences?.[0]?.jobTitle || "No experiences"}
-        </div>
-      ),
-    };
-  }
-);
-
-// Mock the GoToTop Component
-jest.mock("../../src/components/go-to-top", () => {
-  const MockGoToTop = () => <div data-testid="mock-go-to-top" />;
-  MockGoToTop.displayName = "GoToTop";
-  return MockGoToTop;
-});
+jest.mock("@/components/go-to-top", () => ({
+  __esModule: true,
+  default: () => <div data-testid="go-to-top" />,
+}));
 
 describe("ExperiencePage", () => {
-  it("renders client with experiences and GoToTop button", async () => {
-    const fakeId = "resume-456";
+  const mockId = "resume-456";
+
+  it("renders ExperiencePageClient with experiences", async () => {
     const mockExperiences = [
       {
-        id: "exp-123",
+        id: "1",
+        resumeId: mockId,
         jobTitle: "Software Engineer",
-        company: "Tech Corp",
+        company: "Google",
+        location: "Remote",
+        startDate: "2021",
+        endDate: "2022",
+        current: false,
+        description: "Worked on frontend with React",
       },
     ];
+
     (getExperiences as jest.Mock).mockResolvedValue(mockExperiences);
-
-    const ui = await ExperiencePage({ params: { id: fakeId } });
+    const ui = await ExperiencePage({ params: { id: mockId } });
     render(ui);
-
-    expect(screen.getByTestId("mock-experience-page-client")).toHaveTextContent(
-      `Client for ${fakeId} - Software Engineer`
+    expect(screen.getByTestId("experience-page-client")).toHaveTextContent(
+      `Client for ${mockId} - Software Engineer`
     );
-    expect(screen.getByTestId("mock-go-to-top")).toBeInTheDocument();
   });
 
-  it("renders client with no experiences message when experiences is null", async () => {
-    const fakeId = "resume-456";
+  it("renders ExperiencePageClient with no experiences message when experiences is empty", async () => {
     (getExperiences as jest.Mock).mockResolvedValue(null);
 
-    const ui = await ExperiencePage({ params: { id: fakeId } });
+    const ui = await ExperiencePage({ params: { id: mockId } });
     render(ui);
-
-    expect(screen.getByTestId("mock-experience-page-client")).toHaveTextContent(
-      `Client for ${fakeId} - No experiences`
+    expect(screen.getByTestId("experience-page-client")).toHaveTextContent(
+      `Client for ${mockId} - No experiences`
     );
-    expect(screen.getByTestId("mock-go-to-top")).toBeInTheDocument();
   });
 
-  it("renders client with no experiences message when experiences is empty array", async () => {
-    const fakeId = "resume-456";
-    (getExperiences as jest.Mock).mockResolvedValue([]);
-
-    const ui = await ExperiencePage({ params: { id: fakeId } });
+  it("renders GoToTop button", async () => {
+    const ui = await ExperiencePage({ params: { id: mockId } });
     render(ui);
-
-    expect(screen.getByTestId("mock-experience-page-client")).toHaveTextContent(
-      `Client for ${fakeId} - No experiences`
-    );
-    expect(screen.getByTestId("mock-go-to-top")).toBeInTheDocument();
+    expect(screen.getByTestId("go-to-top")).toBeInTheDocument();
   });
 });

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import GenerateFromAIButton from "@/components/ui/generate-ai-button";
 import { generatePrompt } from "@/utils/generate-prompt";
 import { toast } from "react-toastify";
-import { PageHeader } from "@/components/PageHeader";
+import PageHeader from "@/components/PageHeader";
 import LoadingButton from "@/components/ui/loading-button";
 import { Summary } from "@/utils/type";
 import { upsertSummary } from "@/actions/resume-actions";

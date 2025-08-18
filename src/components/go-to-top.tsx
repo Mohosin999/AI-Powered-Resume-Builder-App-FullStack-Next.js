@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 
-export default function GoToTop() {
+const GoToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -41,4 +41,6 @@ export default function GoToTop() {
       )}
     </>
   );
-}
+};
+
+export default GoToTop;

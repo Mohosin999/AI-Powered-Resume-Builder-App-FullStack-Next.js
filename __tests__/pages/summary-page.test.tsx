@@ -3,40 +3,32 @@ import { render, screen } from "@testing-library/react";
 import SummaryPage from "@/app/dashboard/[id]/summary/page";
 import { getPersonalDetails, getSummary } from "@/actions/resume-actions";
 
-// Mock the dependencies
-jest.mock("../../src/actions/resume-actions", () => ({
+jest.mock("@/actions/resume-actions", () => ({
   getSummary: jest.fn(),
   getPersonalDetails: jest.fn(),
 }));
 
-// Mock the GoToTop Component
-jest.mock("../../src/components/go-to-top", () => {
-  const MockGoToTop = () => <div data-testid="go-to-top" />;
-  MockGoToTop.displayName = "GoToTop";
-  return MockGoToTop;
-});
-
-// Mock SummaryForm
-jest.mock("../../src/app/dashboard/[id]/summary/summary-form", () => {
-  interface MockSummaryFormProps {
+jest.mock("@/app/dashboard/[id]/summary/summary-form", () => ({
+  __esModule: true,
+  default: ({
+    resumeId,
+    summaryInfo,
+    jobTitle,
+  }: {
     resumeId: string;
-    summaryInfo: {
-      id: string;
-      resumeId: string;
-      content: string;
-    };
+    summaryInfo: { id: string; resumeId: string; content: string };
     jobTitle: string;
-  }
+  }) => (
+    <div data-testid="summary-form">
+      Form for {resumeId} - {summaryInfo.content} - {jobTitle}
+    </div>
+  ),
+}));
 
-  return {
-    __esModule: true,
-    default: ({ resumeId, summaryInfo, jobTitle }: MockSummaryFormProps) => (
-      <div data-testid="summary-form">
-        Form for {resumeId} - {summaryInfo.content} - {jobTitle}
-      </div>
-    ),
-  };
-});
+jest.mock("@/components/go-to-top", () => ({
+  __esModule: true,
+  default: () => <div data-testid="go-to-top" />,
+}));
 
 describe("SummaryPage", () => {
   const mockId = "123";
@@ -56,9 +48,7 @@ describe("SummaryPage", () => {
 
     const ui = await SummaryPage({ params: { id: mockId } });
     render(ui);
-
     expect(screen.getByTestId("summary-form")).toBeInTheDocument();
-    expect(screen.getByTestId("go-to-top")).toBeInTheDocument();
     expect(screen.getByTestId("summary-form")).toHaveTextContent(
       `Form for ${mockId} - Experienced React Developer - Frontend Developer`
     );
@@ -70,10 +60,15 @@ describe("SummaryPage", () => {
 
     const ui = await SummaryPage({ params: { id: mockId } });
     render(ui);
-
     expect(screen.getByTestId("summary-form")).toBeInTheDocument();
     expect(screen.getByTestId("summary-form")).toHaveTextContent(
       `Form for ${mockId} -`
     );
+  });
+
+  it("renders GoToTop button", async () => {
+    const ui = await SummaryPage({ params: { id: mockId } });
+    render(ui);
+    expect(screen.getByTestId("go-to-top")).toBeInTheDocument();
   });
 });

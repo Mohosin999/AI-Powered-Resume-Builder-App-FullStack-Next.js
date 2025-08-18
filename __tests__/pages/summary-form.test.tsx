@@ -3,12 +3,11 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import SummaryForm from "@/app/dashboard/[id]/summary/summary-form";
 import { upsertSummary } from "@/actions/resume-actions";
 import { toast } from "react-toastify";
-// Mock actions
-jest.mock("../../src/actions/resume-actions", () => ({
+
+jest.mock("@/actions/resume-actions", () => ({
   upsertSummary: jest.fn(),
 }));
 
-// Mock toast
 jest.mock("react-toastify", () => ({
   toast: {
     success: jest.fn(),
@@ -16,10 +15,9 @@ jest.mock("react-toastify", () => ({
   },
 }));
 
-// Mock PageHeader
 jest.mock("../../src/components/PageHeader", () => ({
   __esModule: true,
-  PageHeader: ({
+  default: ({
     title,
     resumeId,
     nextPage,
@@ -34,7 +32,7 @@ jest.mock("../../src/components/PageHeader", () => ({
     showPrevious?: boolean;
     isEditing?: boolean;
   }) => (
-    <div data-testid="mock-page-header">
+    <div data-testid="page-header">
       <h2>{title}</h2>
       <p>resumeId: {resumeId}</p>
       <p>nextPage: {nextPage}</p>
@@ -45,7 +43,7 @@ jest.mock("../../src/components/PageHeader", () => ({
   ),
 }));
 
-jest.mock("../../src/components/ui/generate-ai-button", () => ({
+jest.mock("@/components/ui/generate-ai-button", () => ({
   __esModule: true,
   default: ({
     onclick,
@@ -64,7 +62,7 @@ jest.mock("../../src/components/ui/generate-ai-button", () => ({
   ),
 }));
 
-jest.mock("../../src/components/ui/loading-button", () => ({
+jest.mock("@/components/ui/loading-button", () => ({
   __esModule: true,
   default: ({
     loading,
@@ -157,8 +155,13 @@ describe("SummaryForm", () => {
     expect(screen.getByTestId("summary-textarea")).toHaveValue(
       "Existing summary content"
     );
-    expect(screen.getByTestId("mock-page-header")).toBeInTheDocument();
-    expect(screen.getByTestId("generate-ai-button")).toBeInTheDocument();
+  });
+
+  it("renders PageHeader with correct props", () => {
+    render(<SummaryForm {...defaultProps} />);
+    const header = screen.getByTestId("page-header");
+    expect(header).toHaveTextContent("Summary");
+    expect(header).toHaveTextContent("true");
   });
 
   it("shows 'Add Summary' button when content is empty", () => {
@@ -166,14 +169,29 @@ describe("SummaryForm", () => {
     expect(screen.getByText("Add Summary")).toBeInTheDocument();
   });
 
-  it("updates summary content when typing", () => {
+  it("shows 'Update Summary' button with default content", () => {
     render(<SummaryForm {...defaultProps} />);
-    const textarea = screen.getByTestId("summary-textarea");
-    fireEvent.change(textarea, { target: { value: "New content" } });
-    expect(textarea).toHaveValue("New content");
+    expect(screen.getByText("Update Summary")).toBeInTheDocument();
   });
 
-  it("submits form successfully", async () => {
+  it("adds summary successfully", async () => {
+    mockUpsert.mockResolvedValueOnce();
+    render(<SummaryForm {...emptyProps} />);
+
+    fireEvent.change(screen.getByTestId("summary-textarea"), {
+      target: { value: "New summary content" },
+    });
+    fireEvent.click(screen.getByText("Add Summary"));
+
+    await waitFor(() => {
+      expect(mockUpsert).toHaveBeenCalled();
+      expect(mockToast.success).toHaveBeenCalledWith(
+        "Added summary successfully!"
+      );
+    });
+  });
+
+  it("updates summary successfully", async () => {
     mockUpsert.mockResolvedValueOnce();
     render(<SummaryForm {...defaultProps} />);
 
@@ -195,7 +213,6 @@ describe("SummaryForm", () => {
     render(<SummaryForm {...defaultProps} />);
 
     fireEvent.click(screen.getByText("Update Summary"));
-
     await waitFor(() => {
       expect(mockToast.error).toHaveBeenCalledWith("Failed to add summary");
     });

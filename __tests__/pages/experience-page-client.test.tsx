@@ -148,6 +148,11 @@ afterAll(() => {
 });
 
 describe("ExperiencePageClient", () => {
+  const mockUpsert = upsertExperience as jest.MockedFunction<
+    typeof upsertExperience
+  >;
+  const mockToast = toast as jest.Mocked<typeof toast>;
+
   const mockExperiences = [
     {
       id: "1",
@@ -214,7 +219,7 @@ describe("ExperiencePageClient", () => {
   });
 
   it("updates experience successfully", async () => {
-    (upsertExperience as jest.Mock).mockResolvedValueOnce(undefined);
+    mockUpsert.mockResolvedValueOnce(undefined);
     render(
       <ExperiencePageClient experiences={mockExperiences} resumeId={resumeId} />
     );
@@ -231,9 +236,7 @@ describe("ExperiencePageClient", () => {
   });
 
   it("shows error toast when update fails", async () => {
-    (upsertExperience as jest.Mock).mockRejectedValueOnce(
-      new Error("Server error")
-    );
+    mockUpsert.mockRejectedValueOnce(new Error("Server error"));
     render(
       <ExperiencePageClient experiences={mockExperiences} resumeId={resumeId} />
     );
@@ -242,7 +245,9 @@ describe("ExperiencePageClient", () => {
     fireEvent.click(updateButton);
 
     await waitFor(() => {
-      expect(toast.error).toHaveBeenCalledWith("Failed to update experience");
+      expect(mockToast.error).toHaveBeenCalledWith(
+        "Failed to update experience"
+      );
     });
   });
 
@@ -250,15 +255,12 @@ describe("ExperiencePageClient", () => {
     render(
       <ExperiencePageClient experiences={mockExperiences} resumeId={resumeId} />
     );
-
     const deleteConfirmDialog = screen.getByTestId("delete-confirm-dialog");
     expect(deleteConfirmDialog).toBeInTheDocument();
   });
 
   it("shows loading state when updating", async () => {
-    (upsertExperience as jest.Mock).mockImplementation(
-      () => new Promise(() => {})
-    );
+    mockUpsert.mockImplementation(() => new Promise(() => {}));
     render(
       <ExperiencePageClient experiences={mockExperiences} resumeId={resumeId} />
     );

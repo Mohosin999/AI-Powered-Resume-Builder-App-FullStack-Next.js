@@ -3,74 +3,73 @@ import { render, screen } from "@testing-library/react";
 import PersonalDetailsPage from "@/app/dashboard/[id]/personal-details/page";
 import { getPersonalDetails } from "@/actions/resume-actions";
 
-// Mock getPersonalDetails
-jest.mock("../../src/actions/resume-actions", () => ({
+jest.mock("@/actions/resume-actions", () => ({
   getPersonalDetails: jest.fn(),
 }));
 
-// Mock PersonalDetailsForm
 jest.mock(
-  "../../src/app/dashboard/[id]/personal-details/personal-details-form",
-  () => {
-    interface MockPersonalDetailsFormProps {
+  "@/app/dashboard/[id]/personal-details/personal-details-form",
+  () => ({
+    __esModule: true,
+    default: ({
+      resumeId,
+      personalDetails,
+    }: {
       resumeId: string;
       personalDetails: {
+        resumeId: string;
         firstName: string;
         lastName: string;
         email: string;
+        jobTitle: string;
+        socialLink: string;
       };
-    }
-
-    return {
-      __esModule: true,
-      default: ({
-        resumeId,
-        personalDetails,
-      }: MockPersonalDetailsFormProps) => (
-        <div data-testid="mock-personal-details-form">
-          Form for {resumeId} - {personalDetails.firstName}
-        </div>
-      ),
-    };
-  }
+    }) => (
+      <div data-testid="personal-details-form">
+        Form for {resumeId} - {personalDetails.firstName}
+      </div>
+    ),
+  })
 );
 
-// Mock the GoToTop Component
-jest.mock("../../src/components/go-to-top", () => {
-  const MockGoToTop = () => <div data-testid="mock-go-to-top" />;
-  MockGoToTop.displayName = "GoToTop";
-  return MockGoToTop;
-});
+jest.mock("@/components/go-to-top", () => ({
+  __esModule: true,
+  default: () => <div data-testid="go-to-top" />,
+}));
 
 describe("PersonalDetailsPage", () => {
-  it("renders form with default values and GoToTop button", async () => {
-    const fakeId = "resume-456";
+  const mockId = "resume-456";
+
+  it("renders PersonalDetailsForm with default values", async () => {
     (getPersonalDetails as jest.Mock).mockResolvedValue({
+      resumeId: mockId,
       firstName: "John",
       lastName: "Doe",
       email: "john@example",
+      jobTitle: "Software Engineer",
+      socialLink: "https://example.com",
     });
 
-    const ui = await PersonalDetailsPage({ params: { id: fakeId } });
+    const ui = await PersonalDetailsPage({ params: { id: mockId } });
     render(ui);
 
-    expect(screen.getByTestId("mock-personal-details-form")).toHaveTextContent(
-      `Form for ${fakeId} - John`
+    expect(screen.getByTestId("personal-details-form")).toHaveTextContent(
+      `Form for ${mockId} - John`
     );
-    expect(screen.getByTestId("mock-go-to-top")).toBeInTheDocument();
   });
-
   it("renders empty default values if personalDetails is null", async () => {
-    const fakeId = "resume-456";
     (getPersonalDetails as jest.Mock).mockResolvedValue(null);
 
-    const ui = await PersonalDetailsPage({ params: { id: fakeId } });
+    const ui = await PersonalDetailsPage({ params: { id: mockId } });
     render(ui);
-
-    expect(screen.getByTestId("mock-personal-details-form")).toHaveTextContent(
-      `Form for ${fakeId} -`
+    expect(screen.getByTestId("personal-details-form")).toHaveTextContent(
+      `Form for ${mockId} -`
     );
+  });
 
-    expect(screen.getByTestId("mock-go-to-top")).toBeInTheDocument();
+  it("renders GoToTop button", async () => {
+    const ui = await PersonalDetailsPage({ params: { id: mockId } });
+    render(ui);
+    expect(screen.getByTestId("go-to-top")).toBeInTheDocument();
   });
 });
