@@ -11,6 +11,14 @@ jest.mock("react-toastify", () => ({
   },
 }));
 
+// Prevent console errors
+beforeAll(() => {
+  jest.spyOn(console, "error").mockImplementation(() => {});
+});
+afterAll(() => {
+  (console.error as jest.Mock).mockRestore();
+});
+
 describe("DeleteConfirmDialog", () => {
   const mockSetOpen = jest.fn();
   const mockDeleteAction = jest.fn();

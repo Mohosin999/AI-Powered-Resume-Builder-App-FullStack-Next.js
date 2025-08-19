@@ -80,6 +80,14 @@ jest.mock("@/components/ui/text-input", () => ({
   ),
 }));
 
+// Prevent console errors
+beforeAll(() => {
+  jest.spyOn(console, "error").mockImplementation(() => {});
+});
+afterAll(() => {
+  (console.error as jest.Mock).mockRestore();
+});
+
 describe("CreateResumeDialog", () => {
   const mockCreateResume = jest.fn();
 
