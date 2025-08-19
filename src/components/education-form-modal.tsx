@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { EducationForm } from "./education-form";
+import EducationForm from "./education-form";
 import { Button } from "./ui/button";
 import { FaPlus } from "react-icons/fa6";
 import { AnimatePresence, motion } from "framer-motion";

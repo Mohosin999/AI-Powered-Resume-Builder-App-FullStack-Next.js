@@ -11,10 +11,7 @@ interface EducationFormProps {
   handleModalClose?: () => void;
 }
 
-export function EducationForm({
-  resumeId,
-  handleModalClose,
-}: EducationFormProps) {
+const EducationForm = ({ resumeId, handleModalClose }: EducationFormProps) => {
   const [loading, setLoading] = useState(false);
 
   /**
@@ -121,4 +118,6 @@ export function EducationForm({
       </div>
     </form>
   );
-}
+};
+
+export default EducationForm;
