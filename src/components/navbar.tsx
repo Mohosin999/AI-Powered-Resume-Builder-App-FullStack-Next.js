@@ -79,7 +79,7 @@ const Navbar = () => {
         =====================================================================*/}
         {/* Mobile Menu Button */}
         <div className="flex md:hidden">
-          <div onClick={toggleMobileMenu}>
+          <div onClick={toggleMobileMenu} data-testid="mobile-menu-button">
             {isMobileMenuOpen ? (
               <X className="text-gray-700 dark:text-gray-200" />
             ) : (
