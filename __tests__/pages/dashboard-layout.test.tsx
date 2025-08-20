@@ -10,6 +10,7 @@ jest.mock("@clerk/nextjs/server", () => ({
 
 jest.mock("@/actions/user-actions", () => ({
   getUserByClerkId: jest.fn(),
+  syncUser: jest.fn(),
 }));
 
 jest.mock("@/components/dashboard-client-layout", () => ({

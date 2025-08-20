@@ -8,8 +8,9 @@ jest.mock("@/components/home-page", () => ({
 }));
 
 describe("Home Page", () => {
-  it("renders renders HomePage component", () => {
-    render(<Home />);
+  it("renders renders HomePage component", async () => {
+    const ui = await Home();
+    render(ui);
 
     expect(screen.getByTestId("mock-homepage")).toBeInTheDocument();
   });
