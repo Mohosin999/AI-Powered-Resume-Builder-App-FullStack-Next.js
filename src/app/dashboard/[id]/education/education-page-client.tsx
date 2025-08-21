@@ -1,16 +1,23 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { deleteEducation, upsertEducation } from "@/actions/resume-actions";
-import { EducationFormModal } from "@/components/education-form-modal";
-import EducationForm from "@/components/education-form";
-import PageHeader from "@/components/PageHeader";
-import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
-import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { Education } from "@/utils/type";
-import TextInput from "@/components/ui/text-input";
-import LoadingButton from "@/components/ui/loading-button";
+import { Button } from "@/components/ui/button";
+
+// Lazy loaded components
+const EducationFormModal = dynamic(
+  () => import("@/components/education-form-modal")
+);
+const EducationForm = dynamic(() => import("@/components/education-form"));
+const PageHeader = dynamic(() => import("@/components/PageHeader"));
+const DeleteConfirmDialog = dynamic(
+  () => import("@/components/delete-confirm-dialog")
+);
+const TextInput = dynamic(() => import("@/components/ui/text-input"));
+const LoadingButton = dynamic(() => import("@/components/ui/loading-button"));
 
 interface EducationPageClientProps {
   educations: Education[];

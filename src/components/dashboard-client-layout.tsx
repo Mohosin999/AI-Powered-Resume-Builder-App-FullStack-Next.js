@@ -1,14 +1,116 @@
+// "use client";
+
+// import { ReactNode } from "react";
+// import Link from "next/link";
+// import Image from "next/image";
+// import { usePathname } from "next/navigation";
+// import CreateResumeDialog from "@/components/create-resume-dialog";
+// import { Button } from "@/components/ui/button";
+// import { FaHome } from "react-icons/fa";
+// import { MdDashboard } from "react-icons/md";
+// import { createResume } from "@/actions/resume-actions";
+
+// interface DashboardClientLayoutProps {
+//   children: ReactNode;
+//   user: {
+//     name?: string;
+//     email?: string;
+//     image?: string;
+//   } | null;
+// }
+// const DashboardClientLayout = ({
+//   children,
+//   user,
+// }: DashboardClientLayoutProps) => {
+//   const pathname = usePathname();
+//   const actualPathName = pathname.split("/").pop();
+
+//   // If the actual path name is "preview-resume", return the children
+//   if (actualPathName === "preview-resume") {
+//     return <div className="px-3 pt-4">{children}</div>;
+//   }
+
+//   return (
+//     <div className="min-h-screen flex flex-col md:flex-row">
+//       {/*=====================================================================
+//         =                             Sidebar                                =
+//       =====================================================================*/}
+//       <aside className="w-full md:w-[260px] lg:w-[300px] md:border-r md:border-gray-400 md:dark:border-gray-700 py-10 lg:py-14 flex flex-col items-center gap-6">
+//         {/* Profile Image */}
+//         <div className="w-24 h-24 rounded-full border-2 bg-gray-800 border-gray-900 dark:border-gray-100 flex items-center justify-center overflow-hidden">
+//           {user?.image ? (
+//             <Image
+//               src={user.image}
+//               alt="User profile image"
+//               width={96}
+//               height={96}
+//               priority
+//               className="w-auto rounded-full object-cover"
+//             />
+//           ) : (
+//             <span className="text-sm text-gray-700 dark:text-gray-300">
+//               Profile Img
+//             </span>
+//           )}
+//         </div>
+
+//         {/* User Details */}
+//         <div className="text-center">
+//           <h2 className="h2">{user?.name || "Unknown User"}</h2>
+//           <p className="paragraph lg:!text-sm">{user?.email}</p>
+//         </div>
+
+//         {/* Navigation Buttons */}
+//         <nav className="w-full flex flex-col items-center justify-center gap-4 text-sm my-2 lg:my-6">
+//           <Link href="/">
+//             <Button variant="ghost" className="ghost-btn-2nd">
+//               <FaHome /> Home
+//             </Button>
+//           </Link>
+//           <Link href="/dashboard">
+//             <Button variant="ghost" className="ghost-btn-2nd">
+//               <MdDashboard /> Dashboard
+//             </Button>
+//           </Link>
+//         </nav>
+
+//         {/* Create New Resume Button */}
+//         <CreateResumeDialog createResume={createResume} />
+//       </aside>
+//       {/*========================== End of Sidebar =========================*/}
+
+//       {/*=====================================================================
+//         =                          Main Content                              =
+//       =====================================================================*/}
+//       <main className="flex-1 px-3 pt-4 pb-10 md:p-10 lg:p-14">{children}</main>
+//     </div>
+//   );
+// };
+
+// export default DashboardClientLayout;
+
 "use client";
 
 import { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import CreateResumeDialog from "@/components/create-resume-dialog";
+// import CreateResumeDialog from "@/components/create-resume-dialog";
 import { Button } from "@/components/ui/button";
-import { FaHome } from "react-icons/fa";
-import { MdDashboard } from "react-icons/md";
+// import { FaHome } from "react-icons/fa";
+// import { MdDashboard } from "react-icons/md";
 import { createResume } from "@/actions/resume-actions";
+import dynamic from "next/dynamic";
+
+const CreateResumeDialog = dynamic(
+  () => import("@/components/create-resume-dialog")
+);
+const FaHome = dynamic(() =>
+  import("react-icons/fa").then((mod) => mod.FaHome)
+);
+const MdDashboard = dynamic(() =>
+  import("react-icons/md").then((mod) => mod.MdDashboard)
+);
 
 interface DashboardClientLayoutProps {
   children: ReactNode;
@@ -44,8 +146,7 @@ const DashboardClientLayout = ({
               alt="User profile image"
               width={96}
               height={96}
-              priority
-              className="w-auto rounded-full object-cover"
+              className="rounded-full object-cover"
             />
           ) : (
             <span className="text-sm text-gray-700 dark:text-gray-300">

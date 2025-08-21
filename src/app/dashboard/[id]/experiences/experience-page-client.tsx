@@ -2,16 +2,37 @@
 
 import React, { useState } from "react";
 import { deleteExperience, upsertExperience } from "@/actions/resume-actions";
-import ExperienceFormModal from "@/components/experience-form-modal";
-import ExperienceForm from "@/components/experience-form";
-import PageHeader from "@/components/PageHeader";
-import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
+// import ExperienceFormModal from "@/components/experience-form-modal";
+// import ExperienceForm from "@/components/experience-form";
+// import PageHeader from "@/components/PageHeader";
+// import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { Experience } from "@/utils/type";
-import LoadingButton from "@/components/ui/loading-button";
-import TextInput from "@/components/ui/text-input";
-import Textarea from "@/components/ui/text-area";
+// import LoadingButton from "@/components/ui/loading-button";
+// import TextInput from "@/components/ui/text-input";
+// import Textarea from "@/components/ui/text-area";
+import dynamic from "next/dynamic";
+
+// Lazy load components
+const PageHeader = dynamic(() => import("@/components/PageHeader"));
+const TextInput = dynamic(() => import("@/components/ui/text-input"));
+const Textarea = dynamic(() => import("@/components/ui/text-area"));
+const LoadingButton = dynamic(() => import("@/components/ui/loading-button"));
+
+const ExperienceFormModal = dynamic(
+  () => import("@/components/experience-form-modal"),
+  { loading: () => <p>Loading form...</p> }
+);
+
+const ExperienceForm = dynamic(() => import("@/components/experience-form"), {
+  loading: () => <p>Loading form...</p>,
+});
+
+const DeleteConfirmDialog = dynamic(
+  () => import("@/components/delete-confirm-dialog"),
+  { loading: () => null } // can be empty since it’s a modal
+);
 
 interface ExperiencePageClientProps {
   experiences: Experience[];

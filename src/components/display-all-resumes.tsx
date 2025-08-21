@@ -44,7 +44,14 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
 
     try {
       if (deleteId) {
+        // 1. Delete resume from DB
         await deleteResume(deleteId);
+
+        // 2. Delete related skills suggestions from localStorage
+        const skillsKey = `skills-${deleteId}`;
+        localStorage.removeItem(skillsKey);
+
+        // 3. Reset deleteId
         setDeleteId(null);
 
         // Show toast message
