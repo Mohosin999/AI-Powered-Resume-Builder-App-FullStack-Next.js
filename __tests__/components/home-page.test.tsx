@@ -2,6 +2,19 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import HomePage from "@/components/home-page";
 
+// Mock syncUser (avoid hitting server)
+jest.mock("@/actions/user-actions", () => ({
+  syncUser: jest.fn(),
+}));
+
+// Mock AnimatedHeading
+jest.mock("@/components/animated-heading", () => ({
+  __esModule: true,
+  default: ({ text }: { text: string }) => (
+    <h1 data-testid="animated-heading">{text}</h1>
+  ),
+}));
+
 // Mock GetStartedButton
 jest.mock("@/components/ui/get-started-button", () => ({
   __esModule: true,
@@ -14,11 +27,17 @@ jest.mock("@/components/go-to-top", () => ({
   default: () => <div data-testid="go-to-top" />,
 }));
 
+// Mock next/image
+jest.mock("next/image", () => ({
+  __esModule: true,
+  default: (props: React.ComponentProps<"img">) => <img {...props} />,
+}));
+
+// Mock icons
 jest.mock("lucide-react", () => ({
   GithubIcon: () => <svg data-testid="github-icon" />,
   LinkedinIcon: () => <svg data-testid="linkedin-icon" />,
 }));
-
 jest.mock("react-icons/fa6", () => ({
   FaXTwitter: () => <svg data-testid="twitter-icon" />,
 }));
@@ -26,10 +45,10 @@ jest.mock("react-icons/fa6", () => ({
 describe("HomePage", () => {
   it("renders hero section with heading and description", () => {
     render(<HomePage />);
-
     expect(
       screen.getByText(/You don’t need to worry about resume formatting here/i)
     ).toBeInTheDocument();
+    expect(screen.getByTestId("animated-heading")).toBeInTheDocument();
   });
 
   it("renders Get Started and GitHub buttons", () => {
@@ -40,7 +59,6 @@ describe("HomePage", () => {
 
   it("renders social links", () => {
     render(<HomePage />);
-
     expect(screen.getByTestId("linkedin-icon")).toBeInTheDocument();
     expect(screen.getByTestId("twitter-icon")).toBeInTheDocument();
     expect(screen.getAllByTestId("github-icon").length).toBeGreaterThan(1);
@@ -53,15 +71,12 @@ describe("HomePage", () => {
 
   it("renders AI features section", () => {
     render(<HomePage />);
-
     expect(screen.getByText("How AI Enhances Your Resume")).toBeInTheDocument();
-    // Check that at least one AI feature title is rendered
     expect(screen.getAllByRole("img").length).toBeGreaterThan(0);
   });
 
   it("renders testimonials section", () => {
     render(<HomePage />);
-
     expect(screen.getByText("What Our Users Are Saying")).toBeInTheDocument();
     expect(screen.getByText(/John Doe/i)).toBeInTheDocument();
     expect(screen.getByText(/Jane Smith/i)).toBeInTheDocument();

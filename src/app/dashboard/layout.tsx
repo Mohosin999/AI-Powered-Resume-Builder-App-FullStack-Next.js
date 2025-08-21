@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { getUserByClerkId, syncUser } from "@/actions/user-actions";
+import { getUserByClerkId } from "@/actions/user-actions";
 import { auth } from "@clerk/nextjs/server";
 import DashboardClientLayout from "@/components/dashboard-client-layout";
 
@@ -8,7 +8,6 @@ export default async function DashboardLayout({
 }: {
   children: ReactNode;
 }) {
-  await syncUser();
   const { userId: clerkId } = await auth();
 
   if (!clerkId) {

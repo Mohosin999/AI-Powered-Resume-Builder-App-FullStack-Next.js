@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { GithubIcon, LinkedinIcon } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
@@ -9,8 +9,16 @@ import GetStartedButton from "@/components/ui/get-started-button";
 import { aiFeatures, features } from "./../utils/features";
 import AnimatedHeading from "./animated-heading";
 import GoToTop from "./go-to-top";
+import { syncUser } from "@/actions/user-actions";
 
 const HomePage = () => {
+
+  // Sync user
+  useEffect(() => {
+    const sync = async () => await syncUser();
+    sync();
+  }, []);
+
   return (
     <div className="px-3 md:px-10 lg:px-14">
       <div className="min-h-screen">
