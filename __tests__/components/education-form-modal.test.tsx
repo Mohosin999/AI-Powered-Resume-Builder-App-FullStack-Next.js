@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { EducationFormModal } from "@/components/education-form-modal";
+import EducationFormModal from "@/components/education-form-modal";
 
 // Mock EducationForm
 jest.mock("@/components/education-form", () => ({

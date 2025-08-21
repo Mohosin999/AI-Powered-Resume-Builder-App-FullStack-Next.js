@@ -12,6 +12,7 @@ import DownloadResumeBtn from "@/components/ui/download-button";
 import ResumeHeading from "@/components/ui/resume-heading";
 import ExternalLink from "@/components/ui/external-link";
 import GoToTop from "@/components/go-to-top";
+import BackButton from "@/components/ui/back-button";
 
 const PreviewResume = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
@@ -32,8 +33,9 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
         id="no-print"
         className="flex flex-col items-center justify-center mt-5 lg:mt-10 mb-7"
       >
-        <h1 className="text-center text-2xl lg:text-3xl font-semibold text-emerald-500 mb-4">
-          Congrats! Your Professional Resume is Ready.
+        <h1 className="text-center text-2xl lg:text-3xl font-semibold text-orange-500 mb-4">
+          Congrats! Your Professional Resume is Ready.{" "}
+          <BackButton title="Go Back" />
         </h1>
 
         {/* Download resume button */}

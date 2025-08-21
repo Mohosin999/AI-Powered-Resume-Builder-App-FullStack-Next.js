@@ -13,7 +13,7 @@ const letterVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: i * 0.03, // shorter delay per letter
+      delay: i * 0.02, // shorter delay per letter
       duration: 0.4,
     },
   }),

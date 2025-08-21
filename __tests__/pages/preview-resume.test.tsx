@@ -36,6 +36,13 @@ jest.mock("@/components/ui/external-link", () => ({
   ),
 }));
 
+jest.mock("@/components/ui/back-button", () => ({
+  __esModule: true,
+  default: ({ title }: { title: string }) => (
+    <span data-testid="back-button">{title}</span>
+  ),
+}));
+
 jest.mock("@/components/go-to-top", () => ({
   __esModule: true,
   default: () => <div data-testid="go-to-top" />,

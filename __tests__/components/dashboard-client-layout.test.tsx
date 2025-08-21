@@ -16,6 +16,14 @@ jest.mock("@/components/create-resume-dialog", () => ({
   default: () => <div data-testid="create-resume-dialog">Dialog</div>,
 }));
 
+// Prevent console errors
+beforeAll(() => {
+  jest.spyOn(console, "error").mockImplementation(() => {});
+});
+afterAll(() => {
+  (console.error as jest.Mock).mockRestore();
+});
+
 describe("DashboardClientLayout", () => {
   const mockChildren = <div data-testid="children">Main Content</div>;
   const mockUser = {
