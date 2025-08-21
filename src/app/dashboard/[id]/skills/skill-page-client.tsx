@@ -1,19 +1,12 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useState } from "react";
 import { deleteSkill } from "@/actions/resume-actions";
 import { Skill } from "@/utils/type";
-
-// Lazy loaded components
-const SkillForm = dynamic(() => import("@/components/skill-form"));
-const PageHeader = dynamic(() => import("@/components/PageHeader"));
-const DeleteConfirmDialog = dynamic(
-  () => import("@/components/delete-confirm-dialog")
-);
-const MdDelete = dynamic(() =>
-  import("react-icons/md").then((mod) => mod.MdDelete)
-);
+import PageHeader from "@/components/PageHeader";
+import SkillForm from "@/components/skill-form";
+import { MdDelete } from "react-icons/md";
+import DeleteConfirmDialog from "@/components/delete-confirm-dialog";
 
 interface SkillPageClientProps {
   skills: Skill[];

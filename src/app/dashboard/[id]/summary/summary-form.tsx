@@ -1,23 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-// import GenerateFromAIButton from "@/components/ui/generate-ai-button";
+import GenerateFromAIButton from "@/components/ui/generate-ai-button";
 import { generatePrompt } from "@/utils/generate-prompt";
 import { toast } from "react-toastify";
-// import PageHeader from "@/components/PageHeader";
-// import LoadingButton from "@/components/ui/loading-button";
+import PageHeader from "@/components/PageHeader";
+import LoadingButton from "@/components/ui/loading-button";
 import { Summary } from "@/utils/type";
 import { upsertSummary } from "@/actions/resume-actions";
-// import Textarea from "@/components/ui/text-area";
-import dynamic from "next/dynamic";
-
-// Lazy-loaded components
-const GenerateFromAIButton = dynamic(
-  () => import("@/components/ui/generate-ai-button")
-);
-const PageHeader = dynamic(() => import("@/components/PageHeader"));
-const LoadingButton = dynamic(() => import("@/components/ui/loading-button"));
-const Textarea = dynamic(() => import("@/components/ui/text-area"));
+import Textarea from "@/components/ui/text-area";
 
 interface SummaryFormProps {
   resumeId: string;

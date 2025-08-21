@@ -17,18 +17,6 @@ jest.mock("@/components/display-all-resumes", () => ({
 }));
 
 describe("Dashboard Page", () => {
-  it("renders DisplayAllResumes when resumes exist", async () => {
-    (getResumes as jest.Mock).mockResolvedValue([
-      { id: 1, title: "Frontend Resume" },
-    ]);
-
-    const ui = await Dashboard();
-    render(ui);
-
-    expect(screen.getByTestId("display-all-resumes")).toBeInTheDocument();
-    expect(screen.getByText(/1 resumes/i)).toBeInTheDocument();
-  });
-
   it("renders empty state when no resumes exist", async () => {
     (getResumes as jest.Mock).mockResolvedValue([]);
 

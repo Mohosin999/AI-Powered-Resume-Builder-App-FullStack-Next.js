@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import React from "react";
 import {
   getEducations,
@@ -9,14 +8,10 @@ import {
   getSummary,
 } from "@/actions/resume-actions";
 import { Education, Experience, Project, Skill } from "@/utils/type";
-
-// Lazy loaded components
-const DownloadResumeBtn = dynamic(
-  () => import("@/components/ui/download-button")
-);
-const ResumeHeading = dynamic(() => import("@/components/ui/resume-heading"));
-const ExternalLink = dynamic(() => import("@/components/ui/external-link"));
-const GoToTop = dynamic(() => import("@/components/go-to-top"));
+import DownloadResumeBtn from "@/components/ui/download-button";
+import ResumeHeading from "@/components/ui/resume-heading";
+import ExternalLink from "@/components/ui/external-link";
+import GoToTop from "@/components/go-to-top";
 
 const PreviewResume = async ({ params }: { params: { id: string } }) => {
   const { id } = params;

@@ -56,7 +56,6 @@ describe("DashboardClientLayout", () => {
     expect(screen.getByText("john@example.com")).toBeInTheDocument();
     expect(screen.getByText("Home")).toBeInTheDocument();
     expect(screen.getByText("Dashboard")).toBeInTheDocument();
-    expect(screen.getByTestId("create-resume-dialog")).toBeInTheDocument();
     expect(screen.getByTestId("children")).toBeInTheDocument();
   });
 

@@ -18,7 +18,7 @@ jest.mock("react-toastify", () => ({
 
 jest.mock("@/components/education-form-modal", () => ({
   __esModule: true,
-  EducationFormModal: ({ resumeId }: { resumeId: string }) => (
+  default: ({ resumeId }: { resumeId: string }) => (
     <div data-testid="education-form-modal">Id - {resumeId}</div>
   ),
 }));
