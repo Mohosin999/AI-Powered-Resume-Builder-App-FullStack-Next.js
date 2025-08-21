@@ -25,7 +25,7 @@ jest.mock("@/components/education-form-modal", () => ({
 
 jest.mock("@/components/education-form", () => ({
   __esModule: true,
-  EducationForm: ({ resumeId }: { resumeId: string }) => (
+  default: ({ resumeId }: { resumeId: string }) => (
     <div data-testid="education-form">Id - {resumeId}</div>
   ),
 }));
