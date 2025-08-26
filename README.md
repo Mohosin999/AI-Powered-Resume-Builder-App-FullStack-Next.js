@@ -5,7 +5,7 @@ Live Link: https://full-stack-ai-resume-builder-app-ne-one.vercel.app/
 ## 📑 Table of Contents
 
 - [Description](#-description)
-- [Technology Stack](#-technology-stack)
+- [Tech Stack](#-tech-stack)
 - [Features](#-features)
 - [Setup and Installation](#-setup-and-installation)
 
@@ -17,7 +17,7 @@ I developed a full-stack AI-Powered Resume Builder Application using Next.js wit
 
 This application solves a major problem for beginners who are unsure about how a professional resume format should look. Many struggle with designing layouts or structuring their information effectively. With this app, they don’t need to worry about formatting at all — they simply fill in their information, and the system automatically generates a professional resume in a world-class format. Users can then easily download the resume as a PDF, ready to use for job applications.
 
-## 💻 Technology Stack
+## 💻 Tech Stack
 
 - **`Frontend:`** Next.js 14, TypeScript, Tailwind CSS, Shadcn UI, Framer Motion, React Icons
 - **`Backend:`** Next.js API Routes, Prisma ORM, PostgreSQL (Neon Database)
