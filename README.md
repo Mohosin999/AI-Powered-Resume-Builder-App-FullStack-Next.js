@@ -1,4 +1,4 @@
-# FullStack AI Resume Builder App - Next.js
+# AI-Powered Resume Builder App - FullStack (Next.js)
 
 Live Link: https://full-stack-ai-resume-builder-app-ne-one.vercel.app/
 
