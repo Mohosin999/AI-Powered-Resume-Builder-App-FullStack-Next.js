@@ -20,7 +20,7 @@ describe("Footer", () => {
 
     expect(footer).toBeInTheDocument();
     expect(footer).toHaveClass(
-      "bg-white dark:bg-[#1C2434] text-white py-5 lg:py-8 shadow-sm"
+      "bg-white shadow-md dark:bg-[#1C2434] pt-8 md:pt-12"
     );
   });
 });

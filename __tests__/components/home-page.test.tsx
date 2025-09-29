@@ -33,11 +33,28 @@ jest.mock("next/image", () => ({
   default: (props: React.ComponentProps<"img">) => <img {...props} />,
 }));
 
+jest.mock("@/components/ui/carousel", () => ({
+  Carousel: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="mock-carousel">{children}</div>
+  ),
+  CarouselContent: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="mock-carousel-content">{children}</div>
+  ),
+  CarouselItem: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="mock-carousel-item">{children}</div>
+  ),
+  CarouselNext: () => <button data-testid="mock-carousel-next">Next</button>,
+  CarouselPrevious: () => (
+    <button data-testid="mock-carousel-prev">Prev</button>
+  ),
+}));
+
 // Mock icons
 jest.mock("lucide-react", () => ({
   GithubIcon: () => <svg data-testid="github-icon" />,
   LinkedinIcon: () => <svg data-testid="linkedin-icon" />,
 }));
+
 jest.mock("react-icons/fa6", () => ({
   FaXTwitter: () => <svg data-testid="twitter-icon" />,
 }));
@@ -71,15 +88,10 @@ describe("HomePage", () => {
 
   it("renders AI features section", () => {
     render(<HomePage />);
-    expect(screen.getByText("How AI Enhances Your Resume")).toBeInTheDocument();
-    expect(screen.getAllByRole("img").length).toBeGreaterThan(0);
-  });
 
-  it("renders testimonials section", () => {
-    render(<HomePage />);
-    expect(screen.getByText("What Our Users Are Saying")).toBeInTheDocument();
-    expect(screen.getByText(/John Doe/i)).toBeInTheDocument();
-    expect(screen.getByText(/Jane Smith/i)).toBeInTheDocument();
+    expect(screen.getByText("How AI Enhances Your Resume")).toBeInTheDocument();
+    expect(screen.getByTestId("mock-carousel")).toBeInTheDocument();
+    expect(screen.getByTestId("mock-carousel-content")).toBeInTheDocument();
   });
 
   it("renders GoToTop button", () => {

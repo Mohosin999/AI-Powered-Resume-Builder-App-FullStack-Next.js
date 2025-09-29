@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       apiKey: process.env.GEMINI_API_KEY,
     });
 
-    const model = "gemini-1.5-flash"; // ⚡ much faster
+    const model = "gemini-2.5-flash";
 
     const contents = [
       {

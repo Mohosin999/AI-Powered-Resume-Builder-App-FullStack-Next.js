@@ -52,6 +52,8 @@ const SummaryForm = ({ resumeId, summaryInfo, jobTitle }: SummaryFormProps) => {
       body: JSON.stringify({ prompt }),
     });
 
+    console.log(res);
+
     const data = await res.json();
     if (data.result) setAiSuggestion(data.result);
 

@@ -197,7 +197,7 @@
 =                             Card Styles                              =
 ======================================================================*/
 .card {
-  @apply bg-white dark:bg-[#1C2434] p-4 lg:p-14 rounded-lg shadow-sm;
+  @apply bg-white dark:bg-[#1C2434] p-6 lg:p-14 rounded-lg shadow-sm;
 }
 
 .custom-border {
