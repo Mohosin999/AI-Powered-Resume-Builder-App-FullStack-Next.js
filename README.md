@@ -42,7 +42,7 @@ This application solves a major problem for beginners who are unsure about how a
 
 - Users can download their resume in a PDF format.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **`Frontend:`** Next.js 14, TypeScript, Tailwind CSS, Shadcn UI, Framer Motion, React Icons
 - **`Backend:`** Next.js API Routes, Prisma ORM, PostgreSQL (Neon Database)
