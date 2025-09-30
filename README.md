@@ -1,12 +1,12 @@
 # AI-Powered Resume Builder App - FullStack (Next.js)
 
-## 📑 Table of Contents
+## 📚 Table of Contents
 
 - [Description](#-description)
 - [Live Demo](#-live-demo)
 - [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Setup and Installation](#-setup-and-installation)
+- [Tech Stack](#️-tech-stack)
+- [Setup and Installation](#️-setup-and-installation)
 - [Environment Variables](#-environment-variables)
 - [Author Info](#-author-info)
 
