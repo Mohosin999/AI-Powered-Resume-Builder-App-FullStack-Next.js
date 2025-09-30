@@ -1,30 +1,26 @@
 # AI-Powered Resume Builder App - FullStack (Next.js)
 
-Live Link: https://full-stack-ai-resume-builder-app-ne-one.vercel.app/
-
 ## 📑 Table of Contents
 
 - [Description](#-description)
-- [Tech Stack](#-tech-stack)
+- [Live Demo](#-live-demo)
 - [Features](#-features)
+- [Tech Stack](#-tech-stack)
 - [Setup and Installation](#-setup-and-installation)
+- [Environment Variables](#-environment-variables)
+- [Author Info](#-author-info)
 
-![AI Features](./public/img/ai_resume.png)
+## 📝 Description
 
-## 📄 Description
-
-I developed a full-stack AI-Powered Resume Builder Application using Next.js with its built-in server-side capabilities. This application helps users create professional resumes effortlessly, with world-class resume formats and full CRUD operation support. I integrated Google Gemini AI so that users can effortlessly generate professional resume descriptions using AI assistance. The system also provides intelligent skill suggestions based on the user’s resume title.
+I developed a full-stack AI-Powered Resume Builder Application using Next.js with its built-in server-side capabilities. This application helps users create professional resumes effortlessly, with world-class resume formats and full CRUD operation support. I integrated `Google Gemini AI` so that users can effortlessly generate professional resume descriptions using AI assistance. The system also provides intelligent skill suggestions based on the user’s resume title.
 
 This application solves a major problem for beginners who are unsure about how a professional resume format should look. Many struggle with designing layouts or structuring their information effectively. With this app, they don’t need to worry about formatting at all — they simply fill in their information, and the system automatically generates a professional resume in a world-class format. Users can then easily download the resume as a PDF, ready to use for job applications.
 
-## 💻 Tech Stack
+## 🚀 Live Demo
 
-- **`Frontend:`** Next.js 14, TypeScript, Tailwind CSS, Shadcn UI, Framer Motion, React Icons
-- **`Backend:`** Next.js API Routes, Prisma ORM, PostgreSQL (Neon Database)
-- **`AI Integration:`** Google Gemini AI
-- **`Others:`** Clerk (Authentication), React Toastify
+[![Project Screenshot](./public/img/ai-resume.png)](https://full-stack-ai-resume-builder-app-ne-one.vercel.app/)
 
-## 🛠 Features
+## ✨ Features
 
 #### `Customizable Resume Sections`
 
@@ -34,7 +30,9 @@ This application solves a major problem for beginners who are unsure about how a
 
 #### `AI Description Generation`
 
-- Generate professional resume descriptions using Google Gemini AI.
+- Generate professional resume summaries.
+- Generate a narrative of impactful work experiences that fit your role.
+- Generate a clear and concise project description highlighting your contributions.
 
 #### `AI Skill Suggestions`
 
@@ -44,12 +42,45 @@ This application solves a major problem for beginners who are unsure about how a
 
 - Users can download their resume in a PDF format.
 
-## 🚀 Setup and Installation
+## 🛠️ Tech Stack
 
-#### `Clone the Repository:`
+- **`Frontend:`** Next.js 14, TypeScript, Tailwind CSS, Shadcn UI, Framer Motion, React Icons
+- **`Backend:`** Next.js API Routes, Prisma ORM, PostgreSQL (Neon Database)
+- **`AI Integration:`** Google Gemini AI
+- **`Others:`** Clerk (Authentication), React Toastify
+
+## ⚙️ Setup and Installation
+
+### Step-by-step instructions for cloning and running locally:
 
 ```
-https://github.com/Mohosin999/FullStack-AI-Resume-Builder-App-Next.js.git
+✅ git clone https://github.com/Mohosin999/AI-Powered-Resume-Builder-App-FullStack-Next.js.git
+
+✅ cd AI-Powered-Resume-Builder-App-FullStack-Next.js
+
+✅ npm install
+
+✅ npm run dev
 ```
 
-#### The End
+## 🔑 Environment Variables
+
+Create a `.env` file in the root directory of the project and add the following variables:
+
+```
+DATABASE_URL=
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+
+CLERK_SECRET_KEY=
+
+GEMINI_API_KEY=
+```
+
+## 📬 Author Info
+
+👤 **Mohosin Hasan Akash**
+
+- 💼 **LinkedIn:** [linkedin.com/in/mohosinh99/](https://www.linkedin.com/in/mohosinh99/)
+- 🌐 **Portfolio:** [personal-portfolio.com](https://personal-portfolio-website-brown-nine.vercel.app/)
+- 📧 **Email:** mohosin.hasan.akash@gmail.com
