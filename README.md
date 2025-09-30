@@ -1,15 +1,5 @@
 # AI-Powered Resume Builder App - FullStack (Next.js)
 
-## 📑 Table of Contents
-
-- [Description](#-description)
-- [Live Demo](#-live-demo)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Setup and Installation](#-setup-and-installation)
-- [Environment Variables](#-environment-variables)
-- [Author Info](#-author-info)
-
 ## 📝 Description
 
 I developed a full-stack AI-Powered Resume Builder Application using Next.js with its built-in server-side capabilities. This application helps users create professional resumes effortlessly, with world-class resume formats and full CRUD operation support. I integrated `Google Gemini AI` so that users can effortlessly generate professional resume descriptions using AI assistance. The system also provides intelligent skill suggestions based on the user’s resume title.
