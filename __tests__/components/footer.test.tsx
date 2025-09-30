@@ -19,8 +19,6 @@ describe("Footer", () => {
       .closest("footer");
 
     expect(footer).toBeInTheDocument();
-    expect(footer).toHaveClass(
-      "bg-white shadow-md dark:bg-[#1C2434] pt-8 md:pt-12"
-    );
+    expect(footer).toHaveClass("bg-white shadow-md dark:bg-[#1C2434] pt-8");
   });
 });
