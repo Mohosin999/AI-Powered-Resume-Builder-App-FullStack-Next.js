@@ -44,10 +44,20 @@ This application solves a major problem for beginners who are unsure about how a
 
 ## 🛠️ Tech Stack
 
-- **`Frontend:`** Next.js 14, TypeScript, Tailwind CSS, Shadcn UI, Framer Motion, React Icons
-- **`Backend:`** Next.js API Routes, Prisma ORM, PostgreSQL (Neon Database)
-- **`AI Integration:`** Google Gemini AI
-- **`Others:`** Clerk (Authentication), React Toastify
+- **`Frontend:`**
+  - Next.js 14
+  - TypeScript
+  - Tailwind CSS + shadcn/ui
+  - Framer Motion
+  - Clerk (Authentication)
+  - React Icons
+  - React Toastify
+- **`Backend:`**
+  - Next.js API Routes
+  - Prisma ORM
+  - PostgreSQL (Neon Database)
+- **`AI Integration:`**
+  - Google Gemini AI
 
 ## ⚙️ Setup and Installation
 
@@ -61,6 +71,12 @@ This application solves a major problem for beginners who are unsure about how a
 ✅ npm install
 
 ✅ npm run dev
+```
+
+**Access app at:**
+
+```
+http://localhost:3000
 ```
 
 ## 🔑 Environment Variables
