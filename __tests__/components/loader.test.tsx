@@ -11,15 +11,14 @@ describe("Loader component", () => {
     render(<Loader />);
 
     // Check for the text
-    expect(screen.getByText("AI Resume Builder")).toBeInTheDocument();
+    expect(screen.getByText("resumia")).toBeInTheDocument();
 
     // Check for the spinner (svg element)
     const spinner = screen.getByTestId("loader-icon");
     expect(spinner).toBeInTheDocument();
 
     // Check that the container has the backdrop classes
-    const container =
-      screen.getByText("AI Resume Builder").parentElement?.parentElement;
+    const container = screen.getByText("resumia").parentElement?.parentElement;
     expect(container).toHaveClass(
       "fixed",
       "inset-0",

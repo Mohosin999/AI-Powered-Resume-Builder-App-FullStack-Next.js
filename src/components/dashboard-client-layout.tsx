@@ -41,13 +41,13 @@ const DashboardClientLayout = ({
       =====================================================================*/}
       <aside className="w-full md:w-[260px] lg:w-[300px] md:border-r md:border-gray-400 md:dark:border-gray-700 py-10 lg:py-14 flex flex-col items-center gap-6">
         {/* Profile Image */}
-        <div className="w-24 h-24 rounded-full border-2 bg-gray-800 border-gray-900 dark:border-gray-100 flex items-center justify-center overflow-hidden">
+        <div className="w-40 h-40 rounded-full border-2 bg-gray-800 border-gray-900 dark:border-gray-100 flex items-center justify-center overflow-hidden">
           {user?.image ? (
             <Image
               src={user.image}
               alt="User profile image"
-              width={96}
-              height={96}
+              width={160}
+              height={160}
               className="rounded-full object-cover"
             />
           ) : (

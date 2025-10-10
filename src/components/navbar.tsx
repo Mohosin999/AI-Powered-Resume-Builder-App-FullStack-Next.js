@@ -12,6 +12,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import ModeToggle from "./mode-toggle";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -22,6 +23,7 @@ const Navbar = () => {
 
   return (
     <header className="bg-white dark:bg-[#1C2434] shadow-sm">
+      {/* <header className="bg-white dark:bg-[#1C2434] shadow-sm"> */}
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 active:scale-105">
@@ -32,8 +34,8 @@ const Navbar = () => {
             height={40}
             className="w-6 h-6"
           />
-          <span className="text-emerald-500 text-xl font-semibold tracking-wide">
-            AI Resume Builder
+          <span className="text-[#272044] dark:text-amber-50 text-2xl font-semibold tracking-wide">
+            resumia
           </span>
         </Link>
 
@@ -90,45 +92,53 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Dropdown Menu */}
-      {isMobileMenuOpen && (
-        <div className="flex flex-col items-center text-center md:hidden dark:bg-[#14202D] text-white p-4 pb-6 space-y-1">
-          {/* Theme Options */}
-          <ModeToggle />
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="absolute top-20 left-0 w-full z-50 flex flex-col items-center text-center md:hidden bg-white dark:bg-[#14202D] text-gray-900 dark:text-white p-4 pb-6 space-y-1"
+          >
+            {/* Theme Options */}
+            <ModeToggle />
 
-          <SignedIn>
-            <div className="flex flex-col items-center space-y-4">
-              <Link href="/dashboard" onClick={toggleMobileMenu}>
-                <Button variant="ghost" className="ghost-btn">
-                  Dashboard
+            <SignedIn>
+              <div className="flex flex-col items-center space-y-4">
+                <Link href="/dashboard" onClick={toggleMobileMenu}>
+                  <Button variant="ghost" className="ghost-btn">
+                    Dashboard
+                  </Button>
+                </Link>
+                {/* User Button */}
+                <UserButton afterSignOutUrl="/" />
+              </div>
+            </SignedIn>
+
+            <SignedOut>
+              <SignInButton mode="modal">
+                <Button
+                  variant="ghost"
+                  className="ghost-btn"
+                  onClick={toggleMobileMenu}
+                >
+                  Sign in
                 </Button>
-              </Link>
-              {/* User Button */}
-              <UserButton afterSignOutUrl="/" />
-            </div>
-          </SignedIn>
-
-          <SignedOut>
-            <SignInButton mode="modal">
-              <Button
-                variant="ghost"
-                className="ghost-btn"
-                onClick={toggleMobileMenu}
-              >
-                Sign in
-              </Button>
-            </SignInButton>
-            <SignUpButton mode="modal">
-              <Button
-                variant="ghost"
-                className="ghost-btn"
-                onClick={toggleMobileMenu}
-              >
-                Get Started
-              </Button>
-            </SignUpButton>
-          </SignedOut>
-        </div>
-      )}
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <Button
+                  variant="ghost"
+                  className="ghost-btn"
+                  onClick={toggleMobileMenu}
+                >
+                  Get Started
+                </Button>
+              </SignUpButton>
+            </SignedOut>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/*======================= End of Mobile Menu =======================*/}
     </header>
   );

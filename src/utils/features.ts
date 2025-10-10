@@ -5,7 +5,7 @@
 }
 export const features = [
   {
-    title: "Description Generation with AI",
+    title: "Description Generation",
     description:
       "Quickly generate complete resume sections like summaries and bullet points with AI assistance to save time and improve quality.",
   },
@@ -21,12 +21,12 @@ export const features = [
   },
 
   {
-    title: "Skip Sections as You Wish",
+    title: "Skip Sections",
     description:
       "You have full control—skip any section you don't want to fill in without affecting the resume format or structure.",
   },
   {
-    title: "Preview Your Resume Anytime",
+    title: "Preview Resume Anytime",
     description:
       "Easily navigate to the Preview Page to see how your resume looks before downloading or submitting.",
   },

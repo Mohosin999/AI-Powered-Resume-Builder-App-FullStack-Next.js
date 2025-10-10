@@ -58,8 +58,7 @@ describe("Navbar", () => {
 
   it("renders logo and brand name", () => {
     render(<Navbar />);
-    expect(screen.getByAltText("AI Resume Logo")).toBeInTheDocument();
-    expect(screen.getByText("AI Resume Builder")).toBeInTheDocument();
+    expect(screen.getByText("resumia")).toBeInTheDocument();
   });
 
   it("renders desktop menu with SignedIn and SignedOut sections", () => {

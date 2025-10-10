@@ -42,6 +42,10 @@ This application solves a major problem for beginners who are unsure about how a
 
 - Users can download their resume in a PDF format.
 
+#### `Dark / Light Mode`
+
+- Switch seamlessly between dark and light themes.
+
 ## 🛠️ Tech Stack
 
 - **`Frontend:`**

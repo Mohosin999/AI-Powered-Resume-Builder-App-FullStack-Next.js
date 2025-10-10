@@ -33,7 +33,7 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
         id="no-print"
         className="flex flex-col items-center justify-center mt-5 lg:mt-10 mb-7"
       >
-        <h1 className="text-center text-2xl lg:text-3xl font-semibold text-orange-500 mb-4">
+        <h1 className="text-center text-2xl lg:text-3xl font-semibold text-[#272044] dark:text-[#FFF42B] mb-4">
           Congrats! Your Professional Resume is Ready.{" "}
           <BackButton title="Go Back" />
         </h1>

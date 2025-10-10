@@ -27,6 +27,7 @@ import { toast } from "react-toastify";
 import { Resume } from "@/utils/type";
 import { Loader } from "lucide-react";
 import GoToTop from "./go-to-top";
+import { motion } from "framer-motion";
 
 interface ResumeUpdateProps {
   allResumes: Resume[];
@@ -69,55 +70,63 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {allResumes?.map((resume) => (
-          <div
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 200 }}
             key={resume.id}
-            className="card lg:!p-8 relative flex flex-col justify-between min-h-[220px]"
+            className="relative group p-[2px] rounded-2xl bg-gradient-to-r from-green-400 via-yellow-400 to-green-500 animate-gradient-x"
           >
-            {/* Resume Title */}
-            <div>
-              <Link href={`/dashboard/${resume.id}/personal-details`}>
-                <h2 className="h2 active:scale-105">{resume.title}</h2>
-              </Link>
-            </div>
+            <div className="card rounded-2xl bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md shadow-md hover:shadow-lg transition-all duration-500 flex flex-col justify-between min-h-[220px] p-6 relative">
+              {/* 3-dot menu */}
+              <div className="absolute bottom-3 right-3 z-10">
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="text-gray-800 dark:text-gray-100 hover:text-yellow-500 transition active:scale-105 cursor-pointer">
+                    <BsThreeDotsVertical size={20} />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <Link href={`/dashboard/${resume.id}/personal-details`}>
+                      <DropdownMenuItem>Edit</DropdownMenuItem>
+                    </Link>
+                    <DropdownMenuSeparator />
+                    <Link href={`/dashboard/${resume.id}/preview-resume`}>
+                      <DropdownMenuItem>Preview</DropdownMenuItem>
+                    </Link>
+                    <DropdownMenuSeparator />
+                    <Link href={`/dashboard/${resume.id}/preview-resume`}>
+                      <DropdownMenuItem>Download</DropdownMenuItem>
+                    </Link>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={() => setDeleteId(resume.id)}>
+                      Delete
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
 
-            {/* Three-dot menu */}
-            <div className="absolute bottom-2 right-2 text-right">
-              <DropdownMenu>
-                <DropdownMenuTrigger className="text-gray-900 dark:text-gray-100 active:scale-105 cursor-pointer">
-                  <BsThreeDotsVertical />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  {/* Edit Resume */}
-                  <Link href={`/dashboard/${resume.id}/personal-details`}>
-                    <DropdownMenuItem className="cursor-pointer">
-                      Edit
-                    </DropdownMenuItem>
-                  </Link>
-                  <DropdownMenuSeparator />
-                  {/* Preview Resume */}
-                  <Link href={`/dashboard/${resume.id}/preview-resume`}>
-                    <DropdownMenuItem className="cursor-pointer">
-                      Preview
-                    </DropdownMenuItem>
-                  </Link>
-                  <DropdownMenuSeparator />
-                  {/* Download Resume */}
-                  <Link href={`/dashboard/${resume.id}/preview-resume`}>
-                    <DropdownMenuItem className="cursor-pointer">
-                      Download
-                    </DropdownMenuItem>
-                  </Link>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem
-                    className="cursor-pointer"
-                    onClick={() => setDeleteId(resume.id)}
-                  >
-                    Delete
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              {/* Resume Title */}
+              <div>
+                <Link href={`/dashboard/${resume.id}/personal-details`}>
+                  <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 tracking-tight group-hover:text-[#007cb9] dark:group-hover:text-yellow-400 transition-all duration-300">
+                    {resume.title}
+                  </h2>
+                </Link>
+                {/* Animated underline */}
+                <div className="h-[3px] w-0 bg-gradient-to-r from-[#007cb9] dark:from-yellow-400 to-green-500 rounded-full mt-2 transition-all duration-500 group-hover:w-full"></div>
+              </div>
+
+              {/* Optional small subtitle or info */}
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-3">
+                Created:{" "}
+                <span className="font-medium">
+                  {new Date(resume.createdAt).toLocaleDateString("en-US", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </span>
+              </p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 

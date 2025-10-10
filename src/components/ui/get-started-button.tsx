@@ -20,7 +20,11 @@ const GetStartedButton = () => {
 
   return (
     <>
-      <Button variant="ghost" onClick={handleClick} className="ghost-btn-3rd">
+      <Button
+        variant="ghost"
+        onClick={handleClick}
+        className="ghost-btn-3rd !bg-gray-200 !border-gray-200 !text-gray-900"
+      >
         Get Started for Free <ArrowRight className="ml-2 w-5 h-5" />
       </Button>
 

@@ -5,7 +5,6 @@ import ExperienceForm from "./experience-form";
 import { Button } from "./ui/button";
 import { FaPlus } from "react-icons/fa6";
 import { AnimatePresence, motion } from "framer-motion";
-import { fadeInUp } from "@/utils/animation";
 
 const ExperienceFormModal = ({ resumeId }: { resumeId: string }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +30,14 @@ const ExperienceFormModal = ({ resumeId }: { resumeId: string }) => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            {...fadeInUp}
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{
+              opacity: 0,
+              y: -30,
+              transition: { duration: 0.5, ease: "easeInOut" },
+            }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
             className="mt-4 p-4 lg:p-6 rounded-lg w-full max-w-3xl mx-auto custom-border"
           >
             <div className="flex justify-between items-center mb-4">

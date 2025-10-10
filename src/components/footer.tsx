@@ -17,8 +17,8 @@ const Footer = () => {
               height={40}
               className="w-6 h-6"
             />
-            <span className="text-emerald-500 text-xl font-semibold tracking-wide">
-              AI Resume Builder
+            <span className="text-[#272044] dark:text-amber-50 text-xl font-semibold tracking-wide">
+              resumia
             </span>
           </Link>
 

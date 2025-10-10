@@ -12,6 +12,6 @@ describe("LoaderSecond", () => {
 
   it("renders the text 'AI Resume Builder'", () => {
     render(<LoaderSecond />);
-    expect(screen.getByText(/AI Resume Builder/i)).toBeInTheDocument();
+    expect(screen.getByText(/resumia/i)).toBeInTheDocument();
   });
 });
