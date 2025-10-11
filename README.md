@@ -68,7 +68,7 @@ This application solves a major problem for beginners who are unsure about how a
 ### Step-by-step instructions for cloning and running locally:
 
 ```
-✅ git clone https://github.com/Mohosin999/AI-Powered-Resume-Builder-App-FullStack-Next.js.git
+git clone https://github.com/Mohosin999/AI-Powered-Resume-Builder-App-FullStack-Next.js.git
 ```
 
 - cd AI-Powered-Resume-Builder-App-FullStack-Next.js
