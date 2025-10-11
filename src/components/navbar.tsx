@@ -32,7 +32,7 @@ const Navbar = () => {
             alt="AI Resume Logo"
             width={40}
             height={40}
-            className="w-6 h-6"
+            className="w-7 h-7"
           />
           <span className="text-[#272044] dark:text-amber-50 text-2xl font-semibold tracking-wide">
             resumia
