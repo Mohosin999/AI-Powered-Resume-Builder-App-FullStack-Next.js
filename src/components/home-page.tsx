@@ -148,7 +148,7 @@ const HomePage = () => {
         =====================================================================*/}
 
         <div className="w-full max-w-6xl mx-auto py-12 md:py-16 px-3 md:px-10 lg:px-14">
-          <h1 className="h1 text-center !mb-12">What Our Users Say</h1>
+          <h1 className="h1 text-center lg:!mb-12">What Our Users Say</h1>
 
           <div className="space-y-8">
             {/* Review 1 */}

@@ -13,7 +13,7 @@ const BackButton: React.FC<BackButtonProps> = ({ title }) => {
   return (
     <span
       onClick={() => router.back()}
-      className="text-xs text-white underline cursor-pointer active:scale-105"
+      className="text-xs text-[#005689] dark:text-white underline cursor-pointer active:scale-105"
     >
       {title}
     </span>
