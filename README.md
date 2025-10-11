@@ -69,19 +69,13 @@ This application solves a major problem for beginners who are unsure about how a
 
 ```
 ✅ git clone https://github.com/Mohosin999/AI-Powered-Resume-Builder-App-FullStack-Next.js.git
-
-✅ cd AI-Powered-Resume-Builder-App-FullStack-Next.js
-
-✅ npm install
-
-✅ npm run dev
 ```
 
-**Access app at:**
+- cd AI-Powered-Resume-Builder-App-FullStack-Next.js
+- npm install
+- npm run dev
 
-```
-http://localhost:3000
-```
+Application runs at: http://localhost:3000
 
 ## 🔑 Environment Variables
 
