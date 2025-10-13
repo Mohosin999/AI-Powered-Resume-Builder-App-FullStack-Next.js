@@ -24,7 +24,7 @@ const EducationPageClient = ({
   const [open, setOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loadingMap, setLoadingMap] = useState<{ [key: string]: boolean }>({});
 
   /**
    * Handles form submission
@@ -32,12 +32,13 @@ const EducationPageClient = ({
    */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    const expId = formData.get("id") as string;
+
+    setLoadingMap((prev) => ({ ...prev, [expId]: true }));
 
     try {
-      // Get form data
-      const formData = new FormData(e.currentTarget);
-
       // Update education
       await upsertEducation(formData);
 
@@ -47,7 +48,7 @@ const EducationPageClient = ({
       console.error(error);
       toast.error("Failed to update education");
     } finally {
-      setLoading(false);
+      setLoadingMap((prev) => ({ ...prev, [expId]: false }));
     }
   };
 
@@ -194,7 +195,7 @@ const EducationPageClient = ({
                 <div className="flex flex-col lg:flex-row justify-start lg:justify-between gap-2">
                   {/* Update button */}
                   <LoadingButton
-                    loading={loading}
+                    loading={loadingMap[edu.id] || false}
                     loadingText="Updating"
                     title="Update Education"
                   />

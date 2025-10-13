@@ -148,17 +148,17 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
                     <div className="flex gap-5">
                       {/* Live Url */}
                       {project.url && (
-                        <ExternalLink url={project.url} label="Live Url" />
+                        <ExternalLink url={project.url} label="live url" />
                       )}
                       {/* Repo Url */}
                       {project.repoUrl && (
-                        <ExternalLink url={project.repoUrl} label="Repo Url" />
+                        <ExternalLink url={project.repoUrl} label="repo url" />
                       )}
                       {/* Case Study Url */}
                       {project.caseStudyUrl && (
                         <ExternalLink
                           url={project.caseStudyUrl}
-                          label="Case-Study"
+                          label="case-study"
                         />
                       )}
                       {/* </div> */}

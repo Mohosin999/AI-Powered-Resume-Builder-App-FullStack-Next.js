@@ -106,7 +106,7 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
               {/* Resume Title */}
               <div>
                 <Link href={`/dashboard/${resume.id}/personal-details`}>
-                  <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 tracking-tight group-hover:text-[#007cb9] dark:group-hover:text-yellow-400 transition-all duration-300">
+                  <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 tracking-tight group-hover:text-[#007cb9] dark:group-hover:text-yellow-400 transition-all duration-300 active:scale-105">
                     {resume.title}
                   </h2>
                 </Link>

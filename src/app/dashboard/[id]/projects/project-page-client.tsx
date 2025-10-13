@@ -22,7 +22,7 @@ const ProjectPageClient = ({ projects, resumeId }: ProjectPageClientProps) => {
   const [open, setOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loadingMap, setLoadingMap] = useState<{ [key: string]: boolean }>({});
 
   /**
    * Handles form submission
@@ -30,12 +30,13 @@ const ProjectPageClient = ({ projects, resumeId }: ProjectPageClientProps) => {
    */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    const expId = formData.get("id") as string;
+
+    setLoadingMap((prev) => ({ ...prev, [expId]: true }));
 
     try {
-      // Get form data
-      const formData = new FormData(e.currentTarget);
-
       // Update project
       await upsertProject(formData);
 
@@ -45,7 +46,7 @@ const ProjectPageClient = ({ projects, resumeId }: ProjectPageClientProps) => {
       console.error(error);
       toast.error("Failed to update project");
     } finally {
-      setLoading(false);
+      setLoadingMap((prev) => ({ ...prev, [expId]: false }));
     }
   };
 
@@ -174,7 +175,7 @@ const ProjectPageClient = ({ projects, resumeId }: ProjectPageClientProps) => {
                 {/* Buttons */}
                 <div className="flex flex-col lg:flex-row justify-start lg:justify-between gap-2 mt-5">
                   <LoadingButton
-                    loading={loading}
+                    loading={loadingMap[project.id] || false}
                     loadingText="Updating"
                     title="Update Project"
                   />
