@@ -57,7 +57,7 @@ This application solves a major problem for beginners who are unsure about how a
   - React Icons
   - React Toastify
 - **`Backend:`**
-  - Next.js API Routes
+  - Next.js API Routes & Server Actions
   - Prisma ORM
   - PostgreSQL (Neon Database)
 - **`AI Integration:`**
