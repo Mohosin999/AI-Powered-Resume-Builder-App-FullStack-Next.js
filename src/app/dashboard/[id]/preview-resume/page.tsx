@@ -48,7 +48,7 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
       ======================================================================*/}
       <div
         id="print-area"
-        className="max-w-5xl mx-auto bg-white dark:bg-[#1C2434] mb-10 lg:mb-14 p-4 lg:py-20 lg:px-16 print:lg:py-20 print:lg:px-16 rounded-lg shadow-sm print:shadow-none"
+        className="max-w-5xl mx-auto bg-white dark:bg-[#1C2434] mb-10 lg:mb-14 p-4 lg:py-20 lg:px-16 rounded-lg shadow-sm print:shadow-none"
       >
         {/*=====================================================================
       =                        Personal Details Section                      =
@@ -114,7 +114,7 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
                     </div>
 
                     {/* Convert string description to bullet points */}
-                    <ul className="list-disc pl-8 print:pl-8 mt-2 text-sm text-700-300">
+                    <ul className="list-disc pl-8 mt-2 text-sm text-700-300">
                       {experience.description
                         .split(/\r?\n/)
                         .filter((line) => line.trim() !== "") // optional: ignore empty lines
@@ -165,7 +165,7 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
                     </div>
                   </div>
                   {/* Convert string description to bullet points */}
-                  <ul className="list-disc pl-8 print:pl-8 mt-2 text-sm text-700-300">
+                  <ul className="list-disc pl-8 mt-2 text-sm text-700-300">
                     {project.description
                       .split(/\r?\n/)
                       .filter((line) => line.trim() !== "") // optional: ignore empty lines
