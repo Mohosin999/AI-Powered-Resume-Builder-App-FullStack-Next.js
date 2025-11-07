@@ -220,7 +220,7 @@
 =                        Resume Preview Styles                         =
 ======================================================================*/
 .preview-contact-style {
-  @apply flex items-center gap-2 text-xs lg:text-sm italic text-gray-800 dark:text-gray-200 print:!text-gray-800;
+  @apply flex items-center gap-2 text-xs lg:text-sm text-gray-800 dark:text-gray-200 print:!text-gray-800;
 }
 
 .text-900-100 {
