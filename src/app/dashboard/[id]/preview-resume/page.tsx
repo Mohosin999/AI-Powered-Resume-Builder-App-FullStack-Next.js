@@ -114,7 +114,7 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
                     </div>
 
                     {/* Convert string description to bullet points */}
-                    <ul className="list-disc pl-10 mt-2 text-sm text-700-300">
+                    <ul className="list-disc pl-8 mt-2 text-sm text-700-300">
                       {experience.description
                         .split(/\r?\n/)
                         .filter((line) => line.trim() !== "") // optional: ignore empty lines
@@ -165,7 +165,7 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
                     </div>
                   </div>
                   {/* Convert string description to bullet points */}
-                  <ul className="list-disc pl-10 mt-2 text-sm text-700-300">
+                  <ul className="list-disc pl-8 mt-2 text-sm text-700-300">
                     {project.description
                       .split(/\r?\n/)
                       .filter((line) => line.trim() !== "") // optional: ignore empty lines
