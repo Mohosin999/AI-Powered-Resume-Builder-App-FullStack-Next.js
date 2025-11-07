@@ -48,7 +48,7 @@ const PreviewResume = async ({ params }: { params: { id: string } }) => {
       ======================================================================*/}
       <div
         id="print-area"
-        className="max-w-5xl mx-auto bg-white dark:bg-[#1C2434] mb-10 lg:mb-14 p-4 lg:p-20 rounded-lg shadow-sm print:shadow-none"
+        className="max-w-5xl mx-auto bg-white dark:bg-[#1C2434] mb-10 lg:mb-14 p-4 lg:py-20 lg:px-16 rounded-lg shadow-sm print:shadow-none"
       >
         {/*=====================================================================
       =                        Personal Details Section                      =
