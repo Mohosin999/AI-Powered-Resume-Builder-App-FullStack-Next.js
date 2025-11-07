@@ -43,7 +43,7 @@ const HomePage = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.9 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
               className="text-[#FFF42B] text-3xl md:text-5xl font-extrabold text-center"
             >
               Build Your Professional Resume
@@ -131,7 +131,7 @@ const HomePage = () => {
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.9 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                   key={index}
                   className="card lg:!p-10"
                 >
@@ -157,7 +157,7 @@ const HomePage = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.9 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <div className="md:w-1/2 flex justify-center mb-6 md:mb-0">
                 <div className="w-60 h-60 rounded-full overflow-hidden shadow-lg">
@@ -187,7 +187,7 @@ const HomePage = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.9 }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+              transition={{ duration: 0.3, ease: "easeOut", delay: 0.2 }}
             >
               <div className="md:w-1/2 flex justify-center mb-6 md:mb-0">
                 <div className="w-60 h-60 rounded-full overflow-hidden shadow-lg">
@@ -217,7 +217,7 @@ const HomePage = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.9 }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
+              transition={{ duration: 0.3, ease: "easeOut", delay: 0.4 }}
             >
               <div className="md:w-1/2 flex justify-center mb-6 md:mb-0">
                 <div className="w-60 h-60 rounded-full overflow-hidden shadow-lg">
