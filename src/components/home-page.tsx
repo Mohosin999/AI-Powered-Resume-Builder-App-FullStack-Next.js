@@ -39,15 +39,9 @@ const HomePage = () => {
             </div>
 
             {/* Animated gradient heading */}
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.9 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="text-[#FFF42B] text-3xl md:text-5xl font-extrabold text-center"
-            >
+            <h2 className="text-[#FFF42B] text-3xl md:text-5xl font-extrabold text-center">
               Build Your Professional Resume
-            </motion.h2>
+            </h2>
 
             {/* Paragraph */}
             <p className="text-left !text-gray-200 md:text-center mt-4 mb-6 paragraph lg:!text-lg">
