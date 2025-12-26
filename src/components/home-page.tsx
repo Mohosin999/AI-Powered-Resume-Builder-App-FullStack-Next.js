@@ -1,8 +1,15 @@
 "use client";
-import React, { useEffect } from "react";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Brain } from "lucide-react";
-import { FaLinkedin, FaGithub, FaFacebook } from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaGithub,
+  FaFacebook,
+  FaChevronDown,
+  FaChevronUp,
+} from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import GetStartedButton from "@/components/ui/get-started-button";
 import { features } from "./../utils/features";
@@ -10,41 +17,66 @@ import GoToTop from "./go-to-top";
 import { syncUser } from "@/actions/user-actions";
 import { motion } from "framer-motion";
 
+const faqData = [
+  {
+    question: "Is this resume builder free to use?",
+    answer:
+      "Yes! You can create professional resumes for free using our AI-powered system.",
+  },
+  {
+    question: "Can I use AI suggestions for my resume?",
+    answer:
+      "Absolutely! Our AI will suggest improvements and ideas to make your resume stand out.",
+  },
+  {
+    question: "Do I need to format my resume manually?",
+    answer:
+      "No! Our system automatically formats your resume professionally. You just fill in the details.",
+  },
+  {
+    question: "Can I download my resume?",
+    answer:
+      "Yes, once your resume is ready, you can download it in PDF format easily.",
+  },
+  {
+    question: "Is my data safe?",
+    answer:
+      "Yes, we prioritize your privacy and do not share your information with third parties.",
+  },
+];
+
 const HomePage = () => {
-  // Sync user
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
   useEffect(() => {
     const sync = async () => await syncUser();
     sync();
   }, []);
 
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex((prev) => (prev === index ? null : index));
+  };
+
   return (
     <div className="">
       <div className="min-h-screen">
-        {/*=====================================================================
-        =                           Hero section                               =
-        =====================================================================*/}
-        <div className="relative w-full lg:h-[100vh] py-10 lg:py-14 px-3 md:px-10 lg:px-14 flex items-center justify-center overflow-hidden">
-          {/* Background image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('./img/background.jpg')" }}
-          />
-
-          {/* Content overlay */}
-          <div className="relative z-10 px-0 md:px-10 lg:px-14 text-center  lg:max-w-6xl mx-auto ">
-            {/* AI badge (added extra touch) */}
-            <div className="inline-flex items-center gap-2 bg-black/30 backdrop-blur-md text-sm px-4 py-1 rounded-full mx-auto mb-5 border border-white/20 shadow-sm">
+        {/*==================== Hero section ====================*/}
+        <div className="relative w-full lg:h-[100vh] py-10 lg:py-14 px-3 md:px-10 lg:px-14 flex items-center justify-center overflow-hidden gradient-bg">
+          <div className="relative z-10 px-0 md:px-10 lg:px-14 text-center lg:max-w-6xl mx-auto">
+            <div
+              className="inline-flex items-center gap-2 bg-black/30 backdrop-blur-md 
+                    text-sm px-4 py-1 rounded-full mx-auto mb-5 
+                    border border-white/20 shadow-sm"
+            >
               <Brain className="w-4 h-4 text-blue-400" />
               <span className="text-gray-200">Powered by AI</span>
             </div>
 
-            {/* Animated gradient heading */}
             <h2 className="text-[#FFF42B] text-3xl md:text-5xl font-extrabold text-center">
               Build Your Professional Resume
             </h2>
 
-            {/* Paragraph */}
-            <p className="text-left !text-gray-200 md:text-center mt-4 mb-6 paragraph lg:!text-lg">
+            <p className="text-left md:text-center mt-4 mb-6 text-gray-200 lg:text-lg">
               You don’t need to worry about resume formatting here. Simply fill
               out the forms casually, and our system will automatically generate
               a world-class professional resume format for you. An even bigger
@@ -54,7 +86,6 @@ const HomePage = () => {
               style.
             </p>
 
-            {/* Buttons */}
             <div className="flex flex-col md:flex-row items-center justify-center gap-3">
               <GetStartedButton />
 
@@ -66,18 +97,18 @@ const HomePage = () => {
               >
                 <Button
                   variant="ghost"
-                  className="ghost-btn-2nd !border-gray-200 !text-gray-200 hover:!bg-gray-800 duration-300 "
+                  className="ghost-btn-2nd !border-gray-200 !text-gray-200 hover:!bg-gray-800 duration-300"
                 >
                   View GitHub Repository <FaGithub className="ml-2 w-5 h-5" />
                 </Button>
               </a>
             </div>
 
-            {/* Social links */}
             <div className="mt-6 md:mt-12">
-              <h2 className="text-center mt-5 h2 !text-white">
+              <h2 className="text-center mt-5 text-white text-xl font-semibold">
                 Connect With Me
               </h2>
+
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 0.9 }}
@@ -88,21 +119,23 @@ const HomePage = () => {
                 <a
                   href="https://www.facebook.com/mohosinh99"
                   target="_blank"
-                  className="text-gray-900 p-2 bg-[#fdffcd] rounded-full hover:scale-105 transition-all duration-300 ease-out"
+                  className="text-gray-900 p-2 bg-[#fdffcd] rounded-full hover:scale-105 transition-all"
                 >
                   <FaFacebook size={21} />
                 </a>
+
                 <a
                   href="https://www.linkedin.com/in/mohosinh99/"
                   target="_blank"
-                  className="text-gray-900 p-3 bg-[#fdffcd] rounded-full hover:scale-105 transition-all duration-300 ease-out"
+                  className="text-gray-900 p-3 bg-[#fdffcd] rounded-full hover:scale-105 transition-all"
                 >
                   <FaLinkedin size={30} />
                 </a>
+
                 <a
                   href="https://github.com/Mohosin999"
                   target="_blank"
-                  className="text-gray-900 p-2 bg-[#fdffcd] rounded-full hover:scale-105 transition-all duration-300 ease-out"
+                  className="text-gray-900 p-2 bg-[#fdffcd] rounded-full hover:scale-105 transition-all"
                 >
                   <FaGithub size={21} />
                 </a>
@@ -111,46 +144,40 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/*=====================================================================
-        =                           Key features                               =
-        =====================================================================*/}
-        <div className="w-full max-w-6xl mx-auto pt-12 md:pt-16">
-          {/* <div className="w-full pt-12 pb-10 md:pt-16 md:pb-6"> */}
+        {/*==================== Key features ====================*/}
+        <div className="w-full max-w-6xl mx-auto pt-16 md:pt-24">
           <div className="px-3 md:px-10 lg:px-14">
             <h1 className="h1">Why Our Resume Builder?</h1>
-
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-5">
               {features.map((feature, index) => (
                 <motion.div
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 100 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.9 }}
+                  viewport={{ once: true, amount: 0.7 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                   key={index}
-                  className="card lg:!p-10"
+                  className="bg-cyan-700 p-6 lg:p-10 rounded-lg shadow-sm"
                 >
-                  <h2 className="h2 mb-3">{feature.title}</h2>
-                  <p className="paragraph">{feature.description}</p>
+                  <h2 className="h2 !text-white mb-3">{feature.title}</h2>
+                  <p className="paragraph !text-gray-200">
+                    {feature.description}
+                  </p>
                 </motion.div>
               ))}
             </div>
           </div>
         </div>
 
-        {/*=====================================================================
-        =                        What our customers say                       =
-        =====================================================================*/}
-
-        <div className="w-full max-w-6xl mx-auto py-12 md:py-16 px-3 md:px-10 lg:px-14">
+        {/*==================== What our customers say ====================*/}
+        <div className="w-full max-w-6xl mx-auto pt-16 md:pt-24 px-3 md:px-10 lg:px-14">
           <h1 className="h1 text-center lg:!mb-12">What Our Users Say</h1>
-
           <div className="space-y-8">
             {/* Review 1 */}
             <motion.div
               className="flex flex-col md:flex-row items-center"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.9 }}
+              viewport={{ once: true, amount: 0.7 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <div className="md:w-1/2 flex justify-center mb-6 md:mb-0">
@@ -180,7 +207,7 @@ const HomePage = () => {
               className="flex flex-col md:flex-row-reverse items-center"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.9 }}
+              viewport={{ once: true, amount: 0.7 }}
               transition={{ duration: 0.3, ease: "easeOut", delay: 0.2 }}
             >
               <div className="md:w-1/2 flex justify-center mb-6 md:mb-0">
@@ -210,7 +237,7 @@ const HomePage = () => {
               className="flex flex-col md:flex-row items-center"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.9 }}
+              viewport={{ once: true, amount: 0.7 }}
               transition={{ duration: 0.3, ease: "easeOut", delay: 0.4 }}
             >
               <div className="md:w-1/2 flex justify-center mb-6 md:mb-0">
@@ -236,9 +263,53 @@ const HomePage = () => {
             </motion.div>
           </div>
         </div>
+
+        {/*==================== FAQ section ====================*/}
+        <div className="w-full max-w-4xl mx-auto px-3 md:px-10 pt-16 md:pt-24 lg:px-14">
+          <h1 className="h1 text-center mb-10">Frequently Asked Questions</h1>
+          <div className="space-y-4">
+            {faqData.map((faq, index) => (
+              <div
+                key={index}
+                className="border border-cyan-700 rounded-lg overflow-hidden"
+              >
+                <button
+                  className="w-full flex justify-between items-center p-4 text-left bg-cyan-700 hover:bg-gray-800 transition cursor-pointer"
+                  onClick={() => toggleFaq(index)}
+                >
+                  <span className="font-medium text-gray-200">
+                    {faq.question}
+                  </span>
+                  {openFaqIndex === index ? (
+                    <FaChevronUp className="w-5 h-5 text-gray-200" />
+                  ) : (
+                    <FaChevronDown className="w-5 h-5 text-gray-200" />
+                  )}
+                </button>
+                {openFaqIndex === index && (
+                  <div className="p-4 bg-gray-800 text-gray-300">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/*==================== Call to Action ====================*/}
+        <div className="w-full max-w-4xl mx-auto py-16 md:py-24 px-3 md:px-10 lg:px-14 text-center rounded-xl">
+          <h2 className="h1 mb-6 text-yellow-400">
+            Ready to Build Your Resume?
+          </h2>
+          <p className="paragraph text-gray-300 mb-6">
+            Start now and create a professional resume that stands out in
+            minutes with AI-powered suggestions!
+          </p>
+          <GetStartedButton />
+        </div>
       </div>
 
-      {/* <Go to top button /> */}
+      {/* Go to top button */}
       <GoToTop />
     </div>
   );
