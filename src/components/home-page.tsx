@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Brain } from "lucide-react";
 import {
   FaLinkedin,
@@ -12,38 +13,9 @@ import {
 } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import GetStartedButton from "@/components/ui/get-started-button";
-import { features } from "./../utils/features";
+import { faqData, features } from "./../utils/features";
 import GoToTop from "./go-to-top";
 import { syncUser } from "@/actions/user-actions";
-import { motion } from "framer-motion";
-
-const faqData = [
-  {
-    question: "Is this resume builder free to use?",
-    answer:
-      "Yes! You can create professional resumes for free using our AI-powered system.",
-  },
-  {
-    question: "Can I use AI suggestions for my resume?",
-    answer:
-      "Absolutely! Our AI will suggest improvements and ideas to make your resume stand out.",
-  },
-  {
-    question: "Do I need to format my resume manually?",
-    answer:
-      "No! Our system automatically formats your resume professionally. You just fill in the details.",
-  },
-  {
-    question: "Can I download my resume?",
-    answer:
-      "Yes, once your resume is ready, you can download it in PDF format easily.",
-  },
-  {
-    question: "Is my data safe?",
-    answer:
-      "Yes, we prioritize your privacy and do not share your information with third parties.",
-  },
-];
 
 const HomePage = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -269,7 +241,11 @@ const HomePage = () => {
           <h1 className="h1 text-center mb-10">Frequently Asked Questions</h1>
           <div className="space-y-4">
             {faqData.map((faq, index) => (
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.7 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 key={index}
                 className="border border-cyan-700 rounded-lg overflow-hidden"
               >
@@ -291,7 +267,7 @@ const HomePage = () => {
                     {faq.answer}
                   </div>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

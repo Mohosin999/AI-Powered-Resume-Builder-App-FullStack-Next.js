@@ -27,7 +27,6 @@ import { toast } from "react-toastify";
 import { Resume } from "@/utils/type";
 import { Loader } from "lucide-react";
 import GoToTop from "./go-to-top";
-import { motion } from "framer-motion";
 
 interface ResumeUpdateProps {
   allResumes: Resume[];
@@ -70,15 +69,12 @@ const DisplayAllResumes = ({ allResumes }: ResumeUpdateProps) => {
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {allResumes?.map((resume) => (
-          <div
-            key={resume.id}
-            className="relative group p-[2px] rounded-2xl bg-gradient-to-r from-green-400 via-yellow-400 to-green-500 animate-gradient-x"
-          >
+          <div key={resume.id} className="relative group p-[2px] rounded-2xl">
             <div className="card rounded-2xl bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md shadow-md hover:shadow-lg transition-all duration-500 flex flex-col justify-between min-h-[220px] p-6 relative">
               {/* 3-dot menu */}
               <div className="absolute bottom-3 right-3 z-10">
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="text-gray-800 dark:text-gray-100 hover:text-yellow-500 transition active:scale-105 cursor-pointer">
+                  <DropdownMenuTrigger className="text-gray-800 dark:text-gray-100 hover:text-cyan-500 transition active:scale-105 cursor-pointer">
                     <BsThreeDotsVertical size={20} />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>

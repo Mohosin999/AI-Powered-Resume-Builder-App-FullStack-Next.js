@@ -68,3 +68,47 @@ export const aiFeatures = [
     image: "/img/skills.png",
   },
 ];
+
+{
+  /*=====================================================================
+=                        Frequently Asked Questions                       =
+=====================================================================*/
+}
+
+export const faqData = [
+  {
+    question: "Is this resume builder free to use?",
+    answer:
+      "Yes! You can create professional resumes for free using our AI-powered system. There are no hidden charges, and you get access to all basic features.",
+  },
+  {
+    question: "Can I use AI suggestions for my resume?",
+    answer:
+      "Absolutely! Our AI provides smart suggestions to improve your resume content and layout, helping it stand out to employers.",
+  },
+  {
+    question: "Do I need to format my resume manually?",
+    answer:
+      "No! The system automatically formats your resume in a professional style. You only need to input your information, and we handle the rest.",
+  },
+  {
+    question: "Can I download my resume?",
+    answer:
+      "Yes, you can download your resume in PDF format once it's ready. It’s fully compatible for sharing with employers or job portals.",
+  },
+  {
+    question: "Is my data safe?",
+    answer:
+      "Yes, your privacy is our top priority. We do not share your information with third parties and keep all your data secure.",
+  },
+  {
+    question: "Can I edit my resume later?",
+    answer:
+      "Definitely! You can return anytime to update or modify your resume. All previous versions are saved for easy editing.",
+  },
+  {
+    question: "Are there templates available?",
+    answer:
+      "Yes! We offer multiple professional templates to choose from. You can pick the one that best fits your style and profession.",
+  },
+];
